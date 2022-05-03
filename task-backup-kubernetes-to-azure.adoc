@@ -1,0 +1,174 @@
+---
+sidebar: sidebar 
+permalink: task-backup-kubernetes-to-azure.html 
+keywords: backing up, back up, backup, back up kubernetes volumes, persistent volumes, PV, persistence volume claim, PVC, azure, azure blob, back up volumes, cloud backup, aks, kubernetes 
+summary: 請完成幾個步驟、開始將資料從您的持續磁碟區備份至Azure Blob儲存設備。 
+---
+= 將Kubernetes持續Volume資料備份至Azure Blob儲存設備
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+請完成幾個步驟、開始將資料從您的持續磁碟區備份至Azure Blob儲存設備。
+
+
+
+== 快速入門
+
+請依照下列步驟快速入門、或向下捲動至其餘部分以取得完整詳細資料。
+
+.span class="image"><imgrc="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png"[] alt="1"></span>檢閱先決條件
+* 您發現Kubernetes叢集是Cloud Manager工作環境。
++
+** 叢集上必須安裝Trident、Trident版本必須為21.1或更新版本。
+** 所有用於建立要備份之持續磁碟區的PVCS、都必須將「snapshotPolicy」設為「Default」（預設）。
+** 叢集必須在Cloud Volumes ONTAP Azure上使用以做為其後端儲存設備。
+** 該系統必須執行更新版本的1.7P5。Cloud Volumes ONTAP ONTAP
+
+
+* 您已訂閱有效的雲端供應商、以取得備份所在的儲存空間。
+* 您已訂閱 https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Cloud Manager Marketplace 備份產品"^]或您已購買 link:task-licensing-cloud-backup.html#use-a-cloud-backup-byol-license["並啟動"^] NetApp的Cloud Backup BYOL授權。
+
+
+[role="quick-margin-para"]
+選取工作環境、然後按一下右窗格中「備份與還原」服務旁的*「啟用」*、再依照設定精靈的指示操作。
+
+[role="quick-margin-para"]
+image:screenshot_backup_cvo_enable.png["螢幕擷取畫面顯示「啟用雲端備份」按鈕、可在您選取工作環境之後使用。"]
+
+[role="quick-margin-para"]
+預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每小時、每日、每週或每月備份、或選取其中一個系統定義的原則來提供更多選項。您也可以變更要保留的備份複本數量。
+
+[role="quick-margin-para"]
+image:screenshot_backup_policy_k8s_azure.png["顯示Cloud Backup設定的快照、您可在其中選擇備份排程和保留期間。"]
+
+[role="quick-margin-para"]
+在「 Select Volumes （選取磁碟區）」頁面中、找出您要備份的磁碟區。備份檔案儲存在Blob容器中、使用與Cloud Volumes ONTAP 該系統相同的Azure訂閱和Region。
+
+
+
+== 需求
+
+請先閱讀下列需求、確定您擁有支援的組態、再開始將Kubernetes持續磁碟區備份到Blob儲存設備。
+
+下圖顯示每個元件及其之間需要準備的連線：
+
+image:diagram_cloud_backup_k8s_cvo_azure.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
+
+請注意、私有端點是選用的。
+
+Kubernetes 叢集需求::
++
+--
+* 您發現Kubernetes叢集是Cloud Manager工作環境。 https://docs.netapp.com/us-en/cloud-manager-kubernetes/task/task-kubernetes-discover-azure.html["瞭解如何探索Kubernetes叢集"^]。
+* 叢集上必須安裝Trident、Trident版本必須至少21.1。請參閱 https://docs.netapp.com/us-en/cloud-manager-kubernetes/task/task-k8s-manage-trident.html["如何安裝Trident"^] 或 https://docs.netapp.com/us-en/trident/trident-managing-k8s/upgrade-trident.html["如何升級Trident版本"^]。
+* 叢集必須在Cloud Volumes ONTAP Azure上使用以做為其後端儲存設備。
+* 該系統必須與Kubernetes叢集位於同一個Azure區域、且必須執行更新版本的版本號：Cloud Volumes ONTAP ONTAP
++
+請注意、不支援內部部署位置中的Kubernetes叢集。僅Cloud Volumes ONTAP 支援使用支援的雲端部署中的Kubernetes叢集。
+
+* 所有用於建立要備份之持續磁碟區的持續磁碟區宣告物件、必須將「snapshotPolicy」設為「預設」。
++
+您可以在註釋下新增「快照原則」、為個別的PVCS執行此動作：
+
++
+[source, json]
+----
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: full
+  annotations:
+    trident.netapp.io/snapshotPolicy: "default"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1000Mi
+  storageClassName: silver
+----
++
+您可以在「backend.json」檔案的預設值下新增「快照原則」欄位、以針對與特定後端儲存設備相關的所有PVCS執行此動作：
+
++
+[source, json]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentBackendConfig
+metadata:
+  name: backend-tbc-ontap-nas-advanced
+spec:
+  version: 1
+  storageDriverName: ontap-nas
+  managementLIF: 10.0.0.1
+  dataLIF: 10.0.0.2
+  backendName: tbc-ontap-nas-advanced
+  svm: trident_svm
+  credentials:
+    name: backend-tbc-ontap-nas-advanced-secret
+  limitAggregateUsage: 80%
+  limitVolumeSize: 50Gi
+  nfsMountOptions: nfsvers=4
+  defaults:
+    spaceReserve: volume
+    exportPolicy: myk8scluster
+    snapshotPolicy: default
+    snapshotReserve: '10'
+  deletionPolicy: retain
+----
+
+
+--
+授權需求:: 對於Cloud Backup PAYGO授權、您必須先透過Azure Marketplace訂閱、才能啟用Cloud Backup。雲端備份計費是透過此訂閱完成。 https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-otc-azure.html["您可以從工作環境精靈的詳細資料 & 認證頁面訂閱"^]。
++
+--
+對於Cloud Backup BYOL授權、您需要NetApp的序號、以便在授權期間和容量內使用服務。 link:task-licensing-cloud-backup.html#use-a-cloud-backup-byol-license["瞭解如何管理BYOL授權"]。
+
+而且您必須訂閱 Microsoft Azure 、才能取得備份所在的儲存空間。
+
+--
+支援的 Azure 地區:: 所有Azure地區均支援雲端備份 https://cloud.netapp.com/cloud-volumes-global-regions["支援的地方 Cloud Volumes ONTAP"^]。
+
+
+
+
+== 啟用雲端備份
+
+可隨時直接從Kubernetes工作環境啟用雲端備份。
+
+.步驟
+. 選取工作環境、然後按一下右窗格中備份與還原服務旁的*啟用*。
++
+image:screenshot_backup_cvo_enable.png["螢幕擷取畫面會顯示「Cloud Backup Settings」（雲端備份設定）按鈕、您可以在選取工作環境之後使用該按鈕。"]
+
+. 輸入備份原則詳細資料、然後按一下*下一步*。
++
+您可以定義備份排程、並選擇要保留的備份數量。
+
++
+image:screenshot_backup_policy_k8s_azure.png["顯示Cloud Backup設定的快照、您可在其中選擇排程和備份保留。"]
+
+. 選取您要備份的持續磁碟區。
++
+** 若要備份所有磁碟區、請勾選標題列中的方塊（image:button_backup_all_volumes.png[""]）。
+** 若要備份個別磁碟區、請勾選每個磁碟區的方塊（image:button_backup_1_volume.png[""]）。
++
+image:screenshot_backup_select_volumes_k8s.png["選取要備份之持續磁碟區的快照。"]
+
+
+
+. 如果您希望未來新增的所有Volume都啟用備份、只要勾選「自動備份未來的Volume……」核取方塊即可。如果停用此設定、您將需要手動啟用未來磁碟區的備份。
+. 按一下「*啟動備份*」、「雲端備份」就會開始對每個選取的磁碟區進行初始備份。
+
+
+備份檔案儲存在Blob容器中、使用與Cloud Volumes ONTAP 該系統相同的Azure訂閱和Region。
+
+此時會顯示Kubernetes儀表板、以便您監控備份狀態。
+
+您可以 link:task-managing-backups-kubernetes.html["開始和停止磁碟區備份、或變更備份排程"^]。您也可以 link:task-restore-backups-kubernetes.html#restoring-volumes-from-a-kubernetes-backup-file["從備份檔案還原整個磁碟區"^] 做為Azure中相同或不同Kubernetes叢集的新Volume（位於同一個區域）。

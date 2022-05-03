@@ -1,0 +1,239 @@
+---
+sidebar: sidebar 
+permalink: task-backup-to-s3.html 
+keywords: backing up, back up, backup, backup cloud volumes ontap, back up cloud volumes ontap, cloud volumes ontap, aws, aws s3, amazon s3, s3 bucket, back up volumes, cloud backup 
+summary: 請完成幾個步驟、開始將資料從 Cloud Volumes ONTAP 功能完善的資料備份到 Amazon S3 。 
+---
+= 將Cloud Volumes ONTAP 不支援的資料備份至Amazon S3
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+請完成幾個步驟、開始將資料從 Cloud Volumes ONTAP 功能完善的資料備份到 Amazon S3 。
+
+
+
+== 快速入門
+
+請依照下列步驟快速入門、或向下捲動至其餘部分以取得完整詳細資料。
+
+.span class="image"><imgrc="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png"[] alt="1"></span>請確認您的組態是否支援
+* 您在 Cloud Volumes ONTAP AWS 中執行的是版本 9.6 或更新版本。
+* 您已訂閱有效的雲端供應商、以取得備份所在的儲存空間。
+* 您已訂閱 https://aws.amazon.com/marketplace/pp/prodview-oorxakq6lq7m4?sr=0-8&ref_=beagle&applicationId=AWSMPContessa["Cloud Manager Marketplace 備份產品"]、 https://aws.amazon.com/marketplace/pp/B086PDWSS8["AWS年度合約"]或您已購買 link:task-licensing-cloud-backup.html#use-a-cloud-backup-byol-license["並啟動"] NetApp的Cloud Backup BYOL授權。
+* 提供Cloud Manager Connector權限的IAM角色包括最新的S3權限 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則"^]。
+
+
+.span class="image"><imgrc="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png"[] Alt="2"></span>在新的或現有的系統上啟用雲端備份
+* 新系統：工作環境精靈預設會啟用雲端備份。請務必保持啟用選項。
+* 現有系統：選取工作環境、然後按一下右窗格中「Backup & Restore（備份與還原）」服務旁的*「Enable（啟用）」*、然後依照設定精靈進行。
++
+image:screenshot_backup_cvo_enable.png["螢幕擷取畫面會顯示「備份與安培」；「啟用還原」按鈕、可在您選取工作環境之後使用。"]
+
+
+
+[role="quick-margin-para"]
+選取AWS帳戶和您要建立備份的區域。您也可以選擇自己的客戶管理資料加密金鑰、而非使用預設的Amazon S3加密金鑰。
+
+[role="quick-margin-para"]
+image:screenshot_backup_provider_settings_aws.png["快照顯示將磁碟區從Cloud Volumes ONTAP 某個系統備份到AWS S3時、雲端供應商的詳細資料。"]
+
+[role="quick-margin-para"]
+預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每小時、每日、每週或每月備份、或選取其中一個系統定義的原則來提供更多選項。您也可以變更要保留的備份複本數量。
+
+[role="quick-margin-para"]
+根據預設、備份會儲存在S3 Standard儲存設備中。如果您的叢集使用ONTAP 的是更新版本的版本號、您可以選擇在數天後將備份層級至S3 Glacier或S3 Glacier Deep Archive儲存設備、以進一步最佳化成本。
+
+[role="quick-margin-para"]
+image:screenshot_backup_policy_aws.png["顯示Cloud Backup設定的快照、您可在其中選擇備份排程和保留期間。"]
+
+[role="quick-margin-para"]
+在「Select Volumes（選取磁碟區）」頁面中、使用預設的備份原則來識別要備份的磁碟區。如果您想要將不同的備份原則指派給特定磁碟區、可以建立其他原則、並於稍後套用至磁碟區。
+
+
+
+== 需求
+
+請先閱讀下列需求、確認您擁有支援的組態、再開始將磁碟區備份至 S3 。
+
+下圖顯示每個元件及其之間需要準備的連線：
+
+image:diagram_cloud_backup_cvo_aws.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
+
+雲端還原執行個體部署在雲端時、其所在的子網路與Connector相同。
+
+支援 ONTAP 的支援版本:: 更新版本。 Cloud Volumes ONTAP
+授權需求:: 對於Cloud Backup PAYGO授權、AWS Marketplace提供Cloud Manager訂閱服務、可讓您部署Cloud Volumes ONTAP 支援的功能包括：還原和雲端備份。您需要 https://aws.amazon.com/marketplace/pp/prodview-oorxakq6lq7m4?sr=0-8&ref_=beagle&applicationId=AWSMPContessa["訂閱此 Cloud Manager 訂閱"^] 在啟用Cloud Backup之前。雲端備份計費是透過此訂閱完成。
++
+--
+如需一年一度的合約、而該合約可讓您同時備份Cloud Volumes ONTAP 支援不必要資料和內部部署ONTAP 的不必要資料、您必須從訂閱 https://aws.amazon.com/marketplace/pp/B086PDWSS8["AWS Marketplace頁面"^] 然後 https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-adding-aws-accounts.html["將訂閱與AWS認證資料建立關聯"^]。
+
+如果是一年一度的合約、讓您能夠搭售Cloud Volumes ONTAP 出一套不完整的解決方案、那麼您必須在建立Cloud Volumes ONTAP 一個不完整的工作環境時、設定一年一度的合約。此選項無法讓您備份內部資料。
+
+對於Cloud Backup BYOL授權、您需要NetApp的序號、以便在授權期間和容量內使用服務。 link:task-licensing-cloud-backup.html#use-a-cloud-backup-byol-license["瞭解如何管理BYOL授權"]。
+
+而且您需要有AWS帳戶來存放備份所在的儲存空間。
+
+--
+支援的 AWS 區域:: 所有AWS區域均支援雲端備份 https://cloud.netapp.com/cloud-volumes-global-regions["支援的地方 Cloud Volumes ONTAP"^]；包括AWS GovCloud區域。
+在不同的AWS帳戶中建立備份所需的設定:: 根據預設、備份會使用Cloud Volumes ONTAP 與您的作業系統相同的帳戶建立。如果您想要使用不同的AWS帳戶進行備份、您必須使用 link:reference-backup-multi-account-aws.html["登入AWS入口網站並連結這兩個帳戶"]。
+使用客戶管理金鑰進行資料加密的必要資訊:: 您可以在啟動精靈中選擇自己的客戶管理資料加密金鑰、而非使用預設的Amazon S3加密金鑰。在此情況下、您必須先設定加密管理金鑰。 https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-setting-up-kms.html["瞭解如何使用您自己的金鑰"^]。
+需要AWS備份權限:: 提供 Cloud Manager 權限的 IAM 角色必須包含最新版本的 S3 權限 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則"^]。
++
+--
+以下是原則的特定權限：
+
+[source, json]
+----
+{
+            "Sid": "backupPolicy",
+            "Effect": "Allow",
+            "Action": [
+                "s3:DeleteBucket",
+                "s3:GetLifecycleConfiguration",
+                "s3:PutLifecycleConfiguration",
+                "s3:PutBucketTagging",
+                "s3:ListBucketVersions",
+                "s3:GetObject",
+                "s3:DeleteObject",
+                "s3:PutObject",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketTagging",
+                "s3:GetBucketLocation",
+                "s3:GetBucketPolicyStatus",
+                "s3:GetBucketPublicAccessBlock",
+                "s3:GetBucketAcl",
+                "s3:GetBucketPolicy",
+                "s3:PutBucketPublicAccessBlock",
+                "s3:PutEncryptionConfiguration",
+                "athena:StartQueryExecution",
+                "athena:GetQueryResults",
+                "athena:GetQueryExecution",
+                "glue:GetDatabase",
+                "glue:GetTable",
+                "glue:CreateTable",
+                "glue:CreateDatabase",
+                "glue:GetPartitions",
+                "glue:BatchCreatePartition",
+                "glue:BatchDeletePartition"
+            ],
+            "Resource": [
+                "arn:aws:s3:::netapp-backup-*"
+            ]
+        },
+----
+--
+
+
+如果您使用3.9.15版或更新版本部署Connector、則這些權限應已成為IAM角色的一部分。否則您必須新增遺失的權限。特別是「Athena」和「黏著」權限、因為它們是搜尋與還原所需的權限。
+
+需要AWS還原權限:: 提供Cloud Manager權限的IAM角色需要下列EC2權限、以便能夠啟動、停止及終止Cloud Restore執行個體以進行瀏覽與還原作業：
++
+--
+[source, json]
+----
+          "Action": [
+              "ec2:DescribeInstanceTypeOfferings",
+              "ec2:StartInstances",
+              "ec2:StopInstances",
+              "ec2:TerminateInstances"
+          ],
+----
+--
+AWS部署所需的傳出網際網路存取:: Cloud Restore執行個體需要傳出網際網路存取。如果您的虛擬或實體網路使用Proxy伺服器進行網際網路存取、請確定執行個體具有傳出網際網路存取權限、以聯絡下列端點。
++
+--
+[cols="43,57"]
+|===
+| 端點 | 目的 
+
+
+| http://amazonlinux.us-east-1.amazonaws.com/2/extras/docker/stable/ x86_64：4bf88ee77c395ffe1e0c3ca68530dfb3a683ec65a4a1ce9c0ff394be50e9222b2 | 適用於雲端還原執行個體AMI的CentOS套件。 
+
+
+| \https://download.docker.com/linux/centos/docker-ce.repo | 提供Docker Engine套件。 
+
+
+| \http://cloudmanagerinfraprod.azurecr.io \https://cloudmanagerinfraprod.azurecr.io | Cloud Restore執行個體映像儲存庫。 
+|===
+--
+
+
+
+
+== 在新系統上啟用雲端備份
+
+在工作環境精靈中、預設會啟用Cloud Backup。請務必保持啟用選項。
+
+請參閱 https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-otc-aws.html["在 Cloud Volumes ONTAP AWS 中啟動"^] 以瞭解建立 Cloud Volumes ONTAP 您的整個系統的需求與詳細資料。
+
+.步驟
+. 按一下「 * 建立 Cloud Volumes ONTAP 參考 * 」。
+. 選取 Amazon Web Services 做為雲端供應商、然後選擇單一節點或 HA 系統。
+. 填寫「詳細資料與認證」頁面。
+. 在「服務」頁面上、讓服務保持啟用狀態、然後按一下 * 繼續 * 。
++
+image:screenshot_backup_to_gcp.png["在工作環境精靈中顯示Cloud Backup選項。"]
+
+. 完成精靈中的頁面以部署系統。
+
+
+Cloud Backup可在系統上啟用、並每天備份磁碟區、並保留最近30個備份複本。
+
+您可以 link:task-manage-backups-ontap.html["開始和停止磁碟區備份、或變更備份排程"^]。您也可以 link:task-restore-backups-ontap.html["從備份檔案還原整個磁碟區或個別檔案"^] 到Cloud Volumes ONTAP AWS的某個系統、或內部部署ONTAP 的某個系統。
+
+
+
+== 在現有系統上啟用雲端備份
+
+隨時直接從工作環境啟用雲端備份。
+
+.步驟
+. 選取工作環境、然後按一下右窗格中備份與還原服務旁的*啟用*。
++
+image:screenshot_backup_cvo_enable.png["螢幕擷取畫面會顯示「Cloud Backup Settings」（雲端備份設定）按鈕、您可以在選取工作環境之後使用該按鈕。"]
+
+. 選取供應商詳細資料、然後按*下一步*。
++
+.. 用來儲存備份的AWS帳戶。這可能與Cloud Volumes ONTAP 駐留於此系統的帳戶不同。
++
+如果您想要使用不同的AWS帳戶進行備份、您必須使用 link:reference-backup-multi-account-aws.html["登入AWS入口網站並連結這兩個帳戶"]。
+
+.. 儲存備份的區域。這可能與Cloud Volumes ONTAP 駐留的地方不同。
+.. 無論您是使用預設的Amazon S3加密金鑰、還是從AWS帳戶選擇自己的客戶管理金鑰、都能管理資料的加密。 (https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-setting-up-kms.html["瞭解如何使用您自己的加密金鑰"]）。
++
+image:screenshot_backup_provider_settings_aws.png["快照顯示將磁碟區從Cloud Volumes ONTAP 某個系統備份到AWS S3時、雲端供應商的詳細資料。"]
+
+
+
+. 輸入預設的備份原則詳細資料、然後按一下「*下一步*」。
++
+.. 定義備份排程、並選擇要保留的備份數量。 link:concept-ontap-backup-to-cloud.html#customizable-backup-schedule-and-retention-settings-per-cluster["請參閱您可以選擇的現有原則清單"^]。
+.. 若使用ONTAP 的是版本不含更新版本的版本、您可以選擇在數天後將備份分層至S3 Glacier或S3 Glacier Deep Archive儲存設備、以進一步最佳化成本。 link:reference-aws-backup-tiers.html["深入瞭解如何使用歸檔層"]。
++
+image:screenshot_backup_policy_aws.png["顯示Cloud Backup設定的快照、您可在其中選擇排程和備份保留。"]
+
+
+
+. 在「Select Volumes（選取磁碟區）」頁面中、使用預設備份原則選取您要備份的磁碟區。如果您想要將不同的備份原則指派給特定磁碟區、可以建立其他原則、並於稍後將其套用至這些磁碟區。
++
+image:screenshot_backup_select_volumes.png["選取要備份之磁碟區的快照。"]
+
++
+** 若要備份所有磁碟區、請勾選標題列中的方塊（image:button_backup_all_volumes.png[""]）。
+** 若要備份個別磁碟區、請勾選每個磁碟區的方塊（image:button_backup_1_volume.png[""]）。
+
+
+. 如果您希望未來新增的所有磁碟區都啟用備份、只要勾選「自動備份未來磁碟區...」核取方塊即可。如果停用此設定、您將需要手動啟用未來磁碟區的備份。
+. 按一下「*啟動備份*」、「雲端備份」就會開始對每個選取的磁碟區進行初始備份。
+
+
+Cloud Backup會開始對每個選取的磁碟區進行初始備份、並顯示Volume Backup Dashboard、以便您監控備份狀態。
+
+您可以 link:task-manage-backups-ontap.html["開始和停止磁碟區備份、或變更備份排程"^]。您也可以 link:task-restore-backups-ontap.html["從備份檔案還原整個磁碟區或個別檔案"^] 到Cloud Volumes ONTAP AWS的某個系統、或內部部署ONTAP 的某個系統。

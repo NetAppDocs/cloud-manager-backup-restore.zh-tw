@@ -1,0 +1,97 @@
+---
+sidebar: sidebar 
+permalink: concept-protect-app-data-to-cloud.html 
+keywords: backing up, back up, backup, backup application data, Azure, Amazon Web services, Cloud Backup, Oracle database, Microsoft SQL Server database, policy, requirements 
+summary: 整合Cloud Backup for Applications與Cloud Manager及內部部署SnapCenter 的功能、將應用程式一致的Snapshot從內部部署ONTAP 的地方還原至雲端。 
+---
+= 保護內部部署的應用程式資料
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以將Cloud Backup for Applications與Cloud Manager和內部部署SnapCenter 的解決方案整合、將應用程式一致的Snapshot從內部部署ONTAP 的地方還原到雲端。必要時、您可以從雲端還原至內部部署SnapCenter 的功能。
+
+您可以將Oracle和Microsoft SQL應用程式資料從內部部署ONTAP 的功能還原備份到Amazon Web Services或Microsoft Azure。
+
+
+NOTE: 您應該使用SnapCenter 的是功能不實的軟體4.6。
+
+如需雲端應用程式備份的詳細資訊、請參閱：
+
+* https://cloud.netapp.com/blog/cbs-cloud-backup-and-snapcenter-integration["應用程式感知備份、採用Cloud Backup和SnapCenter 功能"^]
+* https://soundcloud.com/techontap_podcast/episode-322-cloud-backup-for-applications["應用程式的雲端備份"^]
+
+
+
+
+== 需求
+
+請先閱讀下列需求、確定您擁有支援的組態、再開始將應用程式資料備份至雲端服務。
+
+* 部分9.8或更新版本ONTAP
+* Cloud Manager 3.9..
+* 伺服器4.6% SnapCenter
+* 每個應用程式至少應有一個備份可供SnapCenter 使用於此伺服器
+* 至少有一項每日、每週或每月的政策SnapCenter 、沒有標籤或標籤與Cloud Manager中的Cloud Backup for Applications原則相同。
+
+
+下圖顯示每個元件及其之間需要準備的連線：
+
+image:diagram_cloud_backup_app.png["顯示Cloud Backup如何與內部部署應用程式及備份檔案所在的目的地儲存設備進行通訊的圖表。"]
+
+
+
+== 保護原則
+
+您應該使用Cloud Backup for Applications中定義的其中一項原則、將應用程式資料備份到雲端。
+
+
+NOTE: 不支援自訂原則。
+
+|===
+| 原則名稱 | 標籤 | 保留價值 
+
+
+ a| 
+1年每日LTR
+ a| 
+每日
+ a| 
+366,36
+
+
+
+ a| 
+5年每日LTR
+ a| 
+每日
+ a| 
+1830年
+
+
+
+ a| 
+7年每週LTR
+ a| 
+每週
+ a| 
+37
+
+
+
+ a| 
+每月10年LTR
+ a| 
+每月
+ a| 
+120
+
+|===
+這些原則的標籤和保留值可以使用REST API加以修改、直到原則與應用程式相關聯為止。只有一個原則可以與應用程式建立關聯、一旦建立關聯、您就無法取消關聯。
+
+除了雲端備份應用程式原則之外、您還需要至少一個SnapCenter 還原原則、才能將應用程式資料備份到雲端。

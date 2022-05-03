@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: reference-azure-backup-tiers.html 
+keywords: microsoft azure, azure, cool, access tier, archive 
+summary: Cloud Backup支援一個Azure歸檔存取層、以及大部分地區。 
+---
+= Azure歸檔層與還原擷取時間
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Backup支援一個Azure歸檔存取層、以及大部分地區。
+
+
+
+== 支援的Azure Blob雲端備份存取層
+
+一開始建立備份檔案時、檔案會儲存在_cool存取層。此階層已最佳化、可儲存不常存取的資料、但需要時、可立即存取。
+
+如果您的來源叢集執行ONTAP 的是Estrs9.10.1或更新版本、您可以選擇在特定天數（通常超過30天）之後、將備份從_coo__分層至_Azure Archive_儲存設備、以進一步最佳化成本。此層級中的資料無法在需要時立即存取、而且需要較高的擷取成本、因此您必須考慮從這些歸檔備份檔案還原資料的頻率。請參閱下一節關於 <<Restoring data from archival storage,從歸檔儲存設備還原資料>>。
+
+請注意、當您使用此類型的生命週期規則設定Cloud Backup時、在Azure帳戶中設定容器時、不得設定任何生命週期規則。
+
+https://docs.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview["瞭解Azure Blob存取層級"^]。
+
+
+
+== 從歸檔儲存設備還原資料
+
+雖然在歸檔儲存設備中儲存較舊的備份檔案比儲存設備便宜得多、但從Azure歸檔中的備份檔案存取資料以進行還原作業需要較長的時間、而且成本較高。
+
+從Azure歸檔還原資料需要多少成本？:: 從Azure歸檔擷取資料時、您可以選擇兩種還原優先順序：
++
+--
+* *高*：擷取速度最快、成本更高
+* *標準*：擷取速度較慢、成本較低
+
+
+每種方法都有不同的每GB擷取費用和每個要求的費用。如需Azure區域的Azure歸檔詳細定價資訊、請參閱 https://azure.microsoft.com/en-us/pricing/details/storage/blobs/["Azure定價頁面"]。
+
+--
+還原在Azure歸檔中歸檔的資料需要多久時間？:: 還原時間由兩部分組成：
++
+--
+* *擷取時間*：從Azure歸檔中擷取歸檔備份檔案、並將其置於冷卻儲存設備的時間。這有時稱為「補水」時間。擷取時間會因您選擇的還原優先順序而有所不同：
++
+** *高*：< 1小時
+** *標準*：< 15小時
+
+
+* *還原時間*：從冷卻儲存設備中的備份檔案還原資料的時間。這一次與一般直接從冷卻儲存設備進行還原作業（不使用歸檔層時）並無不同。
+
+
+如需Azure歸檔擷取選項的詳細資訊、請參閱 https://azure.microsoft.com/en-us/pricing/details/storage/blobs/#faq["本Azure常見問題集"]。
+
+--
+

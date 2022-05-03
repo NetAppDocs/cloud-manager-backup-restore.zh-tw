@@ -1,0 +1,176 @@
+---
+settings:
+  name: Cloud Backup
+  platform: cloud
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: zh-tw,us-en,ja-jp,zh-cn,ko-kr
+sidebar:
+  entries:
+  - title: 所有Cloud Manager文件
+    url: https://docs.netapp.com/us-en/cloud-manager-family
+  - title: 雲端備份文件
+    url: "/index.html"
+  - title: 版本資訊
+    url: "/whats-new.html"
+  - title: 開始使用
+    entries:
+    - title: 深入瞭解Cloud Backup
+      url: "/concept-backup-to-cloud.html"
+    - title: 設定授權
+      url: "/task-licensing-cloud-backup.html"
+    - title: 監控備份與還原工作的狀態
+      url: task-monitor-backup-jobs.html
+  - title: 備份及還原ONTAP 資料
+    entries:
+    - title: 保護ONTAP 您的資料
+      url: "/concept-ontap-backup-to-cloud.html"
+    - title: 備份Cloud Volumes ONTAP 到Amazon S3
+      url: "/task-backup-to-s3.html"
+    - title: 備份Cloud Volumes ONTAP 到Azure Blob
+      url: "/task-backup-to-azure.html"
+    - title: 備份Cloud Volumes ONTAP 到Google Cloud
+      url: "/task-backup-to-gcp.html"
+    - title: 將內部部署ONTAP 的不支援資料備份至Amazon S3
+      url: "/task-backup-onprem-to-aws.html"
+    - title: 將內部部署ONTAP 的資料備份到Azure Blob
+      url: "/task-backup-onprem-to-azure.html"
+    - title: 將內部部署ONTAP 的不全資料備份到Google Cloud
+      url: "/task-backup-onprem-to-gcp.html"
+    - title: 將內部部署ONTAP 的內部部署資料備份至StorageGRID
+      url: "/task-backup-onprem-private-cloud.html"
+    - title: 管理ONTAP 還原備份
+      url: "/task-manage-backups-ontap.html"
+    - title: 從ONTAP 還原備份還原
+      url: "/task-restore-backups-ontap.html"
+  - title: 備份及還原Kubernetes資料
+    entries:
+    - title: 保護您的Kubernetes資料
+      url: "/concept-kubernetes-backup-to-cloud.html"
+    - title: 備份至 Amazon S3
+      url: "/task-backup-kubernetes-to-s3.html"
+    - title: 備份至Azure Blob
+      url: "/task-backup-kubernetes-to-azure.html"
+    - title: 備份至Google Cloud
+      url: "/task-backup-kubernetes-to-gcp.html"
+    - title: 管理Kubernetes備份
+      url: "/task-manage-backups-kubernetes.html"
+    - title: 從Kubernetes備份還原
+      url: "/task-restore-backups-kubernetes.html"
+  - title: 備份及還原內部部署應用程式資料
+    entries:
+    - title: 保護內部部署的應用程式資料
+      url: "/concept-protect-app-data-to-cloud.html"
+    - title: 將內部部署應用程式資料備份到雲端
+      url: "/task-backup-app-data-to-cloud.html"
+    - title: 管理應用程式保護
+      url: "/task-manage-app-backups.html"
+    - title: 還原應用程式資料
+      entries:
+      - title: 還原Oracle資料庫
+        url: "/task-restore-oracle-data.html"
+      - title: 還原SQL Server資料庫
+        url: "/task-restore-sql-data.html"
+  - title: 參考資料
+    entries:
+    - title: 支援的AWS歸檔儲存層
+      url: "/reference-aws-backup-tiers.html"
+    - title: 支援的Azure歸檔存取層
+      url: "/reference-azure-backup-tiers.html"
+    - title: 跨帳戶和跨區域組態
+      url: "/reference-cross-account.html"
+      entries:
+      - title: 在AWS中設定多帳戶存取的備份
+        url: "/reference-backup-multi-account-aws.html"
+      - title: 設定備份以在Azure中存取多個帳戶
+        url: "/reference-backup-multi-account-azure.html"
+  - title: 知識與支援
+    entries:
+    - title: 註冊以取得支援
+      url: "/task-support-registration.html"
+    - title: 取得協助
+      url: "/task-get-help.html"
+  - title: 法律聲明
+    url: "/legal-notices.html"
+homepage:
+  tiles:
+  - title: 開始使用
+    links:
+    - title: 深入瞭解Cloud Backup
+      url: concept-backup-to-cloud.html
+    - title: 新增功能
+      url: whats-new.html
+    - title: 設定授權
+      url: task-licensing-cloud-backup.html
+  - title: 將ONTAP 資料還原至雲端
+    links:
+    - title: 支援Amazon S3 Cloud Volumes ONTAP
+      url: task-backup-to-s3.html
+    - title: 適用於Azure Blob Cloud Volumes ONTAP
+      url: task-backup-to-azure.html
+    - title: 從NetApp移轉至Google Cloud Cloud Volumes ONTAP
+      url: task-backup-to-gcp.html
+    - title: 內部部署ONTAP 的不支援Amazon S3
+      url: task-backup-onprem-to-aws.html
+    - title: 內部部署ONTAP 的不只是Azure Blob
+      url: task-backup-onprem-to-azure.html
+    - title: 內部部署ONTAP 的不只是Google Cloud
+      url: task-backup-onprem-to-gcp.html
+    - title: 內部部署ONTAP 的功能從功能到StorageGRID 功能
+      url: task-backup-onprem-private-cloud.html
+  - title: 將Kubernetes資料備份到雲端
+    links:
+    - title: Kubernetes叢集至Amazon S3
+      url: task-backup-kubernetes-to-s3.html
+    - title: Kubernetes叢集至Azure Blob
+      url: task-backup-kubernetes-to-azure.html
+    - title: Kubernetes叢集至Google Cloud
+      url: task-backup-kubernetes-to-gcp.html
+  - title: 備份及還原內部部署應用程式資料
+    links:
+    - title: 將內部部署應用程式資料備份到雲端
+      url: "/task-backup-app-data-to-cloud.html"
+    - title: 還原Oracle資料庫
+      url: "/task-restore-oracle-data.html"
+    - title: 還原SQL Server資料庫
+      url: "/task-restore-sql-data.html"
+  - title: 從備份檔案還原資料
+    links:
+    - title: 還原ONTAP 功能
+      url: task-restore-backups-ontap.html
+    - title: 還原ONTAP 功能檔
+      url: task-restore-backups-ontap.html
+    - title: 還原Kubernetes磁碟區
+      url: task-restore-backups-kubernetes.html
+  - title: 管理ONTAP 還原備份檔案
+    links:
+    - title: 啟用和停用Volume備份
+      url: task-manage-backups-ontap.html#enabling-and-disabling-backups-of-volumes
+    - title: 編輯現有的備份原則
+      url: task-manage-backups-ontap.html#editing-an-existing-backup-policy
+    - title: 新增備份原則
+      url: task-manage-backups-ontap.html#adding-a-new-backup-policy
+    - title: 變更指派給現有磁碟區的原則
+      url: task-manage-backups-ontap.html#changing-the-policy-assigned-to-existing-volumes
+    - title: 建立手動Volume備份
+      url: task-manage-backups-ontap.html#creating-a-manual-volume-backup-at-any-time
+    - title: 檢視每個磁碟區的備份清單
+      url: task-manage-backups-ontap.html#viewing-the-list-of-backups-for-each-volume
+    - title: 刪除備份
+      url: task-manage-backups-ontap.html#deleting-backups
+    - title: 監控備份與還原工作的狀態
+      url: task-monitor-backup-jobs.html
+  - title: 部落格社群
+    links:
+    - title: NetApp社群
+      url: https://community.netapp.com/t5/Cloud-Data-Services/ct-p/CDS
+    - title: Cloud Central部落格
+      url: https://cloud.netapp.com/blog
+    - title: Cloud Central使用案例
+      url: https://cloud.netapp.com/cloud-backup
+    - title: 雲端網路研討會
+      url: https://cloud.netapp.com/events
+product-family: {}

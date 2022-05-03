@@ -1,0 +1,138 @@
+---
+sidebar: sidebar 
+permalink: task-manage-app-backups.html 
+keywords: manage, Azure, Amazon Web services, Oracle database, Microsoft SQL Server database, backups, policy, monitor, jobs, monitor jobs 
+summary: 您可以檢視原則和備份。視資料庫、原則或資源群組的變更而定、您可以從Cloud Manager UI重新整理更新。 
+---
+= 管理應用程式保護
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以檢視原則和備份。視資料庫、原則或資源群組的變更而定、您可以從Cloud Manager UI重新整理更新。
+
+
+
+== 檢視原則
+
+您可以檢視所有預設的預設預設預設預設預設原則。當您檢視所有相關的Cloud Backup for Applications原則和所有相關應用程式詳細資料時、會列出這些原則中的每個原則。
+
+. 按一下*備份與還原*>*應用程式*。
+. 從*設定*下拉式清單中、按一下*原則*。
+. 按一下您要檢視其詳細資料之原則的*檢視詳細資料*。
++
+列出相關的Cloud Backup for Applications原則和所有應用程式。
+
++
+
+NOTE: 您不應刪除Cloud Backup for Applications原則。
+
+
+
+您也SnapCenter 可以執行「Get-SmResources SnapCenter 」這個指令程式來檢視雲端延伸的支援性政策。您可以執行Get-Help命令名稱來取得可搭配Cmdlet使用之參數及其說明的相關資訊。或者、您也可以參閱 https://library.netapp.com/ecm/ecm_download_file/ECMLP2880726["《軟件指令程式參考指南》SnapCenter"]。
+
+
+
+== 檢視雲端上的備份
+
+您可以在Cloud Manager UI中檢視雲端上的備份。
+
+. 按一下*備份與還原*>*應用程式*。
+. 按一下 image:icon-action.png["圖示以選取動作"] 與應用程式對應、然後按一下*檢視詳細資料*。
+
+
+
+IMPORTANT: 列出備份所需的時間取決於ONTAP的預設複寫排程（最多1小時）和Cloud Manager（最多6小時）。
+
+* 對於Oracle資料庫、資料與記錄備份、每個備份的SCN編號、會列出每個備份的結束日期。您只能選取資料備份、然後將資料庫還原至內部部署SnapCenter 的伺服器。
+* 對於Microsoft SQL Server資料庫、只會列出每個備份的完整備份和結束日期。您可以選取備份、並將資料庫還原至內部部署SnapCenter 的伺服器。
+* 對於Microsoft SQL Server執行個體、不會列出備份、而只會列出該執行個體下的資料庫。
+
+
+
+NOTE: 在啟用雲端保護之前所建立的備份並未列出以供還原。
+
+您也可以執行「Get-SmBackup」SnapCenter 指令程式來檢視這些備份。您可以執行Get-Help命令名稱來取得可搭配Cmdlet使用之參數及其說明的相關資訊。或者、您也可以參閱 https://library.netapp.com/ecm/ecm_download_file/ECMLP2880726["《軟件指令程式參考指南》SnapCenter"]。
+
+
+
+== 資料庫配置變更
+
+當將Volume新增至資料庫時、SnapCenter 根據原則和排程、將會自動在新Volume上標示快照。這些新磁碟區將沒有物件存放區端點、您應該執行下列步驟來重新整理：
+
+. 按一下*備份與還原*>*應用程式*。
+. 從*設定*下拉式清單中、按一下* SnapCenter 《伺服器*》。
+. 按一下 image:icon-action.png["圖示以選取動作"] 對應SnapCenter 於裝載應用程式的Singserver、然後按一下* Refresh*。
++
+系統會探索新的磁碟區。
+
+. 按一下 image:icon-action.png["圖示以選取動作"] 對應於應用程式、然後按一下*重新整理保護*、即可為新磁碟區啟用雲端保護。
+
+
+如果在設定雲端服務之後、從應用程式中移除儲存Volume、則針對新的備份SnapCenter 、更新版的更新版僅會標示應用程式所在的快照。如果移除的Volume未被任何其他應用程式使用、則您應該手動刪除物件存放區關係。如果您更新應用程式詳細目錄、它會包含應用程式目前的儲存配置。
+
+
+
+== 原則或資源群組變更
+
+如果SnapCenter 變更了「資源保護法」或「資源群組」、您應該重新整理保護。
+
+. 按一下*備份與還原*>*應用程式*。
+. 按一下 image:icon-action.png["圖示以選取動作"] 與應用程式對應、然後按一下*重新整理保護*。
+
+
+
+
+== 監控工作
+
+所有雲端備份作業都會建立。您可以監控在每項工作中執行的所有工作和所有子工作。
+
+. 按一下*備份與還原*>*工作監控*。
++
+當您啟動作業時、會出現一個視窗、指出該工作已啟動。您可以按一下連結來監控工作。
+
+. 按一下主要工作以檢視每個子工作的子工作和狀態。
+
+
+
+
+== 設定CA憑證
+
+如果您有CA憑證、應該手動將根CA憑證複製到連接器機器。
+
+不過、如果您沒有CA憑證、則無需設定CA憑證即可繼續。
+
+*步驟*
+
+. 將憑證複製到可從Docker代理程式存取的磁碟區。
++
+** 「CD /var/lib/dred/voles/cloudmanager_snapcenter_volume /_data/mkdir sc_certs」
+** 《chmod777 sc_certs》
+
+
+. 將RootCA憑證檔案複製到連接器機器上的上述資料夾。
++
+「CP <連接器路徑>/<檔案名稱>/var/lib/dred/voles/cloudmanager_snapcenter_volVolume /_data/sc_certs」
+
+. 將CRL檔案複製到可從Docker代理程式存取的磁碟區。
++
+** 「CD /var/lib/dred/voles/cloudmanager_snapcenter_volume /_data/mkdir sc_crl」
+** 「chmod777 sc_crl」
+
+
+. 將CRL檔案複製到連接器機器上的上述資料夾。
++
+「CP <連接器路徑>/<檔案名稱>/var/lib/dred/voles/cloudmanager_snapcenter_volVolume /_data/sc_crl」
+
+. 複製憑證和CRL檔案之後、請重新啟動Cloud Backup for Apps服務。
++
+** 「Udo Docker執行cloudmanager_snapcenter sed -I 's/skipscCertValidation：true/skipscCertValidation：假/g'/opt/netapp/cloudmanager-snapcenter-agent/config/config.yml」
+** 「Udo Docker重新啟動cloudmanager_snapcentre」
+
+
+

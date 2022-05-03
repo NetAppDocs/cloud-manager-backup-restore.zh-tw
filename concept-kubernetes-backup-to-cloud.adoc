@@ -1,0 +1,180 @@
+---
+sidebar: sidebar 
+permalink: concept-kubernetes-backup-to-cloud.html 
+keywords: backing up, restoring, back up, backup, restore, aws, azure, s3, blob, google cloud, back up volumes, cloud backup, restore volumes, billing, cost, kubernetes 
+summary: Cloud Backup提供備份與還原功能、可保護Kubernetes叢集資料並進行長期歸檔。備份會自動產生、並儲存在公有雲或私有雲帳戶的物件存放區中。 
+---
+= 使用Cloud Backup保護Kubernetes叢集資料
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Backup提供備份與還原功能、可保護Kubernetes叢集資料並進行長期歸檔。備份會自動產生、並儲存在公有雲或私有雲帳戶的物件存放區中。
+
+必要時、您可以將整個_volume從備份還原至相同或不同的工作環境。
+
+
+
+== 功能
+
+備份功能：
+
+* 將持續磁碟區的獨立複本備份到低成本物件儲存設備。
+* 將單一備份原則套用至叢集中的所有磁碟區、或將不同的備份原則指派給具有獨特還原點目標的磁碟區。
+* 備份資料會以 AES-256 位元加密的閒置和 TLS 1.2 HTTPS 傳輸連線加以保護。
+* 單一磁碟區最多可支援4、000個備份。
+
+
+還原功能：
+
+* 從特定時間點還原資料。
+* 將磁碟區還原至來源系統或其他系統。
+* 還原區塊層級的資料、將資料直接放在您指定的位置、同時保留原始ACL。
+
+
+
+
+== 支援的Kubernetes工作環境和物件儲存供應商
+
+Cloud Backup可讓您將Kubernetes磁碟區從下列工作環境備份到下列公有和私有雲端供應商的物件式儲存設備：
+
+[cols="45,40"]
+|===
+| 來源工作環境 | 備份檔案目的地 
+
+
+| AWS中的Kubernetes叢集 | Amazon S3 
+
+
+| Azure中的Kubernetes叢集 | Azure Blob 
+
+
+| Google的Kubernetes叢集 | Google Cloud Storage 
+|===
+您可以將磁碟區從Kubernetes備份檔案還原至下列工作環境：
+
+[cols="40,45"]
+|===
+| 備份檔案位置 | 目的地工作環境 
+
+
+| Amazon S3 | AWS中的Kubernetes叢集 
+
+
+| Azure Blob | Azure中的Kubernetes叢集 
+
+
+| Google Cloud Storage | Google的Kubernetes叢集 
+|===
+
+
+== 成本
+
+使用Cloud Backup有兩種相關成本：資源費用和服務費用。
+
+* 資源費用 *
+
+資源費用會支付給雲端供應商、以取得雲端的物件儲存容量。由於Cloud Backup保留了來源Volume的儲存效率、因此您需要支付雲端供應商的物件儲存成本、以獲得資料ONTAP 效益（在套用重複資料刪除和壓縮之後、資料量會變小）。
+
+* 服務費用 *
+
+服務費用會支付給NetApp、並從這些備份中同時支付_建立_備份和_還原_磁碟區的成本。您只需支付所保護資料的費用、此資料是根據ONTAP 備份至物件儲存設備之磁碟區的來源邏輯已用容量（_fore_效率）計算而得。此容量也稱為前端TB（FTB）。
+
+有兩種方式可以支付備份服務的費用。第一個選項是向雲端供應商訂閱、讓您每月付費。第二種選擇是直接向 NetApp 購買授權。閱讀 <<Licensing,授權>> 章節以取得詳細資料。
+
+
+
+== 授權
+
+Cloud Backup提供兩種授權選項：隨用隨付（PAYGO）、以及自帶授權（BYOL）。如果您沒有授權、則可免費試用 30 天。
+
+
+
+=== 免費試用
+
+使用30天免費試用版時、系統會通知您剩餘的免費試用天數。在免費試用結束時、將停止建立備份。您必須訂閱服務或購買授權、才能繼續使用服務。
+
+停用服務時、不會刪除備份檔案。除非您刪除備份、否則雲端供應商會繼續向您收取備份所使用容量的物件儲存成本。
+
+
+
+=== 隨用隨付訂閱
+
+Cloud Backup以隨用隨付模式提供消費型授權。透過雲端供應商的市場訂閱之後、您需要支付每GB的備份資料費用、而無需預付任何款項。您的雲端供應商會透過每月帳單向您收費。
+
+即使您有免費試用版或自帶授權（ BYOL ）、您仍應訂閱：
+
+* 訂閱可確保在免費試用結束後、服務不會中斷。
++
+試用結束時、您將根據備份的資料量、每小時收取一次費用。
+
+* 如果您備份的資料超過BYOL授權所允許的數量、則資料備份會透過隨用隨付訂閱繼續進行。
++
+例如、如果您擁有10 TB BYOL授權、超過10 TB的所有容量都會透過PAYGO訂購付費。
+
+
+
+在免費試用期間或未超過BYOL授權時、您將不會從隨用隨付訂閱中收取費用。
+
+link:task-licensing-cloud-backup.html#use-a-cloud-backup-paygo-subscription["瞭解如何設定隨用隨付訂閱"]。
+
+
+
+=== 請自帶授權
+
+BYOL以1 TB為單位、以期限為基準（12、24或36個月）_和_容量為基準。您向NetApp支付一段時間使用服務的費用、例如1年、如果容量上限為10 TB。
+
+您將會收到在Cloud Manager Digital Wallet頁面中輸入的序號、以啟用服務。達到任一限制時、您都需要續約授權。備份BYOL授權適用於與相關聯的所有來源系統 https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-netapp-accounts.html["Cloud Manager帳戶"^]。
+
+link:task-licensing-cloud-backup.html#use-a-cloud-backup-byol-license["瞭解如何管理BYOL授權"]。
+
+
+
+== 雲端備份的運作方式
+
+當您在Kubernetes系統上啟用Cloud Backup時、該服務會執行資料的完整備份。在初始備份之後、所有其他備份都是遞增的、這表示只會備份變更的區塊和新的區塊。如此可將網路流量維持在最低。
+
+
+CAUTION: 直接從雲端供應商環境中採取的任何管理或變更備份檔案的動作、都可能會毀損檔案、並導致不支援的組態。
+
+下圖顯示每個元件之間的關係：
+
+image:diagram_cloud_backup_general_k8s.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地物件儲存區進行通訊的圖表。"]
+
+
+
+=== 支援的儲存類別或存取層
+
+* 在AWS中、備份是從_Standard_儲存類別開始、30天後轉換至_Standard-in頻繁 存取_儲存類別。
+* 在Azure中、備份會與_cool存取層建立關聯。
+* 在GCP中、預設會將備份與_Standard_儲存類別相關聯。
+
+
+
+
+=== 每個叢集可自訂的備份排程和保留設定
+
+在工作環境中啟用Cloud Backup時、您最初選取的所有磁碟區都會使用您定義的預設備份原則進行備份。如果您想要將不同的備份原則指派給具有不同恢復點目標（RPO）的特定磁碟區、您可以為該叢集建立其他原則、並將這些原則指派給其他磁碟區。
+
+您可以選擇每小時、每日、每週及每月備份所有磁碟區的組合。
+
+一旦您達到某個類別或時間間隔的最大備份數、舊備份就會移除、因此您永遠擁有最新的備份。
+
+
+
+== 支援的磁碟區
+
+Cloud Backup支援持續磁碟區（PV）。
+
+
+
+== 限制
+
+* 建立或編輯備份原則時、若未將任何磁碟區指派給原則、則保留備份的數量最多可達1018個。因應措施是減少建立原則所需的備份數量。然後您可以編輯原則、在指派磁碟區至原則之後、建立最多4000個備份。
+* Kubernetes磁碟區不支援使用*立即備份*按鈕進行臨機操作磁碟區備份。
+

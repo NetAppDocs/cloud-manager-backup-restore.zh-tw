@@ -1,0 +1,141 @@
+---
+sidebar: sidebar 
+permalink: task-backup-app-data-to-cloud.html 
+keywords: backing up, back up, backup, backup application data, Azure, Amazon Web services, Cloud Backup, cloud backup service, Oracle database, Microsoft SQL Server database, SnapCenter Server, register 
+summary: 請完成幾個步驟、將應用程式資料從ONTAP 「支援技術」備份到「雲端服務」。 
+---
+= 將內部部署應用程式資料備份到雲端
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以ONTAP 將Cloud Backup for Applications與Cloud Manager及內部部署SnapCenter 的內部部署的整合、將應用程式資料從整個過程備份到雲端。
+
+
+
+== 註冊SnapCenter 伺服器
+
+只有具備SnapCenterAdmin角色的使用者、才能登錄SnapCenter 執行此功能的主機。您可以登錄多SnapCenter 個支援服務器的主機、但一旦登錄完成、就無法移除SnapCenter 該伺服器主機。
+
+*步驟*
+
+. 在Cloud Manager UI中、按一下*備份與還原*>*應用程式*。
+. 從*設定*下拉式清單中、按一下* SnapCenter 《伺服器*》。
+. 按一下「*登錄SnapCenter 」「伺服器*」。
+. 請指定下列詳細資料：
++
+.. 在「伺服SnapCenter 器」欄位中、指定SnapCenter 「伺服器主機」的FQDN或IP位址。
+.. 在Port（連接埠）欄位中、指定SnapCenter 執行此功能的連接埠號碼。
++
+您應確保連接埠已開啟、SnapCenter 以便在還原伺服器與雲端備份應用程式之間進行通訊。
+
+.. 在「標記」欄位中、指定要標記SnapCenter 此伺服器的站台名稱、城市名稱或任何自訂名稱。
++
+標籤以逗號分隔。
+
+.. 在使用者名稱和密碼欄位中、指定具有SnapCenterAdmin角色的使用者認證。
+
+
+. 按一下 * 註冊 * 。
+
+
+*完成後*
+
+按一下*備份與還原*>*應用程式*、即可檢視使用註冊SnapCenter 的支援服務器主機保護的所有應用程式。
+
+
+NOTE: 對於SQL Server資料庫、「應用程式名稱」欄會以_application_name（主機名稱）_格式顯示名稱。當您以_application_name（主機名稱）_格式提供名稱進行搜尋時、不會顯示SQL Server資料庫詳細資料。
+
+支援的應用程式及其組態包括：
+
+* Oracle資料庫：以至少一項每日、每週或每月排程建立完整備份（資料+記錄）。
+* Microsoft SQL Server資料庫：
++
+** 獨立式容錯移轉叢集執行個體和可用度群組
+** 建立完整備份時程至少有一天、每週或每月一次
+
+
+
+
+下列Oracle和SQL Server資料庫將不會顯示：
+
+* 沒有備份的資料庫
+* 只有隨選或每小時原則的資料庫
+* 儲存在RDM或VMDK上的資料庫
+
+
+
+
+== 備份應用程式資料
+
+您可以使用單一原則、將一或多個應用程式同時保護到雲端。只能指派預設的預先設定原則來保護應用程式。
+
+
+IMPORTANT: 如果您使用Cloud Manager GUI、一次只能保護一個應用程式。不過、如果您使用REST API、則可以同時保護多個應用程式。
+
+如果您要保護SQL Server執行個體、則會針對該執行個體中合格資料庫的所有磁碟區設定雲端保護。如果您保護的是SQL Server可用度群組、則會針對該可用度群組中的所有資料庫磁碟區設定雲端保護。不過、根據備份偏好設定、Snapshot將會從各自的磁碟區中複製。
+
+*步驟*
+
+. 在Cloud Manager UI中、按一下*備份與還原*>*應用程式*。
+. 按一下 image:icon-action.png["圖示以選取動作"] 與應用程式對應、然後按一下*啟動備份*。
+. 新增工作環境。
++
+設定ONTAP 執行應用程式的SVM所在的叢集。在新增其中一個應用程式的工作環境之後、可將其重複用於位於同ONTAP 一個叢集上的所有其他應用程式。
+
++
+.. 選取SVM、然後按一下「Add Working Environment（新增工作環境）」。
+.. 在「新增工作環境」精靈中：
++
+... 指定ONTAP 叢集的IP位址。
+... 指定管理認證資料。
++
+Cloud Backup for Applications僅支援叢集管理。
+
+
+
+.. 按一下「 * 新增工作環境 * 」。
++
+
+NOTE: 在更新工作環境詳細資料之前、您不應繼續進行。更新工作環境詳細資料可能需要30分鐘的時間。30分鐘後、您應該關閉精靈、然後從步驟1重試、以檢視工作環境的詳細資料。重試之後、如果工作環境的詳細資料未更新、請確定您已新增適當的工作環境。
+
+
+
+. 選取並設定雲端供應商。
++
+[role="tabbed-block"]
+====
+.設定Amazon Web Services
+--
+.. 指定AWS帳戶。
+.. 在AWS存取金鑰欄位中、指定金鑰。
+.. 在AWS Secret Key（AWS機密金鑰）欄位中、指定密碼。
+.. 選取您要建立備份的區域。
+.. 指定ONTAP 新增為工作環境的各種不完整叢集的IP位址。
+
+
+--
+.設定Microsoft Azure
+--
+.. 指定Azure訂閱ID。
+.. 選取您要建立備份的區域。
+.. 建立新的資源群組或使用現有的資源群組。
+.. 指定ONTAP 新增為工作環境的各種不完整叢集的IP位址。
+
+
+--
+====
+
+
+. 在「指派原則」頁面中、選取原則、然後按「*下一步*」。
+. 檢閱詳細資料、然後按一下*啟動備份*。
+
+
+下列影片快速介紹如何保護資料庫：
+
+video::bUwnE18qnag[youtube, width=848,height=480,end=164]

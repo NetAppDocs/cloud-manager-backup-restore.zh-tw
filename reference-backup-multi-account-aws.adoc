@@ -1,0 +1,192 @@
+---
+sidebar: sidebar 
+permalink: reference-backup-multi-account-aws.html 
+keywords: aws, amazon, s3, multiple accounts, multiple regions, backup 
+summary: Cloud Backup可讓您在AWS帳戶中建立備份檔案、該帳戶與來源Cloud Volumes ONTAP 支援區不同、而且與Cloud Manager Connector所在的帳戶不同。 
+---
+= 在AWS中設定多帳戶存取的備份
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Backup可讓您在AWS帳戶中建立備份檔案、而非來源Cloud Volumes ONTAP 支援區所在的位置。這兩個帳戶可能與Cloud Manager Connector所在的帳戶不同。
+
+只有在您需要時、才需要執行這些步驟 link:task-backup-to-s3.html["將Cloud Volumes ONTAP 不支援的資料備份至Amazon S3"]。
+
+請依照下列步驟以這種方式設定組態。
+
+
+
+== 設定帳戶之間的VPC對等關係
+
+. 登入第二個帳戶並建立對等連線：
++
+.. 選取本機VPC：選取第二個帳戶的VPC。
+.. 選取另一個VPC：輸入第一個帳戶的帳戶ID。
+.. 選取Cloud Manager Connector執行的區域。在此測試設定中、兩個帳戶都在同一個地區執行。
+.. VPC ID：登入第一個帳戶、然後輸入接收者VPC ID。這是Cloud Manager Connector的VPC ID。
++
+image:screenshot_aws_peer1.png[""]
+
++
+隨即顯示「成功」對話方塊。
+
++
+image:screenshot_aws_peer2.png[""]
+
++
+對等連線的狀態顯示為「等待接受」。
+
++
+image:screenshot_aws_peer3.png[""]
+
+
+
+. 登入第一個帳戶並接受對等要求：
++
+image:screenshot_aws_peer4.png[""]
+
++
+image:screenshot_aws_peer5.png[""]
+
++
+.. 按一下「*是*」。
++
+image:screenshot_aws_peer6.png[""]
+
++
+連線現在顯示為「作用中」。我們也新增了名稱標記、以識別稱為「CBS多帳戶」的對等連線。
+
++
+image:screenshot_aws_peer7.png[""]
+
+.. 重新整理第二個帳戶的對等連線、並注意狀態變更為「作用中」。
++
+image:screenshot_aws_peer8.png[""]
+
+
+
+
+
+
+
+== 將路由新增至兩個帳戶中的路由表
+
+. 前往VPC >子網路>路由表。
++
+image:screenshot_aws_route1.png[""]
+
+. 按一下「路由」索引標籤。
++
+image:screenshot_aws_route2.png[""]
+
+. 按一下*編輯路由*。
++
+image:screenshot_aws_route3.png[""]
+
+. 按一下「*新增路由*」、然後從「目標」下拉式清單中選取「*對等連線*」、再選取您建立的對等連線。
++
+.. 在目的地中、輸入其他帳戶的子網路CIDR。
++
+image:screenshot_aws_route4.png[""]
+
+.. 按一下「*儲存路由*」、就會顯示「成功」對話方塊。
++
+image:screenshot_aws_route5.png[""]
+
+
+
+
+
+
+
+== 在Cloud Manager中新增第二個AWS帳戶認證資料
+
+. 新增第二個AWS帳戶、例如_Saran - XCP開發_。
++
+image:screenshot_aws_second_account1.png[""]
+
+. 在「激發Cloud Volumes ONTAP 需求」頁面中、選取新增的認證資料。
++
+image:screenshot_aws_second_account2.png[""]
+
+. 選取Cloud Volumes ONTAP 您要從第二個帳戶探索的這個系統。您也可以在Cloud Volumes ONTAP 第二個帳戶中部署新的更新系統。
++
+image:screenshot_aws_second_account3.png[""]
+
++
+第二個帳戶的這個系統現在會新增至雲端管理程式、而Cloud Manager則是以不同的帳戶執行。Cloud Volumes ONTAP
+
++
+image:screenshot_aws_second_account4.png[""]
+
+
+
+
+
+== 在其他AWS帳戶中啟用備份
+
+. 在Cloud Manager中、為Cloud Volumes ONTAP 第一個帳戶中執行的作業系統啟用備份、但選取第二個帳戶作為建立備份檔案的位置。
++
+image:screenshot_aws_pick_second_account1.png[""]
+
+. 然後選取備份原則和您要備份的磁碟區、Cloud Backup會嘗試在選取的帳戶中建立新的儲存區。
++
+不過、將儲存庫新增Cloud Volumes ONTAP 至支援庫系統將會失敗、因為Cloud Backup會使用執行個體設定檔來新增儲存庫、而Cloud Manager執行個體設定檔則無法存取第二個帳戶中的資源。
+
+. 取得Cloud Volumes ONTAP 適用於此系統的工作環境ID。
++
+image:screenshot_aws_onprem_we_id.png[""]
+
++
+Cloud Backup會以「NetApp-Backup」開頭建立每個儲存區、並包含工作環境ID、例如：「87ULeA10」
+
+. 在EC2入口網站中、前往S3搜尋以「87uLeA10」結尾的儲存區、您會看到儲存區名稱顯示為「NetApp-backup-vsa87uLeA10」。
++
+image:screenshot_aws_find_bucket.png[""]
+
+. 按一下儲存庫、然後按一下「權限」索引標籤、再按一下「儲存庫原則」區段中的「*編輯*」。
++
+image:screenshot_aws_bucket_policy.png[""]
+
+. 為新建立的儲存庫新增儲存庫原則、以提供Cloud Manager AWS帳戶的存取權、然後儲存變更。
++
+[source, json]
+----
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicRead",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::464262061435:root"
+      },
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetBucketLocation",
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::netapp-backup-vsa87uleai0",
+        "arn:aws:s3:::netapp-backup-vsa87uleai0/*"
+      ]
+    }
+  ]
+}
+----
++
+請注意、「AWS」：「arn：AWS：iam：464262061435：root」可讓帳戶464262061435中的所有資源都能完整存取此儲存區。如果您想要將其縮減為特定角色、層級、可以使用特定角色來更新原則。如果您要新增個別角色、請務必同時新增occm角色、否則Cloud Backup UI不會更新備份。
+
++
+例如：「AWS」：「arn：AWS：iam：：464262061435：role / CVO執行個體設定檔版本10-d8e-IamInstanceROE-IKJPJ1HC2E7R」
+
+. 請重試啟用Cloud Volumes ONTAP 支援整個系統的Cloud Backup、這次應該會成功。
+

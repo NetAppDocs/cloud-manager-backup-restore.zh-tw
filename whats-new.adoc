@@ -1,0 +1,293 @@
+---
+sidebar: sidebar 
+permalink: whats-new.html 
+keywords: 'what"s new, features, new, release notes, bugs, limitations, known issues, enhancements, fixes, backup, restore' 
+summary: 瞭解Cloud Backup的新功能。 
+---
+= Cloud Backup的新功能
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+瞭解Cloud Backup的新功能。
+
+
+
+== 2022年5月2日
+
+
+
+=== Google Cloud Storage中的備份檔案現在支援搜尋與還原
+
+四月推出的「搜尋與還原」方法、可還原磁碟區和檔案、適用於將備份檔案儲存在AWS中的使用者。現在、將備份檔案儲存在Google Cloud Storage中的使用者可以使用這項功能。 https://docs.netapp.com/us-en/cloud-manager-backup-restore/task-restore-backups-ontap.html#prerequisites-2["瞭解如何使用Search & Restore還原磁碟區和檔案"]。
+
+
+
+=== 設定要自動套用至Kubernetes叢集中新建立之磁碟區的備份原則
+
+如果您在雲端備份啟動後、將新的持續磁碟區新增至Kubernetes叢集、過去您需要記住為這些磁碟區設定備份。現在、您可以選取要自動套用至新建立磁碟區的原則。當為新的Kubernetes叢集啟動Cloud Backup時、此選項可在設定精靈中使用、或 https://docs.netapp.com/us-en/cloud-manager-backup-restore/task-manage-backups-kubernetes.html#setting-a-backup-policy-to-be-assigned-to-new-volumes["從_備份設定_頁面"] 適用於已啟動Cloud Backup的叢集。
+
+
+
+=== 雲端備份現在需要授權、才能在工作環境中啟動
+
+雲端備份的授權實作方式有幾項變更：
+
+* 您必須先向雲端供應商註冊PAYGO Marketplace訂閱、或向NetApp購買BYOL授權、才能啟動Cloud Backup。
+* 30天免費試用版僅適用於從雲端供應商訂閱PAYGO的情況、使用BYOL授權時無法使用。
+* 免費試用版從Marketplace訂閱開始的那一天開始。例如、如果您在針對Cloud Volumes ONTAP 某個系統使用Marketplace訂閱30天之後啟動免費試用版、雲端備份試用版將無法使用。
+
+
+https://docs.netapp.com/us-en/cloud-manager-backup-restore/task-licensing-cloud-backup.html["深入瞭解可用的授權模式"]。
+
+
+
+== 2022年4月4日
+
+
+
+=== Cloud Backup for Applications 1.1.0 SnapCenter （以支援功能為基礎）現已成為正式上市
+
+全新的雲端應用程式備份功能可讓您將現有的Oracle與Microsoft SQL應用程式一致的Snapshot（備份）、從內部部署的主要儲存設備、卸載到AWS S3或Azure Blob的雲端物件儲存設備。
+
+必要時、您可以將這些資料從雲端還原至內部部署。
+
+https://docs.netapp.com/us-en/cloud-manager-backup-restore/concept-protect-app-data-to-cloud.html["深入瞭解如何將內部部署應用程式資料保護至雲端"]。
+
+
+
+=== 全新的搜尋與還原功能、可在ONTAP 所有的還原檔案中搜尋磁碟區或檔案
+
+現在、您可以ONTAP 透過*全部的支援檔案*、以部分或完整的Volume名稱、部分或完整的檔案名稱、大小範圍及其他搜尋篩選條件來搜尋Volume或檔案。如果您不確定哪個叢集或磁碟區是資料的來源、這是尋找您要還原資料的絕佳新方法。 https://docs.netapp.com/us-en/cloud-manager-backup-restore/task-restore-backups-ontap.html#restoring-ontap-data-using-search-restore["瞭解如何使用搜尋&還原"]。
+
+
+
+== 2022年3月3日
+
+
+
+=== 能夠將持續磁碟區從GKE Kubernetes叢集備份到Google Cloud儲存設備
+
+如果您的GKE叢集已安裝NetApp Astra Trident、而且使用Cloud Volumes ONTAP 適用於GCP的功能作為叢集的後端儲存設備、則您可以在Google Cloud儲存設備之間備份及還原持續的磁碟區。 https://docs.netapp.com/us-en/cloud-manager-backup-restore/task-backup-kubernetes-to-gcp.html["如需詳細資料、請前往此處"]。
+
+
+
+=== 此版本已停止使用Cloud Data Sense掃描雲端備份檔案的試用版功能
+
+
+
+== 2022年2月14日
+
+
+
+=== 現在、您可以將備份原則指派給單一叢集中的個別磁碟區
+
+過去您只能將單一備份原則指派給叢集中的所有磁碟區。現在、您可以為單一叢集建立多個備份原則、並將不同的原則套用至不同的磁碟區。 link:task-manage-backups-ontap#changing-the-policy-assigned-to-existing-volumes["瞭解如何為叢集建立新的備份原則、並將其指派給所選的磁碟區"]。
+
+
+
+=== 新選項可讓您自動將預設備份原則套用至新建立的磁碟區
+
+過去、在雲端備份啟動之後、在工作環境中建立的新磁碟區、需要您手動套用備份原則。現在、無論磁碟區是在Cloud Manager、System Manager、CLI中建立、或是使用API建立、Cloud Backup都會探索磁碟區、並套用您選擇做為預設原則的備份原則。
+
+在新的工作環境中啟用備份時、或從現有工作環境的「管理磁碟區」頁面啟用備份時、都可使用此選項。
+
+
+
+=== 新的工作監控器可供查看所有備份與還原工作的處理中狀態
+
+當您針對多個磁碟區啟動作業（例如變更備份原則或刪除備份）時、「工作監視器」會很有幫助、因此您可以查看所有磁碟區上的作業何時完成。 link:task-monitor-backup-jobs.html["瞭解如何使用工作監控器"]。
+
+
+
+== 2022年1月2日
+
+
+
+=== 能夠將持續磁碟區從您的KS Kubernetes叢集備份到Azure Blob儲存設備
+
+如果您的叢集已安裝NetApp Astra Trident、而且使用Cloud Volumes ONTAP 適用於Azure的for Azure做為叢集的後端儲存設備、則您可以備份及還原Azure Blob儲存設備的磁碟區。 link:task-backup-kubernetes-to-azure.html["如需詳細資料、請前往此處"]。
+
+
+
+=== 本次發表中已變更了各項收費、以更貼近業界標準Cloud Backup Service
+
+現在您只需支付所保護資料的費用、而非根據備份檔案的大小來支付NetApp的容量費用、這是根據ONTAP 正在ONTAP 備份的來源供應區的邏輯使用容量（不含不含還原效率）計算而得。此容量也稱為前端TB（FTB）。
+
+
+
+== 2021年11月28日
+
+
+
+=== 能夠將持續磁碟區從EKS Kubernetes叢集備份到Amazon S3
+
+如果您的EKS叢集已安裝NetApp Astra Trident、而且使用Cloud Volumes ONTAP 適用於AWS的叢集後端儲存設備、則您可以在Amazon S3之間備份及還原磁碟區。 link:task-backup-kubernetes-to-s3.html["如需詳細資料、請前往此處"]。
+
+
+
+=== 增強備份DP磁碟區的功能
+
+Cloud Backup現在支援在ONTAP SVM-DR關係中、建立目標支援的DP磁碟區備份。有幾項限制、請參閱 link:concept-ontap-backup-to-cloud.html#limitations["限制"] 以取得詳細資料。
+
+
+
+== 2021年11月5日
+
+
+
+=== 可在將Volume還原至內部部署ONTAP 的作業系統時、選擇私有端點
+
+從ONTAP Amazon S3或Azure Blob上的備份檔案將磁碟區還原至內部部署的支援系統時、現在您可以選擇一個私有端點、以私密且安全的方式連線至內部部署系統。
+
+
+
+=== 現在、您可以在數天後將舊的備份檔案分層保存至歸檔儲存設備、以節省成本
+
+如果您的叢集執行ONTAP 的是版本為NetApp 9.10.1或更新版本、而且您使用的是AWS或Azure雲端儲存設備、則可以將備份分層處理至歸檔儲存設備。如需詳細資訊、請參閱 link:reference-aws-backup-tiers.html["AWS S3歸檔儲存類別"] 和 link:reference-azure-backup-tiers.html["Azure Blob歸檔存取層"]。
+
+
+
+=== Cloud Backup BYOL授權已移至Digital Wallet中的「Data Services Licenses（資料服務授權）」索引標籤
+
+Cloud Backup的BYOL授權已從Cloud Backup授權索引標籤移至Cloud Manager Digital Wallet的資料服務授權索引標籤。
+
+
+
+== 2021年10月4日
+
+
+
+=== 執行磁碟區或檔案還原時、備份檔案大小現在可在「備份」頁面中使用
+
+如果您想要刪除不必要的大型備份檔案、或是比較備份檔案大小、找出任何可能因為惡意軟體攻擊而造成的異常備份檔案、這很有用。
+
+
+
+=== TCO計算機可用來比較雲端備份成本
+
+總體擁有成本計算機可協助您瞭解Cloud Backup的總體擁有成本、並將這些成本與傳統備份解決方案進行比較、並預估可能的節約效益。歡迎來看看https://cloud.netapp.com/cloud-backup-service-tco-calculator["請按這裡"^]。
+
+
+
+=== 能夠取消註冊工作環境的Cloud Backup
+
+現在您可以輕鬆完成 link:task_manage_backups.html#unregistering-cloud-backup-for-a-working-environment["取消登錄工作環境的Cloud Backup"] 如果您不想再為該工作環境使用備份功能（或付費）、
+
+
+
+== 2021年9月2日
+
+
+
+=== 能夠建立磁碟區的隨需備份
+
+現在您可以隨時建立隨需備份、以擷取Volume的目前狀態。如果已對磁碟區進行重要變更、但您不想等待下一次排程備份來保護該資料、這項功能就很實用。
+
+link:task-manage-backups-ontap.html#creating-a-manual-volume-backup-at-any-time["瞭解如何建立隨需備份"]。
+
+
+
+=== 能夠定義私有介面連線、以便安全備份至Amazon S3
+
+從內部部署ONTAP 的Sing系統將備份設定至Amazon S3時、現在您可以在啟動精靈中定義與私有介面端點的連線。這可讓您使用網路介面、將內部部署系統以私人且安全的方式連線至AWS Private Link所提供的服務。 link:task-backup-onprem-to-aws.html#preparing-amazon-s3-for-backups["請參閱此選項的詳細資料"]。
+
+
+
+=== 現在、您可以在將資料備份至Amazon S3時、選擇自己的客戶管理金鑰來進行資料加密
+
+為了加強安全性與控制、您可以在啟動精靈中選擇自己的客戶管理金鑰來進行資料加密、而非使用預設的Amazon S3加密金鑰。從內部部署ONTAP 的功能系統或Cloud Volumes ONTAP AWS的功能系統設定備份時、可使用此功能。
+
+
+
+=== 現在、您可以從擁有超過30、000個檔案的目錄還原檔案
+
+
+
+== 2021年8月1日
+
+
+
+=== 能夠定義私有端點連線、以便安全備份至Azure Blob
+
+從內部部署ONTAP 的整套系統設定備份至Azure Blob時、您可以在啟動精靈中定義與Azure私有端點的連線。這可讓您使用網路介面、將您以私人且安全的方式連線至Azure Private Link所提供的服務。
+
+
+
+=== 現在支援每小時備份原則
+
+除了現有的每日、每週和每月原則之外、這項新原則也是如此。每小時備份原則提供最低的恢復點目標（RPO）。
+
+
+
+== 2021年7月7日
+
+
+
+=== 現在您可以使用不同的帳戶和不同地區建立備份
+
+Cloud Backup現在可讓您使用不同於Cloud Volumes ONTAP 您使用的帳戶/訂閱來建立備份。您也可以在Cloud Volumes ONTAP 不同的區域建立備份檔案、而非部署您的作業系統的區域。
+
+當使用AWS或Azure時、以及只有在現有工作環境中啟用備份時、才能使用此功能、建立新Cloud Volumes ONTAP 的功能不適用於此環境。
+
+
+
+=== 現在、您可以在將資料備份到Azure Blob時、選擇自己的客戶管理金鑰來進行資料加密
+
+為了加強安全性與控制、您可以在啟動精靈中選擇自己的客戶管理資料加密金鑰、而非使用預設的Microsoft管理加密金鑰。這可在從內部部署ONTAP 的系統或Cloud Volumes ONTAP Azure的還原系統進行備份時使用。
+
+
+
+=== 現在、使用單一檔案還原時、一次最多可還原100個檔案
+
+
+
+== 2021年6月7日
+
+
+
+=== 使用ONTAP 起來不受限於DP磁碟區
+
+備份資料保護（DP）磁碟區的兩項已知限制已經解決：
+
+* 以前、串聯備份只有在SnapMirror關係類型為Mirror-Vault或Vault時才會運作。現在、如果關係類型為MirrorAllSnapshots、您就可以進行備份。
+* 只要在SnapMirror原則中設定雲端備份、雲端備份就能使用任何標籤進行備份。每日、每週或每月要求標籤名稱的限制已不復存在。
+
+
+
+
+== 2021年5月5日
+
+
+
+=== 將內部叢集資料備份到Google Cloud Storage或NetApp StorageGRID 還原系統
+
+現在、您可以從內部部署ONTAP 的不只是還原系統、建立備份到Google Cloud Storage或NetApp StorageGRID 的不只是還原系統。請參閱 link:task-backup-onprem-to-gcp.html["備份至Google Cloud Storage"^] 和 link:task-backup-onprem-private-cloud.html["備份StorageGRID 至"^] 以取得詳細資料。
+
+
+
+=== 現在您可以使用System Manager來執行雲端備份作業
+
+利用更新功能ONTAP 的功能、您可以使用System Manager將內部部署ONTAP 的更新資料傳送到透過Cloud Backup設定的物件式儲存設備。 link:https://docs.netapp.com/us-en/ontap/task_cloud_backup_data_using_cbs.html["瞭解如何使用System Manager使用Cloud Backup將磁碟區備份到雲端。"^]
+
+
+
+=== 備份原則已經過一些增強功能的改良
+
+* 現在您可以建立自訂原則、其中包含每日、每週和每月備份的組合。
+* 當您變更備份原則時、變更會套用至所有使用原始備份原則*和*的新備份至所有磁碟區。過去的變更只會套用至新的Volume備份。
+
+
+
+
+=== 其他備份與還原改良項目
+
+* 設定備份檔案的雲端目的地時、現在您可以選擇不同於Cloud Volumes ONTAP 此系統所在地區的區域。
+* 您可為單一磁碟區建立的備份檔案數量已從1、019個增加到4、000個。
+* 除了先前刪除單一磁碟區的所有備份檔案的功能之外、現在您可以只刪除一個磁碟區的單一備份檔案、或視需要刪除整個工作環境的所有備份檔案。
+

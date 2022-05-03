@@ -1,0 +1,173 @@
+---
+sidebar: sidebar 
+permalink: task-backup-to-azure.html 
+keywords: backing up, back up, backup, backup cloud volumes ontap, back up cloud volumes ontap, cloud volumes ontap, azure, azure blob, back up volumes, cloud backup 
+summary: 請完成幾個步驟、開始將資料從 Cloud Volumes ONTAP 功能區備份到 Azure Blob 儲存設備。 
+---
+= 將Cloud Volumes ONTAP 不支援的資料備份到Azure Blob儲存設備
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+請完成幾個步驟、開始將資料從 Cloud Volumes ONTAP 功能區備份到 Azure Blob 儲存設備。
+
+
+
+== 快速入門
+
+請依照下列步驟快速入門、或向下捲動至其餘部分以取得完整詳細資料。
+
+.span class="image"><imgrc="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png"[] alt="1"></span>請確認您的組態是否支援
+* 您在Cloud Volumes ONTAP Azure上執行的是版本號為1.7P5或更新版本。
+* 您已訂閱有效的雲端供應商、以取得備份所在的儲存空間。
+* 您已訂閱 https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Cloud Manager Marketplace 備份產品"^]或您已購買 link:task-licensing-cloud-backup.html#use-a-cloud-backup-byol-license["並啟動"^] NetApp的Cloud Backup BYOL授權。
+
+
+.span class="image"><imgrc="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png"[] Alt="2"></span>在新的或現有的系統上啟用雲端備份
+* 新系統：工作環境精靈預設會啟用雲端備份。請務必保持啟用選項。
+* 現有系統：選取工作環境、然後按一下右窗格中「Backup & Restore（備份與還原）」服務旁的*「Enable（啟用）」*、然後依照設定精靈進行。
++
+image:screenshot_backup_cvo_enable.png["螢幕擷取畫面顯示「啟用雲端備份」按鈕、可在您選取工作環境之後使用。"]
+
+
+
+[role="quick-margin-para"]
+選取提供者訂閱和地區、然後選擇是要建立新的資源群組、還是要使用現有的資源群組。您也可以選擇自己的客戶管理金鑰來進行資料加密、而非使用預設的Microsoft管理加密金鑰。
+
+[role="quick-margin-para"]
+image:screenshot_backup_provider_settings_azure.png["快照顯示雲端供應商將磁碟區從Cloud Volumes ONTAP 某個系統備份到Azure Blob層時的詳細資料。"]
+
+[role="quick-margin-para"]
+預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每小時、每日、每週或每月備份、或選取其中一個系統定義的原則來提供更多選項。您也可以變更要保留的備份複本數量。
+
+[role="quick-margin-para"]
+根據預設、備份會儲存在冷存取層中。如果您的叢集使用ONTAP 的是更新版本的版本、您可以選擇在特定天數後將備份分層至Azure歸檔儲存設備、以進一步最佳化成本。
+
+[role="quick-margin-para"]
+image:screenshot_backup_policy_azure.png["顯示Cloud Backup設定的快照、您可在其中選取備份原則並選擇備份保留。"]
+
+[role="quick-margin-para"]
+在「Select Volumes（選取磁碟區）」頁面中、使用預設的備份原則來識別要備份的磁碟區。如果您想要將不同的備份原則指派給特定磁碟區、可以建立其他原則、並於稍後套用至磁碟區。
+
+
+
+== 需求
+
+請先閱讀下列需求、確定您擁有支援的組態、再開始將磁碟區備份至 Azure Blob 儲存設備。
+
+下圖顯示每個元件及其之間需要準備的連線：
+
+image:diagram_cloud_backup_cvo_azure.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
+
+雲端還原虛擬機器部署於雲端時、其子網路與Connector位於同一個子網路中。
+
+支援 ONTAP 的支援版本:: 更新版本： Cloud Volumes ONTAP
+授權需求:: 對於Cloud Backup PAYGO授權、您必須先透過Azure Marketplace訂閱、才能啟用Cloud Backup。雲端備份計費是透過此訂閱完成。 https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-otc-azure.html["您可以從工作環境精靈的詳細資料 & 認證頁面訂閱"^]。
++
+--
+對於Cloud Backup BYOL授權、您需要NetApp的序號、以便在授權期間和容量內使用服務。 link:task-licensing-cloud-backup.html#use-a-cloud-backup-byol-license["瞭解如何管理BYOL授權"]。
+
+而且您必須訂閱 Microsoft Azure 、才能取得備份所在的儲存空間。
+
+--
+支援的 Azure 地區:: 所有Azure地區均支援雲端備份 https://cloud.netapp.com/cloud-volumes-global-regions["支援的地方 Cloud Volumes ONTAP"^]（包括Azure政府區域）。
+在不同Azure訂閱中建立備份所需的設定:: 根據預設、備份會使用與Cloud Volumes ONTAP 您的作業系統相同的訂閱方式建立。如果您想要使用不同的Azure訂閱來進行備份、您必須使用 link:reference-backup-multi-account-azure.html["登入Azure入口網站並連結這兩份訂閱"]。
+使用客戶管理金鑰進行資料加密的必要資訊:: 您可以在啟動精靈中使用自己的客戶管理金鑰進行資料加密、而非使用預設的Microsoft管理加密金鑰。在此情況下、您必須擁有Azure訂閱、Key Vault名稱及金鑰。 https://docs.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview["瞭解如何使用您自己的金鑰"]。
+Azure部署所需的傳出網際網路存取:: Cloud Restore虛擬機器需要存取傳出的網際網路。如果您的虛擬或實體網路使用Proxy伺服器進行網際網路存取、請確定執行個體具有傳出網際網路存取權限、以聯絡下列端點。
+
+
+[cols="43,57"]
+|===
+| 端點 | 目的 
+
+
+| \http://olcentgbl.trafficmanager.net \https://olcentgbl.trafficmanager.net | 提供Cloud Restore虛擬機器的CentOS套件。 
+
+
+| \https://download.docker.com/linux/centos/docker-ce.repo | 提供Docker Engine套件。 
+
+
+| \http://cloudmanagerinfraprod.azurecr.io \https://cloudmanagerinfraprod.azurecr.io | Cloud Restore虛擬機器映像儲存庫。 
+|===
+
+
+== 在新系統上啟用雲端備份
+
+在工作環境精靈中、預設會啟用Cloud Backup。請務必保持啟用選項。
+
+請參閱 https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-otc-azure.html["在 Cloud Volumes ONTAP Azure 中啟動"^] 以瞭解建立 Cloud Volumes ONTAP 您的整個系統的需求與詳細資料。
+
+
+NOTE: 如果您想挑選資源群組的名稱、請在部署Cloud Volumes ONTAP 時*停用* Cloud Backup。請依照的步驟執行 <<enabling-cloud-backup-on-an-existing-system,在現有系統上啟用雲端備份>> 啟用Cloud Backup並選擇資源群組。
+
+.步驟
+. 按一下「 * 建立 Cloud Volumes ONTAP 參考 * 」。
+. 選擇 Microsoft Azure 作為雲端供應商、然後選擇單一節點或 HA 系統。
+. 在「定義Azure認證」頁面中、輸入認證名稱、用戶端ID、用戶端機密和目錄ID、然後按一下*繼續*。
+. 請填寫「詳細資料與認證」頁面、並確定Azure Marketplace訂閱已就緒、然後按一下*繼續*。
+. 在「服務」頁面上、讓服務保持啟用狀態、然後按一下 * 繼續 * 。
++
+image:screenshot_backup_to_gcp.png["在工作環境精靈中顯示Cloud Backup選項。"]
+
+. 完成精靈中的頁面以部署系統。
+
+
+Cloud Backup可在系統上啟用、並每天備份磁碟區、並保留最近30個備份複本。
+
+您可以 link:task-manage-backups-ontap.html["開始和停止磁碟區備份、或變更備份排程"^]。您也可以 link:task-restore-backups-ontap.html["從備份檔案還原整個磁碟區或個別檔案"^] 至Cloud Volumes ONTAP Azure的某個系統、或內部部署ONTAP 的系統。
+
+
+
+== 在現有系統上啟用雲端備份
+
+隨時直接從工作環境啟用雲端備份。
+
+.步驟
+. 選取工作環境、然後按一下右窗格中備份與還原服務旁的*啟用*。
++
+image:screenshot_backup_cvo_enable.png["螢幕擷取畫面顯示「啟用雲端備份」按鈕、可在您選取工作環境之後使用。"]
+
+. 選取供應商詳細資料、然後按*下一步*。
++
+.. Azure 訂閱用於儲存備份。這可能是與Cloud Volumes ONTAP 駐留於此系統不同的訂閱方式。
++
+如果您想要使用不同的Azure訂閱來進行備份、您必須使用 link:reference-backup-multi-account-azure.html["登入Azure入口網站並連結這兩份訂閱"]。
+
+.. 儲存備份的區域。這可能與Cloud Volumes ONTAP 駐留的地方不同。
+.. 管理Blob容器的資源群組-您可以建立新的資源群組或選取現有的資源群組。
+.. 無論您是使用預設的Microsoft管理加密金鑰、還是選擇自己的客戶管理金鑰來管理資料加密。 (https://docs.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview["瞭解如何使用您自己的金鑰"]）。
++
+image:screenshot_backup_provider_settings_azure.png["快照顯示雲端供應商將磁碟區從Cloud Volumes ONTAP 某個系統備份到Azure Blob層時的詳細資料。"]
+
+
+
+. 輸入預設的備份原則詳細資料、然後按一下「*下一步*」。
++
+.. 定義備份排程、並選擇要保留的備份數量。 link:concept-ontap-backup-to-cloud.html#customizable-backup-schedule-and-retention-settings-per-cluster["請參閱您可以選擇的現有原則清單"^]。
+.. 若使用ONTAP 的是更新版本的版本、您可以選擇在特定天數後將備份分層至Azure歸檔儲存設備、以進一步最佳化成本。 link:reference-azure-backup-tiers.html["深入瞭解如何使用歸檔層"]。
++
+image:screenshot_backup_policy_azure.png["顯示Cloud Backup設定的快照、您可在其中選擇排程和備份保留。"]
+
+
+
+. 在「Select Volumes（選取磁碟區）」頁面中、使用預設備份原則選取您要備份的磁碟區。如果您想要將不同的備份原則指派給特定磁碟區、可以建立其他原則、並於稍後將其套用至這些磁碟區。
++
+image:screenshot_backup_select_volumes.png["選取要備份之磁碟區的快照。"]
+
++
+** 若要備份所有磁碟區、請勾選標題列中的方塊（image:button_backup_all_volumes.png[""]）。
+** 若要備份個別磁碟區、請勾選每個磁碟區的方塊（image:button_backup_1_volume.png[""]）。
+
+
+. 如果您希望未來新增的所有磁碟區都啟用備份、只要勾選「自動備份未來磁碟區...」核取方塊即可。如果停用此設定、您將需要手動啟用未來磁碟區的備份。
+. 按一下「*啟動備份*」、「雲端備份」就會開始對每個選取的磁碟區進行初始備份。
+
+
+Cloud Backup會開始對每個選取的磁碟區進行初始備份、並顯示Volume Backup Dashboard、以便您監控備份狀態。
+
+您可以 link:task-manage-backups-ontap.html["開始和停止磁碟區備份、或變更備份排程"^]。您也可以 link:task-restore-backups-ontap.html["從備份檔案還原整個磁碟區或個別檔案"^] 至Cloud Volumes ONTAP Azure的某個系統、或內部部署ONTAP 的系統。

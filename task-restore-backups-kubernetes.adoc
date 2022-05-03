@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: task-restore-backups-kubernetes.html 
+keywords: restoring, restore, restore volumes, cloud backup, volume restore, persistent volume 
+summary: 備份會儲存在雲端帳戶的物件存放區中、以便從特定時間點還原資料。您可以從儲存的備份檔案還原整個Kubernetes持續磁碟區。 
+---
+= 從備份檔案還原Kubernetes資料
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+備份會儲存在雲端帳戶的物件存放區中、以便從特定時間點還原資料。您可以從儲存的備份檔案還原整個Kubernetes持續磁碟區。
+
+您可以將持續磁碟區（作為新磁碟區）還原至相同的工作環境、或還原至使用相同雲端帳戶的不同工作環境。
+
+
+
+== 支援的工作環境與物件儲存供應商
+
+您可以將磁碟區從Kubernetes備份檔案還原至下列工作環境：
+
+[cols="40,40"]
+|===
+| 備份檔案位置 | 目的地工作環境 
+
+
+| Amazon S3 | AWS中的Kubernetes叢集 
+
+
+| Azure Blob | Azure中的Kubernetes叢集 
+
+
+| Google Cloud Storage | Google的Kubernetes叢集 
+|===
+
+
+== 從Kubernetes備份檔案還原磁碟區
+
+當您從備份檔案還原持續磁碟區時、Cloud Manager會使用備份中的資料來建立_new磁碟區。您可以將資料還原至同一個Kubernetes叢集中的磁碟區、或還原至與來源Kubernetes叢集位於相同雲端帳戶的不同Kubernetes叢集。
+
+在開始之前、您應該知道要還原的磁碟區名稱、以及要用來建立新還原磁碟區的備份檔案日期。
+
+.步驟
+. 選擇*備份與還原*服務。
+. 按一下* Kubernetes*索引標籤、就會顯示Kubernetes儀表板。
++
+image:screenshot_backup_view_k8s_backups_button.png["Kubernetes儀表板的快照、其中包含正在備份的所有Kubernetes叢集和磁碟區清單。"]
+
+. 找到您要還原的磁碟區、然後按一下 image:screenshot_horizontal_more_button.gif["更多圖示"]，然後是* Volume Details *。
++
+該磁碟區的所有備份檔案清單、以及來源磁碟區、目的地位置和備份詳細資料的詳細資料。
+
++
+image:screenshot_backup_view_k8s_backups.png["單一來源磁碟區所有可用備份的快照。"]
+
+. 根據日期/時間戳記找出您要還原的特定備份檔案、然後按一下 image:screenshot_horizontal_more_button.gif["更多圖示"]，然後*還原*。
+. 在「選取目的地」頁面中、選取要還原磁碟區的_Kubernetes叢集_、_Namespaces_、_Storage Class_和新的_Persistent Volume name_。
++
+image:screenshot_restore_k8s_volume.png["將還原持續磁碟區之目的地資訊的快照。"]
+
+. 按一下「*還原*」、系統會將您返回Kubernetes儀表板、以便您檢閱還原作業的進度。
+
+
+Cloud Manager會根據您選取的備份、在Kubernetes叢集中建立新的磁碟區。您可以 link:task-manage-backups-kubernetes.html["管理此新Volume的備份設定"] 視需要而定。

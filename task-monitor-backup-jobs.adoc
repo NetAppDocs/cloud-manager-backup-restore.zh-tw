@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: task-monitor-backup-jobs.html 
+keywords: cloud backup, cloud backup service, backup, restore, status, monitor 
+summary: 您可以監控已在工作環境中啟動的備份與還原工作狀態。這可讓您查看已成功完成的工作、目前進行中的工作、以及已失敗的工作、以便診斷及修正任何問題。 
+---
+= 監控備份與還原工作的狀態
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以監控已在工作環境中啟動的備份與還原工作狀態。這可讓您查看已成功完成的工作、目前進行中的工作、以及已失敗的工作、以便診斷及修正任何問題。
+
+請注意、系統初始化的工作（這類持續備份作業）不會反映在*工作監控*標籤中、只會顯示使用者起始的工作。
+
+
+
+== 檢視備份與還原工作的狀態
+
+您可以檢視所有備份與還原作業及其目前狀態的清單。這包括Cloud Volumes ONTAP 來自您的資料、內部部署ONTAP 的資料、應用程式和Kubernetes系統的作業。每個作業或工作都有唯一的ID和狀態。狀態可以是：
+
+* 成功
+* 進行中
+* 已佇列
+* 警告
+* 失敗
+
+
+.步驟
+. 按一下*備份與還原*索引標籤。
+. 按一下「*工作監控*」標籤。
++
+image:screenshot_backup_job_monitor.png["在「工作監控」儀表板中顯示備份與還原工作的快照。"]
+
+
+
+您可以按一下工作名稱、以檢視與該作業對應的詳細資料。
+
+如果您正在尋找特定工作、您可以：
+
+* 使用頁面頂端的時間選取器來檢視特定時間範圍內的工作
+* 在「搜尋」欄位中輸入部分工作名稱
+* 使用每個欄標題中的篩選條件來排序結果
+

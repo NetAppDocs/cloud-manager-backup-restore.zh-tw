@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: concept-backup-to-cloud.html 
+keywords: backing up, restoring, back up, backup, restore, cloud volumes ontap, aws, azure, s3, blob, google cloud, storagegrid, back up volumes, cloud backup, restore volumes, billing, cost, on-premises ontap, onprem, kubernetes, applications 
+summary: Cloud Backup是適用於Cloud Manager工作環境的服務、可提供備份與還原功能、以保護資料並長期歸檔。備份會自動產生、並儲存在公有雲或私有雲帳戶的物件存放區中。 
+---
+= 深入瞭解Cloud Backup
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Backup是適用於Cloud Manager工作環境的服務、可提供備份與還原功能、以保護資料並長期歸檔。備份會自動產生、並儲存在公有雲或私有雲帳戶的物件存放區中。
+
+必要時、您可以將整個_volume從備份還原至相同或不同的工作環境。備份ONTAP 不一致的資料時、您也可以選擇將備份中的一個或多個_fil__還原到相同或不同的工作環境。
+
+link:https://cloud.netapp.com/cloud-backup-service["深入瞭解Cloud Backup"^]。
+
+備份與還原可用於：
+
+* 備份及還原ONTAP 來自於內部部署的不全系統的資料。Cloud Volumes ONTAP ONTAP link:concept-ontap-backup-to-cloud.html["請參閱此處的詳細功能"]。
+* 備份及還原Kubernetes持續磁碟區。 link:concept-kubernetes-backup-to-cloud.html["請參閱此處的詳細功能"]。
+* 使用Cloud Backup for Applications、將應用程式一致的Snapshot從內部部署ONTAP 到雲端。 link:concept-protect-app-data-to-cloud.html["請參閱此處的詳細功能"]。
+
+
+
+
+== 雲端備份的運作方式
+
+當您在Cloud Volumes ONTAP 一個不完整或內部部署ONTAP 的支援系統上啟用Cloud Backup時、服務會執行資料的完整備份。備份映像不包含 Volume 快照。在初始備份之後、所有其他備份都是遞增的、這表示只會備份變更的區塊和新的區塊。如此可將網路流量維持在最低。
+
+在大多數情況下、您會將Cloud Manager UI用於所有備份作業。不過ONTAP 、從使用支援功能支援功能的版本起、您可以ONTAP 使用ONTAP 「支援功能」、啟動內部部署功能的內部叢集的Volume備份作業。 https://docs.netapp.com/us-en/ontap/task_cloud_backup_data_using_cbs.html["瞭解如何使用System Manager使用Cloud Backup將磁碟區備份到雲端。"^]
+
+下圖顯示每個元件之間的關係：
+
+image:diagram_cloud_backup_general.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地物件儲存區進行通訊的圖表。"]
+
+
+
+=== 備份所在位置
+
+備份複本儲存在Cloud Manager在雲端帳戶中建立的物件存放區中。每個叢集/工作環境有一個物件存放區、Cloud Manager會將物件存放區命名為：「NetApp-backup-clusteruuid」。請勿刪除此物件存放區。
+
+* 在 AWS 中、 Cloud Manager 可啟用 https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html["Amazon S3 封鎖公共存取功能"^] 在 S3 儲存桶上。
+* 在 Azure 中、 Cloud Manager 使用新的或現有的資源群組、並為 Blob 容器提供儲存帳戶。Cloud Manager https://docs.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-prevent["封鎖對Blob資料的公開存取"] 依預設。
+* 在 GCP 中、 Cloud Manager 使用新的或現有的專案、並為 Google Cloud Storage 儲存庫使用儲存帳戶。
+* 在本報告中、Cloud Manager使用現有的儲存帳戶來儲存物件儲存庫。StorageGRID
+
+
+
+
+=== 備份會在午夜進行
+
+* 每小時備份從每小時5分鐘開始。
+* 每天的備份作業會在每天午夜之後才開始。
+* 每週備份會在週日早上午夜之後開始。
+* 每月備份只在每月第一天午夜之後開始。
+
+
+開始時間取決於每ONTAP 個來源系統設定的時區。您無法在使用者指定的時間從UI排程備份作業。如需詳細資訊、請聯絡您的系統工程師。
+
+
+
+=== 備份複本會與您的NetApp帳戶建立關聯
+
+備份複本與相關聯 https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-netapp-accounts.html["NetApp帳戶"^] 連接器所在的位置。
+
+如果您在同一個NetApp帳戶中有多個連接器、則每個連接器都會顯示相同的備份清單。這包括Cloud Volumes ONTAP 與其他ONTAP 連接器上的資料不全和內部部署的資料不全的資料。

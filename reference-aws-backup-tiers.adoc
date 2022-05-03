@@ -1,0 +1,80 @@
+---
+sidebar: sidebar 
+permalink: reference-aws-backup-tiers.html 
+keywords: aws, amazon, s3, storage classes, archive 
+summary: Cloud Backup可支援兩個S3歸檔儲存類別和大部分地區。 
+---
+= AWS S3歸檔儲存類別並還原擷取時間
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Backup可支援兩個S3歸檔儲存類別和大部分地區。
+
+
+
+== 支援的S3歸檔儲存類別、適用於雲端備份
+
+一開始建立備份檔案時、會將其儲存在S3 _Standard_儲存設備中。此階層已最佳化、可儲存不常存取的資料、但也可讓您立即存取。30天之後、備份會轉換至S3 _Standard-in頻繁 存取_儲存類別、以節省成本。
+
+如果您的來源叢集執行ONTAP 的是Estrs9.10.1或更新版本、您可以選擇在特定天數（通常超過30天）之後、將備份分層至_S3 Glacier Deep Archive_或_S3儲存設備、以進一步最佳化成本。這些階層中的資料無法在需要時立即存取、而且需要較高的擷取成本、因此您需要考量從這些歸檔備份檔案還原資料的頻率。請參閱相關章節 <<Restoring data from archival storage,從歸檔儲存設備還原資料>>。
+
+請注意、當您使用此類型的生命週期規則設定Cloud Backup時、在AWS帳戶中設定儲存庫時、不得設定任何生命週期規則。
+
+https://aws.amazon.com/s3/storage-classes/["瞭解 S3 儲存課程"^]。
+
+
+
+== 從歸檔儲存設備還原資料
+
+雖然在歸檔儲存設備中儲存較舊的備份檔案比標準或標準IA儲存設備便宜得多、但從歸檔儲存設備中的備份檔案存取資料以進行還原作業需要較長的時間、而且成本較高。
+
+從Amazon S3 Glacier和Amazon S3 Glacier Deep歸檔還原資料的成本為何？:: 從Amazon S3 Glacier擷取資料時、您可以選擇3項還原優先順序、從Amazon S3 Glacier Deep歸檔擷取資料時、可選擇2項還原優先順序。S3 Glacier Deep歸檔成本低於S3 Glacier：
++
+--
+[cols="25,25,25,25"]
+|===
+| 歸檔層 3+| 還原優先順序與成本 
+
+
+|  | *高* | * 標準 * | *低* 
+
+
+| * S3 Glacier * | 擷取速度最快、成本最高 | 較慢的擷取速度、較低的成本 | 擷取速度最慢、成本最低 
+
+
+| * S3 Glacier Deep Archive* |  | 更快的擷取速度、更高的成本 | 擷取速度較慢、成本最低 
+|===
+每種方法都有不同的每GB擷取費用和每個要求的費用。如需AWS區域的S3 Glacier詳細定價資訊、請參閱 https://aws.amazon.com/s3/pricing/["Amazon S3定價頁面"^]。
+
+--
+還原在Amazon S3 Glacier中歸檔的物件需要多久時間？:: 共有2個部分可構成總還原時間：
++
+--
+* *擷取時間*：從歸檔中擷取備份檔案並將其置於標準儲存設備的時間。這有時稱為「補水」時間。擷取時間會因您選擇的還原優先順序而有所不同。
++
+[cols="25,20,20,20"]
+|===
+| 歸檔層 3+| 還原優先順序與擷取時間 
+
+
+|  | *高* | * 標準 * | *低* 
+
+
+| * S3 Glacier * | 3至5分鐘 | 3至5小時 | 5至12小時 
+
+
+| * S3 Glacier Deep Archive* |  | 12小時 | 48小時 
+|===
+* *還原時間*：從標準儲存設備中的備份檔案還原資料的時間。這一次與一般直接從標準儲存設備進行還原作業（不使用歸檔層時）並無不同。
+
+
+如需Amazon S3 Glacier和S3 Glacier Deep Archive擷取選項的詳細資訊、請參閱 https://aws.amazon.com/s3/faqs/#Amazon_S3_Glacier["關於這些儲存類別的Amazon常見問題集"^]。
+
+--
+
