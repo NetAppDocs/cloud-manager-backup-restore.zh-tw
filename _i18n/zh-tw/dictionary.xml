@@ -306,7 +306,6 @@
   <block id="949b473773535ea19f7817cd4c272bc1" category="paragraph"><block ref="949b473773535ea19f7817cd4c272bc1" category="inline-image-macro-rx" type="image"></block></block>
   <block id="f3e4b6c3b2f014829f853146224b7663" category="list-text">選取「自動備份未來的持續磁碟區...」核取方塊、選擇您要套用至新磁碟區的備份原則、然後按一下*「儲存*」。</block>
   <block id="e0d65bcc987fbf0e0395ea11d741cc4c" category="inline-image-macro">快照顯示如何選取要指派給叢集上所有未來磁碟區的備份原則。</block>
-  <block id="e1a8bb8592ca3edece2f7672e90295ff" category="paragraph"><block ref="e1a8bb8592ca3edece2f7672e90295ff" category="inline-image-macro-rx" type="image"></block></block>
   <block id="8b4b27044857ab131fc834e024419e2b" category="section-title">變更指派給現有磁碟區的原則</block>
   <block id="1906add3338dfe5ab5396d92754dc2f3" category="paragraph">如果您想要變更備份的頻率、或是想要變更保留值、您可以變更指派給現有磁碟區的備份原則。</block>
   <block id="9bfd7698cd685594f5f96180cc0f6ed9" category="list-text">在「備份設定」頁面中、按一下 <block ref="50acd719b1954eb4890c002b3b5e71a6" category="inline-image-macro-rx" type="image"></block> 針對存在磁碟區的工作環境、選取*管理持續磁碟區*。</block>
@@ -566,7 +565,6 @@
   <block id="34982ea6bedbeee858e852f1160e1aca" category="inline-image-macro">顯示「備份設定」頁面中「管理磁碟區」按鈕的快照。</block>
   <block id="55660009e3377cdb88d8fde8d1388886" category="paragraph"><block ref="55660009e3377cdb88d8fde8d1388886" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2bfa980473a5e104b4ba06a383a064c8" category="paragraph"><block ref="2bfa980473a5e104b4ba06a383a064c8" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="0f749ecebfa90be5ad345938fe0206ec" category="paragraph">您可以使用「自動備份未來的磁碟區...」核取方塊、選擇是否要在未來新增所有磁碟區以啟用備份。如果停用此設定、您日後需要手動啟用新增磁碟區的備份。</block>
   <block id="c6f1cab361201442f616f857bc68919e" category="paragraph"><block ref="c6f1cab361201442f616f857bc68919e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="41e086bf0dc4275e114abb7147326f73" category="paragraph"><block ref="41e086bf0dc4275e114abb7147326f73" category="inline-image-macro-rx" type="image"></block></block>
   <block id="e0413a89d4f4e5f20e8ebe8fa7f79026" category="paragraph">如果您的叢集執行ONTAP 的是版本不支援的版本號（例如更新版本的版本）、而且您使用AWS或Azure來儲存雲端、您也可以選擇在特定天數後、啟用或停用將備份分層至歸檔儲存設備的功能。</block>
@@ -589,8 +587,6 @@
   <block id="eb9411915f253c6cdf360afa2be4b4f0" category="paragraph">Cloud Backup可讓您刪除單一備份檔案、刪除磁碟區的所有備份、或刪除工作環境中所有磁碟區的所有備份。如果您不再需要備份、或是刪除來源磁碟區並想要移除所有備份、您可能會想要刪除所有備份。</block>
   <block id="c4760350a0bd1b742a79bce7d3174928" category="list-text">按一下 <block ref="50acd719b1954eb4890c002b3b5e71a6" category="inline-image-macro-rx" type="image"></block> 對於您要刪除所有備份的工作環境、請選取*刪除所有備份*。</block>
   <block id="5dcc24bce9f1c86fc6784cff3675b87e" category="paragraph"><block ref="5dcc24bce9f1c86fc6784cff3675b87e" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="5a58de0e84e5db9ac743167d182029a5" category="section-title">停用工作環境的雲端備份</block>
-  <block id="7d74a85f6ca999dc566f13bea483a788" category="paragraph">停用工作環境的Cloud Backup會停用系統上每個磁碟區的備份、也會停用還原磁碟區的功能。不會刪除任何現有的備份。這並不會從這個工作環境中取消註冊備份服務、基本上可讓您暫停一段時間內的所有備份與還原活動。</block>
   <block id="a9805696126ef48bc68224dc06136bbd" category="list-text">在「備份設定」頁面中、按一下 <block ref="50acd719b1954eb4890c002b3b5e71a6" category="inline-image-macro-rx" type="image"></block> 對於您要停用備份的工作環境、請選取*停用備份*。</block>
   <block id="bb2736f3c3db9ab842e20bc45c391086" category="paragraph"><block ref="bb2736f3c3db9ab842e20bc45c391086" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b5058c23615ec62ba7adbb4b757fdc8a" category="paragraph">如果您不想再使用備份功能、而且想要停止在工作環境中進行備份、可以取消註冊工作環境的Cloud Backup。一般而言、當您打算刪除工作環境、但想要取消備份服務時、就會使用此功能。</block>
@@ -1234,7 +1230,6 @@
   <block id="6488e4b9eef53ffd6c9cc6103d98e9fa" category="list-text">不支援從單一磁碟區到多個物件存放區的SnapMirror關係、因此Cloud Backup不支援此組態。ONTAP</block>
   <block id="c382be8ae1c203d850c1fd82ccc1f638" category="list-text">不支援物件存放區上的 WORM / 法規遵循模式。</block>
   <block id="595d0bcf55189d5a7852a255d268db51" category="section-title">單一檔案還原限制</block>
-  <block id="61d2fb70c854276ebc3e16296f86d0cd" category="list-text">單一檔案還原一次最多可還原100個個別檔案。目前不支援還原資料夾 / 目錄。</block>
   <block id="5f5966e9da5716290dfc2b88ceeb2217" category="list-text">要還原的檔案必須使用與目的地Volume上語言相同的語言。如果語言不同、您將會收到錯誤訊息。</block>
   <block id="1553a2b337f69cb4e2878126a9158d14" category="list-text">在不同子網路中使用相同帳戶的不同Cloud Manager時、不支援檔案層級還原。</block>
   <block id="53500e57afd38d81164aaec73c2519ae" category="list-text">如果備份檔案位於歸檔儲存設備中、則無法還原個別檔案。</block>
@@ -1896,4 +1891,21 @@
   <block id="ff6c37cbc252e306a6b4e390ec13cbc1" category="sidebar">Cloud Central部落格</block>
   <block id="cc81b1698333ba727fd5bde305c3cf08" category="sidebar">Cloud Central使用案例</block>
   <block id="ad203e818e0c9d7f42f1c260b33875f3" category="sidebar">雲端網路研討會</block>
+  <block id="1c161354c6da9cce8d6d66c83e6117e3" category="inline-image-macro">螢幕擷取畫面顯示選取Kubernetes叢集後可用的「備份設定」按鈕。</block>
+  <block id="81362333b4667057105418e2c797fb4d" category="paragraph"><block ref="81362333b4667057105418e2c797fb4d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d611fbcee8116241337f06ec4995ff9c" category="list-text">在「備份設定」頁面中、按一下 <block ref="50acd719b1954eb4890c002b3b5e71a6" category="inline-image-macro-rx" type="image"></block> 針對存在磁碟區的Kubernetes叢集、選取*自動備份新磁碟區*。</block>
+  <block id="014386141b63dc0c43377cb37936b250" category="inline-image-macro">快照顯示如何選取要指派給Kubernetes叢集上所有未來磁碟區的備份原則。</block>
+  <block id="891b6416962c7710069b6bd6d9d86a07" category="paragraph"><block ref="891b6416962c7710069b6bd6d9d86a07" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3877a9846e783c8af0a4e454f688cc19" category="paragraph">現在、此備份原則將套用至此Kubernetes叢集中所建立的任何新磁碟區。</block>
+  <block id="73454754c1af733fbae3cb63539996ef" category="paragraph">如果您未選擇在ONTAP 您第一次在叢集上啟動Cloud Backup時自動將備份原則指派給新建立的Volume、您可以稍後在「_Backup Settings_」（備份設定_）頁面中選擇此選項。將備份原則指派給新建立的磁碟區、可確保所有資料都受到保護。</block>
+  <block id="152ce4fa26eb65e8e96a262e60518c22" category="paragraph"><block ref="152ce4fa26eb65e8e96a262e60518c22" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b0484e1bec383e6b588abfcbce01d8a7" category="list-text">選取「自動備份新磁碟區...」核取方塊、選擇您要套用至新磁碟區的備份原則、然後按一下*「儲存*」。</block>
+  <block id="66aafc10059faefcfba7f2cfc427bba5" category="paragraph"><block ref="66aafc10059faefcfba7f2cfc427bba5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7c393b904fd78ca1a97c1c3d93e8427f" category="paragraph">現在、此備份原則將套用至此工作環境中使用Cloud Manager、System Manager或ONTAP the不支援的CLI所建立的任何新磁碟區。</block>
+  <block id="34654042ecfc4226d89a0eec5901d43e" category="inline-link">瞭解如何使用ONTAP CLI刪除Snapshot</block>
+  <block id="9ad3e0546cb45c95b651ec5649490c7d" category="paragraph">請注意、建立ad -ad hocent備份時、會在來源磁碟區上建立Snapshot。由於此Snapshot並非正常Snapshot排程的一部分、因此不會關閉。備份完成後、您可能想要從來源Volume手動刪除此Snapshot。如此一來、就能釋出與此Snapshot相關的區塊。Snapshot的名稱將以「CBS快照-adhoc-」開頭。<block ref="f1f70532768ec75f9b065af279b58c4c" category="inline-link-rx"></block>。</block>
+  <block id="104f191bacc12db075c772f4dbbcec2e" category="paragraph">這些限制同時適用於「搜尋與還原」和「瀏覽與還原」還原檔案的方法、除非特別提出。</block>
+  <block id="03a5b9815bb473e6f4be8d24abee633a" category="list-text">瀏覽與還原一次最多可還原100個個別檔案。</block>
+  <block id="83e93965854a9ee03d55a2d15f2e8dc7" category="list-text">搜尋與還原一次可還原1個檔案。</block>
+  <block id="45597398aa8f6969af8d1f8b4beca231" category="list-text">目前不支援還原資料夾 / 目錄。</block>
 </blocks>

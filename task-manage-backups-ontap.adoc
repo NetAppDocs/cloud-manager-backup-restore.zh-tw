@@ -54,9 +54,6 @@ image:screenshot_backup_manage_volumes.png["顯示「備份設定」頁面中「
 +
 image:screenshot_backup_manage_volumes_page.png["「管理磁碟區」頁面、您可在其中選取或取消選取磁碟區。"]
 
-+
-您可以使用「自動備份未來的磁碟區...」核取方塊、選擇是否要在未來新增所有磁碟區以啟用備份。如果停用此設定、您日後需要手動啟用新增磁碟區的備份。
-
 . 按一下「*儲存*」以提交變更。
 
 
@@ -165,11 +162,40 @@ image:screenshot_backup_change_policy.png["顯示如何選取新原則以套用�
 
 
 
+== 設定要指派給新磁碟區的備份原則
+
+如果您未選擇在ONTAP 您第一次在叢集上啟動Cloud Backup時自動將備份原則指派給新建立的Volume、您可以稍後在「_Backup Settings_」（備份設定_）頁面中選擇此選項。將備份原則指派給新建立的磁碟區、可確保所有資料都受到保護。
+
+請注意、您要套用至磁碟區的原則必須已經存在。 <<Adding a new backup policy,瞭解如何為工作環境新增備份原則>>。
+
+您也可以停用此設定、使新建立的磁碟區不會自動備份。在這種情況下、您必須手動啟用任何特定磁碟區的備份、以便日後備份。
+
+.步驟
+. 從* Volumes（磁碟區）*索引標籤、選取* Backup Settings*（備份設定）。
++
+image:screenshot_backup_settings_button.png["螢幕擷取畫面會顯示「備份設定」按鈕、您可以在選取工作環境之後使用該按鈕。"]
+
+. 在「備份設定」頁面中、按一下 image:screenshot_horizontal_more_button.gif["更多圖示"] 針對存在磁碟區的工作環境、選取*自動備份新磁碟區*。
++
+image:screenshot_auto_backup_new_volumes.png["從「備份設定」頁面選取「自動備份新磁碟區」選項的快照。"]
+
+. 選取「自動備份新磁碟區...」核取方塊、選擇您要套用至新磁碟區的備份原則、然後按一下*「儲存*」。
++
+image:screenshot_auto_backup.png["快照顯示如何選取要指派給叢集上所有未來磁碟區的備份原則。"]
+
+
+
+現在、此備份原則將套用至此工作環境中使用Cloud Manager、System Manager或ONTAP the不支援的CLI所建立的任何新磁碟區。
+
+
+
 == 隨時建立手動Volume備份
 
 您可以隨時建立隨需備份、以擷取Volume的目前狀態。如果已對磁碟區進行非常重要的變更、而您不想等待下一次排程備份來保護該資料、或是目前未備份磁碟區、而您想要擷取其目前狀態、則此功能非常實用。
 
 備份名稱包含時間戳記、因此您可以從其他排程備份中識別隨需備份。
+
+請注意、建立ad -ad hocent備份時、會在來源磁碟區上建立Snapshot。由於此Snapshot並非正常Snapshot排程的一部分、因此不會關閉。備份完成後、您可能想要從來源Volume手動刪除此Snapshot。如此一來、就能釋出與此Snapshot相關的區塊。Snapshot的名稱將以「CBS快照-adhoc-」開頭。 https://docs.netapp.com/us-en/ontap/san-admin/delete-all-existing-snapshot-copies-volume-task.html["瞭解如何使用ONTAP CLI刪除Snapshot"]。
 
 
 NOTE: 資料保護磁碟區不支援隨需磁碟區備份。
@@ -288,7 +314,7 @@ image:screenshot_delete_one_backup.png["顯示如何刪除單一備份檔案的�
 
 
 
-== 停用工作環境的雲端備份
+== 停用工作環境的Cloud Backup
 
 停用工作環境的Cloud Backup會停用系統上每個磁碟區的備份、也會停用還原磁碟區的功能。不會刪除任何現有的備份。這並不會從這個工作環境中取消註冊備份服務、基本上可讓您暫停一段時間內的所有備份與還原活動。
 
