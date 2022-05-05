@@ -831,7 +831,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-05-03 06:06:48 +0000">05/03/2022</time>
+    <time datetime="2022-05-05 19:25:45 +0000">05/05/2022</time>
     
   
 
@@ -907,9 +907,6 @@
 <p>選取您要變更的磁碟區核取方塊、然後根據您要開始或停止磁碟區的備份、按一下「<strong>啟動</strong>」或「<strong>停用</strong>」。</p>
 <div class="paragraph">
 <p><span class="image"><img src="./media/screenshot_backup_manage_volumes_page.png" alt="「管理磁碟區」頁面、您可在其中選取或取消選取磁碟區。"></span></p>
-</div>
-<div class="paragraph">
-<p>您可以使用「自動備份未來的磁碟區&#8230;&#8203;」核取方塊、選擇是否要在未來新增所有磁碟區以啟用備份。如果停用此設定、您日後需要手動啟用新增磁碟區的備份。</p>
 </div>
 </li>
 <li>
@@ -1068,6 +1065,46 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="設定要指派給新磁碟區的備份原則">設定要指派給新磁碟區的備份原則</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如果您未選擇在ONTAP 您第一次在叢集上啟動Cloud Backup時自動將備份原則指派給新建立的Volume、您可以稍後在「<em>Backup Settings</em>」（備份設定_）頁面中選擇此選項。將備份原則指派給新建立的磁碟區、可確保所有資料都受到保護。</p>
+</div>
+<div class="paragraph">
+<p>請注意、您要套用至磁碟區的原則必須已經存在。 <a href="#Adding a new backup policy">瞭解如何為工作環境新增備份原則</a>。</p>
+</div>
+<div class="paragraph">
+<p>您也可以停用此設定、使新建立的磁碟區不會自動備份。在這種情況下、您必須手動啟用任何特定磁碟區的備份、以便日後備份。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>從* Volumes（磁碟區）<strong>索引標籤、選取</strong> Backup Settings*（備份設定）。</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_backup_settings_button.png" alt="螢幕擷取畫面會顯示「備份設定」按鈕、您可以在選取工作環境之後使用該按鈕。"></span></p>
+</div>
+</li>
+<li>
+<p>在「備份設定」頁面中、按一下 <span class="image"><img src="./media/screenshot_horizontal_more_button.gif" alt="更多圖示"></span> 針對存在磁碟區的工作環境、選取*自動備份新磁碟區*。</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_auto_backup_new_volumes.png" alt="從「備份設定」頁面選取「自動備份新磁碟區」選項的快照。"></span></p>
+</div>
+</li>
+<li>
+<p>選取「自動備份新磁碟區&#8230;&#8203;」核取方塊、選擇您要套用至新磁碟區的備份原則、然後按一下*「儲存*」。</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_auto_backup.png" alt="快照顯示如何選取要指派給叢集上所有未來磁碟區的備份原則。"></span></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>現在、此備份原則將套用至此工作環境中使用Cloud Manager、System Manager或ONTAP the不支援的CLI所建立的任何新磁碟區。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="隨時建立手動volume備份">隨時建立手動Volume備份</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1075,6 +1112,9 @@
 </div>
 <div class="paragraph">
 <p>備份名稱包含時間戳記、因此您可以從其他排程備份中識別隨需備份。</p>
+</div>
+<div class="paragraph">
+<p>請注意、建立ad -ad hocent備份時、會在來源磁碟區上建立Snapshot。由於此Snapshot並非正常Snapshot排程的一部分、因此不會關閉。備份完成後、您可能想要從來源Volume手動刪除此Snapshot。如此一來、就能釋出與此Snapshot相關的區塊。Snapshot的名稱將以「CBS快照-adhoc-」開頭。 <a href="https://docs.netapp.com/us-en/ontap/san-admin/delete-all-existing-snapshot-copies-volume-task.html">"瞭解如何使用ONTAP CLI刪除Snapshot"</a>。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1259,7 +1299,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="停用工作環境的雲端備份">停用工作環境的雲端備份</h2>
+<h2 id="停用工作環境的cloud-backup">停用工作環境的Cloud Backup</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>停用工作環境的Cloud Backup會停用系統上每個磁碟區的備份、也會停用還原磁碟區的功能。不會刪除任何現有的備份。這並不會從這個工作環境中取消註冊備份服務、基本上可讓您暫停一段時間內的所有備份與還原活動。</p>
@@ -1367,16 +1407,16 @@
               <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
             </li>
             <li class="n-footer__copyright-link">
-              <a href="https://www.netapp.com/company/legal/terms-of-use/">legal-terms</a>
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">條款與條件</a>
             </li>
             <li class="n-footer__copyright-link">
-              <a href="https://www.netapp.com/company/legal/privacy-policy/">legal-privacy</a>
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Privacy Policy</a>
             </li>
             <li class="n-footer__copyright-link">
-              <a href="https://www.netapp.com/company/legal/cookie-policy/">legal-cookies</a>
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie Policy</a>
             </li>
             <li class="n-footer__copyright-link">
-              <a class="ot-sdk-show-settings">cookie-settings</a>
+              <a class="ot-sdk-show-settings">Cookie 設定</a>
             </li>
           </ul>
         </div>
