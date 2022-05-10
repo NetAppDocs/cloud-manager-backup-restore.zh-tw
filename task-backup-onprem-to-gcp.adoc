@@ -19,9 +19,6 @@ summary: 請完成幾個步驟、開始將內部部署ONTAP 的資料還原至Go
 請注意、「內部部署ONTAP 的功能不只是指FAS 包含了功能不全的功能、AFF 包括了功能不全的功能、包括了功能不全的功能。ONTAP Select
 
 
-TIP: 在大多數情況下、您都會使用Cloud Manager來執行所有的備份與還原作業。不過ONTAP 、從使用支援功能支援功能的版本起、您可以ONTAP 使用ONTAP 「支援功能」、啟動內部部署功能的內部叢集的Volume備份作業。 https://docs.netapp.com/us-en/ontap/task_cloud_backup_data_using_cbs.html["瞭解如何使用System Manager使用Cloud Backup將磁碟區備份到雲端。"^]
-
-
 
 == 快速入門
 
