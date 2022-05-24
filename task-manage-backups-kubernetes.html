@@ -835,7 +835,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-05-05 19:25:45 +0000">05/05/2022</time>
+    <time datetime="2022-05-24 17:40:52 +0000">05/24/2022</time>
     
   
 
@@ -961,129 +961,6 @@
 </div>
 </li>
 </ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="新增備份原則">新增備份原則</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>在工作環境中啟用Cloud Backup時、您最初選取的所有磁碟區都會使用您定義的預設備份原則進行備份。如果您想要將不同的備份原則指派給具有不同恢復點目標（RPO）的特定磁碟區、您可以為該叢集建立其他原則、並將這些原則指派給其他磁碟區。</p>
-</div>
-<div class="paragraph">
-<p>如果您想要將新的備份原則套用至工作環境中的特定磁碟區、首先必須將備份原則新增至工作環境。您可以 <a href="#Changing the policy assigned to existing volumes">將原則套用至該工作環境中的磁碟區</a>。</p>
-</div>
-<div class="olist arabic">
-<div class="title">步驟</div>
-<ol class="arabic">
-<li>
-<p>從* Kubernetes*索引標籤、選取*備份設定*。</p>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_backup_settings_button_k8s.png" alt="「Volumes（磁碟區）」索引標籤上顯示「Backup Settings（備份設定）」按鈕的快照"></span></p>
-</div>
-</li>
-<li>
-<p>在「備份設定」頁面中、按一下 <span class="image"><img src="./media/screenshot_horizontal_more_button.gif" alt="更多圖示"></span> 針對您要新增原則的工作環境、選取*管理原則*。</p>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_backup_modify_policy_k8s.png" alt="顯示「備份設定」頁面中「管理原則」選項的快照。"></span></p>
-</div>
-</li>
-<li>
-<p>在「管理原則」頁面中、按一下「<strong>新增原則</strong>」。</p>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_backup_manage_policy_page_add.png" alt="顯示「管理原則」頁面中「新增原則」按鈕的快照。"></span></p>
-</div>
-</li>
-<li>
-<p>在「新增原則」頁面中、定義排程和備份保留、然後按一下「<strong>儲存</strong>」。</p>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_backup_add_new_policy.png" alt="顯示備份原則設定的快照、您可以在其中新增備份排程和備份保留設定。"></span></p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="變更指派給現有磁碟區的原則">變更指派給現有磁碟區的原則</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>如果您想要變更備份的頻率、或是想要變更保留值、您可以變更指派給現有磁碟區的備份原則。</p>
-</div>
-<div class="paragraph">
-<p>請注意、您要套用至磁碟區的原則必須已經存在。 <a href="#Adding a new backup policy">瞭解如何為工作環境新增備份原則</a>。</p>
-</div>
-<div class="olist arabic">
-<div class="title">步驟</div>
-<ol class="arabic">
-<li>
-<p>從* Kubernetes*索引標籤、選取*備份設定*。</p>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_backup_settings_button_k8s.png" alt="螢幕擷取畫面會顯示「備份設定」按鈕、您可以在選取工作環境之後使用該按鈕。"></span></p>
-</div>
-</li>
-<li>
-<p>在「備份設定」頁面中、按一下 <span class="image"><img src="./media/screenshot_horizontal_more_button.gif" alt="更多圖示"></span> 針對存在磁碟區的工作環境、選取*管理持續磁碟區*。</p>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_backup_manage_volumes_k8s.png" alt="顯示「備份設定」頁面中「管理持續磁碟區」按鈕的快照。"></span></p>
-</div>
-</li>
-<li>
-<p>選取您要變更原則的磁碟區或磁碟區核取方塊、然後按一下*變更原則*。</p>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_backup_manage_volumes_page_change.png" alt="「管理磁碟區」頁面、您可在其中選取或取消選取磁碟區。"></span></p>
-</div>
-</li>
-<li>
-<p>在「變更原則」頁面中、選取要套用至磁碟區的原則、然後按一下「<strong>變更原則</strong>」。</p>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_backup_change_policy.png" alt="顯示如何選取新原則以套用至所選磁碟區的快照。"></span></p>
-</div>
-</li>
-<li>
-<p>按一下「<strong>儲存</strong>」以提交變更。</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="設定要指派給新磁碟區的備份原則">設定要指派給新磁碟區的備份原則</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>如果您未選取在Kubernetes叢集上首次啟動Cloud Backup時、自動將備份原則指派給新建立的磁碟區的選項、您可以稍後在「<em>Backup Settings</em>」（備份設定_）頁面中選擇此選項。將備份原則指派給新建立的磁碟區、可確保所有資料都受到保護。</p>
-</div>
-<div class="paragraph">
-<p>請注意、您要套用至磁碟區的原則必須已經存在。 <a href="#Adding a new backup policy">瞭解如何為工作環境新增備份原則</a>。</p>
-</div>
-<div class="paragraph">
-<p>您也可以停用此設定、使新建立的磁碟區不會自動備份。在這種情況下、您必須手動啟用任何特定磁碟區的備份、以便日後備份。</p>
-</div>
-<div class="olist arabic">
-<div class="title">步驟</div>
-<ol class="arabic">
-<li>
-<p>從* Kubernetes*索引標籤、選取*備份設定*。</p>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_backup_settings_button_k8s.png" alt="螢幕擷取畫面顯示選取Kubernetes叢集後可用的「備份設定」按鈕。"></span></p>
-</div>
-</li>
-<li>
-<p>在「備份設定」頁面中、按一下 <span class="image"><img src="./media/screenshot_horizontal_more_button.gif" alt="更多圖示"></span> 針對存在磁碟區的Kubernetes叢集、選取*自動備份新磁碟區*。</p>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_auto_backup_new_volumes_k8s.png" alt="從「備份設定」頁面選取「自動備份新磁碟區」選項的快照。"></span></p>
-</div>
-</li>
-<li>
-<p>選取「自動備份未來的持續磁碟區&#8230;&#8203;」核取方塊、選擇您要套用至新磁碟區的備份原則、然後按一下*「儲存*」。</p>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_auto_backup_k8s.png" alt="快照顯示如何選取要指派給Kubernetes叢集上所有未來磁碟區的備份原則。"></span></p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>現在、此備份原則將套用至此Kubernetes叢集中所建立的任何新磁碟區。</p>
 </div>
 </div>
 </div>
