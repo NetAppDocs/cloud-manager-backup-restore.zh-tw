@@ -297,18 +297,14 @@
   <block id="a079ee8f78a153ec016a997b2904f2bb" category="inline-image-macro">顯示備份原則設定的快照、您可以在其中新增備份排程和備份保留設定。</block>
   <block id="dfb577039d019da5c38a09fb1366befe" category="paragraph"><block ref="dfb577039d019da5c38a09fb1366befe" category="inline-image-macro-rx" type="image"></block></block>
   <block id="ba8ccbfb49367bf7bb51cf013e8b6c51" category="section-title">設定要指派給新磁碟區的備份原則</block>
-  <block id="622487d3daad2c1ce3902c5864551413" category="paragraph">如果您未選取在Kubernetes叢集上首次啟動Cloud Backup時、自動將備份原則指派給新建立的磁碟區的選項、您可以稍後在「_Backup Settings_」（備份設定_）頁面中選擇此選項。將備份原則指派給新建立的磁碟區、可確保所有資料都受到保護。</block>
   <block id="9807567d00bef6b0698c8a0199778d97" category="inline-xref">瞭解如何為工作環境新增備份原則</block>
   <block id="d6967aa725f6819809b2aba1df2f0426" category="paragraph">請注意、您要套用至磁碟區的原則必須已經存在。 <block ref="9b9a9859b4d1caf3d05c33a29b669e81" category="inline-xref-macro-rx"></block>。</block>
   <block id="dea20afb5b2be9f8aa54b7e45d98e7f9" category="paragraph">您也可以停用此設定、使新建立的磁碟區不會自動備份。在這種情況下、您必須手動啟用任何特定磁碟區的備份、以便日後備份。</block>
   <block id="b46397417f181d75a46498affedc525d" category="list-text">在「備份設定」頁面中、按一下 <block ref="50acd719b1954eb4890c002b3b5e71a6" category="inline-image-macro-rx" type="image"></block> 針對存在磁碟區的工作環境、選取*自動備份新磁碟區*。</block>
   <block id="0df9e5badb79d5d28ed3c82762cc6d09" category="inline-image-macro">從「備份設定」頁面選取「自動備份新磁碟區」選項的快照。</block>
-  <block id="949b473773535ea19f7817cd4c272bc1" category="paragraph"><block ref="949b473773535ea19f7817cd4c272bc1" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="f3e4b6c3b2f014829f853146224b7663" category="list-text">選取「自動備份未來的持續磁碟區...」核取方塊、選擇您要套用至新磁碟區的備份原則、然後按一下*「儲存*」。</block>
   <block id="e0d65bcc987fbf0e0395ea11d741cc4c" category="inline-image-macro">快照顯示如何選取要指派給叢集上所有未來磁碟區的備份原則。</block>
   <block id="8b4b27044857ab131fc834e024419e2b" category="section-title">變更指派給現有磁碟區的原則</block>
   <block id="1906add3338dfe5ab5396d92754dc2f3" category="paragraph">如果您想要變更備份的頻率、或是想要變更保留值、您可以變更指派給現有磁碟區的備份原則。</block>
-  <block id="9bfd7698cd685594f5f96180cc0f6ed9" category="list-text">在「備份設定」頁面中、按一下 <block ref="50acd719b1954eb4890c002b3b5e71a6" category="inline-image-macro-rx" type="image"></block> 針對存在磁碟區的工作環境、選取*管理持續磁碟區*。</block>
   <block id="2e08b529854541ce1c82c7930978f44d" category="list-text">選取您要變更原則的磁碟區或磁碟區核取方塊、然後按一下*變更原則*。</block>
   <block id="e3f6377ce4efafc0a233858f4d949829" category="paragraph"><block ref="e3f6377ce4efafc0a233858f4d949829" category="inline-image-macro-rx" type="image"></block></block>
   <block id="7bf9d1476eae0ab2ab9e9802624d9ecf" category="list-text">在「變更原則」頁面中、選取要套用至磁碟區的原則、然後按一下「*變更原則*」。</block>
@@ -829,8 +825,6 @@
   <block id="a2824b49f1c7526bf0e925b86c7b293c" category="inline-link">瞭解如何使用Search &amp;amp; Restore還原磁碟區和檔案</block>
   <block id="c84eb78e4a1957b6b0aa50908d89949f" category="paragraph">四月推出的「搜尋與還原」方法、可還原磁碟區和檔案、適用於將備份檔案儲存在AWS中的使用者。現在、將備份檔案儲存在Google Cloud Storage中的使用者可以使用這項功能。<block ref="c9d4c1d19223377e15b82823d41fa44a" category="inline-link-rx"></block>。</block>
   <block id="1dc3a9d2d46d5247757ad692a1dda8d4" category="section-title">設定要自動套用至Kubernetes叢集中新建立之磁碟區的備份原則</block>
-  <block id="31d9f5df125d9014e9c296eed143904c" category="inline-link">從_備份設定_頁面</block>
-  <block id="0e5eab8eb6782ba4533b5141d39e4a9a" category="paragraph">如果您在雲端備份啟動後、將新的持續磁碟區新增至Kubernetes叢集、過去您需要記住為這些磁碟區設定備份。現在、您可以選取要自動套用至新建立磁碟區的原則。當為新的Kubernetes叢集啟動Cloud Backup時、此選項可在設定精靈中使用、或<block ref="11a3efd6b42c9f2e763586db69ebed23" category="inline-link-rx"></block> 適用於已啟動Cloud Backup的叢集。</block>
   <block id="fd875d3cd25e36f42ac27fb4f3449a8e" category="section-title">雲端備份現在需要授權、才能在工作環境中啟動</block>
   <block id="75c0e3b9776c1472c507114bf7a7a1cf" category="paragraph">雲端備份的授權實作方式有幾項變更：</block>
   <block id="e84f7761b10b99ddca7152e4bb801dd6" category="list-text">您必須先向雲端供應商註冊PAYGO Marketplace訂閱、或向NetApp購買BYOL授權、才能啟動Cloud Backup。</block>
@@ -1876,12 +1870,6 @@
   <block id="ff6c37cbc252e306a6b4e390ec13cbc1" category="sidebar">Cloud Central部落格</block>
   <block id="cc81b1698333ba727fd5bde305c3cf08" category="sidebar">Cloud Central使用案例</block>
   <block id="ad203e818e0c9d7f42f1c260b33875f3" category="sidebar">雲端網路研討會</block>
-  <block id="1c161354c6da9cce8d6d66c83e6117e3" category="inline-image-macro">螢幕擷取畫面顯示選取Kubernetes叢集後可用的「備份設定」按鈕。</block>
-  <block id="81362333b4667057105418e2c797fb4d" category="paragraph"><block ref="81362333b4667057105418e2c797fb4d" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="d611fbcee8116241337f06ec4995ff9c" category="list-text">在「備份設定」頁面中、按一下 <block ref="50acd719b1954eb4890c002b3b5e71a6" category="inline-image-macro-rx" type="image"></block> 針對存在磁碟區的Kubernetes叢集、選取*自動備份新磁碟區*。</block>
-  <block id="014386141b63dc0c43377cb37936b250" category="inline-image-macro">快照顯示如何選取要指派給Kubernetes叢集上所有未來磁碟區的備份原則。</block>
-  <block id="891b6416962c7710069b6bd6d9d86a07" category="paragraph"><block ref="891b6416962c7710069b6bd6d9d86a07" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="3877a9846e783c8af0a4e454f688cc19" category="paragraph">現在、此備份原則將套用至此Kubernetes叢集中所建立的任何新磁碟區。</block>
   <block id="73454754c1af733fbae3cb63539996ef" category="paragraph">如果您未選擇在ONTAP 您第一次在叢集上啟動Cloud Backup時自動將備份原則指派給新建立的Volume、您可以稍後在「_Backup Settings_」（備份設定_）頁面中選擇此選項。將備份原則指派給新建立的磁碟區、可確保所有資料都受到保護。</block>
   <block id="152ce4fa26eb65e8e96a262e60518c22" category="paragraph"><block ref="152ce4fa26eb65e8e96a262e60518c22" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b0484e1bec383e6b588abfcbce01d8a7" category="list-text">選取「自動備份新磁碟區...」核取方塊、選擇您要套用至新磁碟區的備份原則、然後按一下*「儲存*」。</block>
@@ -1918,4 +1906,5 @@
   <block id="adba439901e690844020282dc0e87c32" category="paragraph">如果您使用連接埠80（HTTP）來與私有端點通訊、就會設定好。您現在可以在叢集上啟用Cloud Backup。</block>
   <block id="d58fcd28ca27643e7a41fc5c17398721" category="paragraph">如果您使用連接埠443（HTTPS）與私有端點通訊、則必須從VPC S3端點複製憑證、並將憑證新增至ONTAP 您的故障叢集、如接下來4個步驟所示。</block>
   <block id="9494561b819165d9f1e8e339562e316d" category="list-text">從VPC S3端點取得憑證。您的做法是<block ref="0617c2fce5134dbc852516af04fe18ee" category="inline-link-rx"></block> 並執行下列命令。輸入端點的DNS名稱時、請在開頭加入「pucket」、取代「*」：</block>
+  <block id="35902f649443d8dd6c5f04595fff3035" category="paragraph">如果您在雲端備份啟動後、將新的持續磁碟區新增至Kubernetes叢集、過去您需要記住為這些磁碟區設定備份。現在、您可以選取要自動套用至新建立磁碟區的原則。當為新的Kubernetes叢集啟動Cloud Backup時、此選項可在設定精靈中使用。</block>
 </blocks>
