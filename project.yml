@@ -74,6 +74,16 @@ sidebar:
         url: "/task-restore-oracle-data.html"
       - title: 還原SQL Server資料庫
         url: "/task-restore-sql-data.html"
+  - title: 備份與還原虛擬機器資料
+    entries:
+    - title: 保護您的虛擬機器資料
+      url: "/concept-protect-vm-data.html"
+    - title: 將資料存放區備份到雲端
+      url: "/task-backup-vm-data-to-cloud.html"
+    - title: 管理虛擬機器的保護
+      url: "/task-manage-vm-data-in-cloud.html"
+    - title: 還原虛擬機器資料
+      url: "/task-restore-vm-data.html"
   - title: 參考資料
     entries:
     - title: 支援的AWS歸檔儲存層
@@ -137,6 +147,12 @@ homepage:
       url: "/task-restore-oracle-data.html"
     - title: 還原SQL Server資料庫
       url: "/task-restore-sql-data.html"
+  - title: 備份及還原虛擬機器資料
+    links:
+    - title: 將資料存放區備份至雲端
+      url: "/task-backup-vm-data-to-cloud.html"
+    - title: 從雲端還原虛擬機器
+      url: "/task-restore-vm-data.html"
   - title: 從備份檔案還原資料
     links:
     - title: 還原ONTAP 功能

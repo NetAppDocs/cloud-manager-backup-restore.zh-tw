@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: task-restore-vm-data.html 
+keywords: restore virtual machines 
+summary: 您可以將虛擬機器從雲端還原至內部部署SnapCenter 的內部部署。 
+---
+= 從雲端還原虛擬機器
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以將虛擬機器從雲端還原至內部部署的vCenter。備份會還原至執行備份的完全相同位置。您無法將備份還原至任何其他替代位置。您可以從資料存放區或VM檢視中還原虛擬機器。
+
+
+NOTE: 您無法還原跨資料存放區跨區的虛擬機器。
+
+確保您已滿足所有需求 link:concept-protect-vm-data.html#Requirements["需求"] 從雲端還原虛擬機器之前。
+
+.步驟
+. 在Cloud Manager中、按一下*備份與還原*>*虛擬機器*>* SnapCenter 適用於VMware vSphere的*還原外掛程式*、然後選取SnapCenter 您要還原其虛擬機器的VMware vSphere的「VMware vSphere的還原外掛程式」。
+
+
+
+NOTE: 如果將來源虛擬機器移至其他位置（vMotion）、而且使用者從Cloud Manager觸發該虛擬機器的還原、則虛擬機器將會還原至進行備份的原始來源位置。
+
+. 若要從資料存放區還原：
++
+.. 按一下 image:icon-action.png["行動"] 與您要還原的資料存放區相對應、然後按一下「*檢視詳細資料*」。
+.. 按一下您要還原的備份對應的*還原*。
+.. 選取您要從備份還原的虛擬機器、然後按一下「*下一步*」。
+.. 檢閱詳細資料、然後按一下*還原*。
+
+
+. 若要從虛擬機器還原：
++
+.. 按一下 image:icon-action.png["行動"] 與您要還原的虛擬機器相對應、然後按一下*還原*。
+.. 選取您要用來還原虛擬機器的備份、然後按一下「*下一步*」。
+.. 檢閱詳細資料、然後按一下*還原*。
+
+
+
+
+VM會還原至備份所在的相同位置。

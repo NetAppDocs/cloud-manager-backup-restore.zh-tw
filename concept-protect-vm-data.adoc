@@ -1,0 +1,93 @@
+---
+sidebar: sidebar 
+permalink: concept-protect-vm-data.html 
+keywords: protect virtual machines, vm, policy, policies, backup back up, restore, SnapCenter Plug-in 
+summary: 深入瞭解如何保護虛擬機器上的資料、並瞭解不同的原則。 
+---
+= 保護您的虛擬機器資料
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以將SnapCenter VMware vSphere的VMware vSphere的VMware vCenter外掛程式與Cloud Manager整合、以保護虛擬機器上的資料。您可以將資料存放區備份到雲端、SnapCenter 並輕鬆將虛擬機器還原回內部部署的VMware vSphere版的內部部署功能。
+
+您可以將資料存放區備份至Amazon Web Services S3或Microsoft Azure Blob。
+
+
+
+== 需求
+
+請先閱讀下列需求、確定您擁有支援的組態、再開始將資料存放區和虛擬機器備份至雲端服務。
+
+* VMware vSphere 4.6P1或更新版本的適用插件SnapCenter
+* 部分9.8或更新版本ONTAP
+* Cloud Manager 3.9或更新版本
+* VMware vSphere 4.6P1的VMware vCenter外掛程式應至少進行一次備份SnapCenter 。
+* VMware vSphere適用的VMware vSphere中至少有一項SnapCenter 每天、每週或每月政策、沒有標籤或標籤與Cloud Manager中的Cloud Backup for Virtual Machines原則相同。
+* 對於預先安裝的原則、VMware SnapCenter vSphere的VMware vSphere及雲端的VMware Infrastructure的VMware Plug-in資料存放區排程層應相同。
+* 請確認FlexGroup 資料存放區中沒有任何不支援的資料區、因為不FlexGroup 支援備份和還原功能。
+* 請確定不支援還原加密磁碟區、因此不會加密任何磁碟區。
+* 在所需的資源群組上停用「*最近*」。如果您已為資源群組啟用「*最近*」、則這些資源群組的備份將無法用於雲端的資料保護、因此無法用於還原作業。
+* 確保虛擬機器還原所在的目的地資料存放區擁有足夠空間、可容納VMDK、VMX、VMSD等所有虛擬機器檔案的複本。
+* 請確認目的地資料存放區沒有舊的虛擬機器檔案、其格式為先前還原作業失敗中的「還原xxx」xxxxxx_Filename。在觸發還原作業之前、您應該先刪除過時的檔案。
+
+
+下圖顯示每個元件及其之間需要準備的連線：
+
+image:cloud_backup_vm.png["虛擬機器的雲端備份架構圖。"]
+
+
+
+== 保護原則
+
+您應該使用Cloud Backup中定義的其中一項原則、將資料存放區備份到雲端。
+
+
+NOTE: 不支援自訂原則。
+
+您可以在Cloud Manager中按一下*備份與還原*>*虛擬機器*>*原則*來檢視預設原則。
+
+|===
+| 原則名稱 | 標籤 | 保留價值 
+
+
+ a| 
+1年每日LTR
+ a| 
+每日
+ a| 
+366,36
+
+
+
+ a| 
+5年每日LTR
+ a| 
+每日
+ a| 
+1830年
+
+
+
+ a| 
+7年每週LTR
+ a| 
+每週
+ a| 
+37
+
+
+
+ a| 
+每月10年LTR
+ a| 
+每月
+ a| 
+120
+
+|===

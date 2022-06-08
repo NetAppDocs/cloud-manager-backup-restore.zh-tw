@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: task-manage-vm-data-in-cloud.html 
+keywords: manage backups, virtual machines, view datastores, view virtual machines, edit 
+summary: 您可以檢視資料存放區和虛擬機器、並編輯SnapCenter VMware vSphere執行個體的VMware vCenter外掛程式。 
+---
+= 管理虛擬機器的保護
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以在備份及還原資料之前、先檢視原則、資料存放區及虛擬機器。視資料庫、原則或資源群組的變更而定、您可以從Cloud Manager UI重新整理更新。
+
+
+
+== 檢視原則
+
+您可以檢視所有預設的預設預設預設預設預設原則。針對每個原則、當您檢視詳細資料時、會列出所有相關聯的適用於虛擬機器的Cloud Backup原則和所有相關的虛擬機器。
+
+. 按一下*備份與還原>虛擬機器*。
+. 從*設定*下拉式清單中、按一下*原則*。
+. 按一下您要檢視其詳細資料之原則的*檢視詳細資料*。
+
+
+會列出相關的「適用於虛擬機器的雲端備份」原則和所有虛擬機器。
+
+
+
+== 檢視資料存放區和虛擬機器
+
+系統會顯示使用VMware SnapCenter vSphere的已登錄版的VMware vSphere的VMware vCenter外掛程式來保護的資料存放區和虛擬機器。
+
+*關於此工作*
+
+* 只會顯示NFS資料存放區。
+* 僅SnapCenter 會顯示至少在VMware vSphere的VMware vSphere的VMware外掛程式中執行一次成功備份的資料存放區。
+
+
+.步驟
+. 在Cloud Manager UI中、按一下* Backup & Restore *>* Virtual Machines *>* Settings*>* SnapCenter 《VMware vSpher**的*》外掛程式。
+. 按一下SnapCenter 您要查看其資料存放區和虛擬機器的VMware vSphere的「VMware vSphere的VMware vCenter外掛程式」。
+
+
+
+
+== 編輯SnapCenter VMware vSphere執行個體的VMware vCenter外掛程式
+
+您可以在SnapCenter Cloud Manager中編輯VMware vSphere的《VMware vSphere的VMware解決方案》外掛程式詳細資料
+
+.步驟
+. 在Cloud Manager UI中、按一下* Backup & Restore *>* Virtual Machines *>* Settings*>* SnapCenter 《VMware vSpher**的*》外掛程式。
+. 按一下並選取*編輯*
+. 視需要修改詳細資料
+. 按一下「 * 儲存 * 」。
+
+
+
+
+== 重新整理保護狀態
+
+當新磁碟區新增至資料庫、或是原則或資源群組有變更時、您應該重新整理保護。
+
+. 按一下*備份與還原>虛擬機器*。
+. 從*設定*下拉式清單中、按一下* SnapCenter 適用於VMware vSpher*的「*」「外掛程式」。
+. 按一下 image:icon-action.png["行動"] 對應SnapCenter 於託管虛擬機器的VMware vSphere的VMware vCenter外掛程式、然後按一下「* Refresh*（*重新整理*）」。
++
+新的變更將會被探索到。
+
+. 按一下 image:icon-action.png["行動"] 對應於資料存放區、然後按一下*重新整理保護*、即可針對變更啟用雲端保護。
+
+
+
+
+== 監控工作
+
+所有雲端備份作業都會建立。您可以監控在每項工作中執行的所有工作和所有子工作。
+
+. 按一下*備份與還原>工作監控*。
++
+當您啟動作業時、會出現一個視窗、指出該工作已啟動。您可以按一下連結來監控工作。
+
+. 按一下主要工作以檢視每個子工作的子工作和狀態。
+

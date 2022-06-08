@@ -129,7 +129,7 @@ image:diagram_browse_restore_volume.png["顯示使用瀏覽&還原執行Volume�
 
 下列影片顯示還原磁碟區的快速步驟：
 
-video::9Og5agUWyRk[youtube, width=848,height=480,end=164]
+video::9Og5agUWyRk[youtube,width=848,height=480,end=164]
 .步驟
 . 選擇*備份與還原*服務。
 . 按一下「*還原*」索引標籤、即會顯示「還原儀表板」。
@@ -224,7 +224,7 @@ image:diagram_browse_restore_file.png["顯示使用瀏覽&還原執行檔案還�
 
 下列影片顯示快速逐步解說還原單一檔案：
 
-video::9Og5agUWyRk[youtube, width=848,height=480,start=165]
+video::9Og5agUWyRk[youtube,width=848,height=480,start=165]
 .步驟
 . 選擇*備份與還原*服務。
 . 按一下「*還原*」索引標籤、即會顯示「還原儀表板」。
@@ -307,7 +307,7 @@ link:reference-aws-backup-tiers.html["深入瞭解如何從AWS歸檔儲存設備
 
 下列影片顯示快速逐步解說還原單一檔案：
 
-video::RZktLe32hhQ[youtube, width=848,height=480]
+video::RZktLe32hhQ[youtube,width=848,height=480]
 
 
 === 搜尋與還原支援的工作環境與物件儲存供應商

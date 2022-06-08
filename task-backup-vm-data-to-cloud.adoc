@@ -1,0 +1,104 @@
+---
+sidebar: sidebar 
+permalink: task-backup-vm-data-to-cloud.html 
+keywords: backing up, back up, backup, backup virtual machine data, back up vm, Azure, Amazon Web services, Cloud Backup, cloud backup service, backup datastores 
+summary: 將資料存放區從內部部署ONTAP 的地方還原至雲端。 
+---
+= 將資料存放區備份到雲端
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以整合SnapCenter VMware vSphere的VMware vSphere for VMware vSphere with Cloud Manager、將資料存放區備份到雲端。這將有助於VM管理員輕鬆快速地備份及歸檔資料、以提升儲存效率並加速雲端移轉。
+
+
+NOTE: 確保您已滿足所有需求 link:concept-protect-vm-data.html#Requirements["需求"] 將資料存放區備份到雲端之前。
+
+
+
+== 註冊SnapCenter VMware vSphere的VMware外掛程式
+
+您應該在SnapCenter Cloud Manager中登錄VMware vSphere的VMware vCenter外掛程式、以便在Cloud Manager中顯示資料存放區和虛擬機器。只有擁有管理存取權的使用者才能登錄SnapCenter VMware vSphere的VMware vSphere的VMware vCenter外掛程式。
+
+
+NOTE: 您可以為SnapCenter VMware vSphere登錄多個VMware vCenter外掛程式。不過、一旦登錄完成、您就無法移除SnapCenter VMware vSphere的VMware vCenter外掛程式。
+
+.步驟
+. 在Cloud Manager UI中、按一下*備份與還原*>*虛擬機器*。
+. 從*設定*下拉式清單中、按一下* SnapCenter 適用於VMware vSpher*的「*」「外掛程式」。
+. 按一下「*登錄SnapCenter VMware vSpher*的更新外掛程式」。
+. 請指定下列詳細資料：
++
+.. 在VMware vSphere的「VMware vSphere的解決方法外掛程式」欄位中、指定VMware vSphere的「VMware vSphere的VMware vSphere的解決方法」的FQDN或IP位址。SnapCenter SnapCenter
+.. 在連接埠欄位中、指定SnapCenter 執行VMware vSphere的VMware vSphere的VMware外掛程式連接埠號碼。
++
+您應確保連接埠已開啟、SnapCenter 以便在VMware vSphere的VMware vSphere的VMware外掛程式與適用於應用程式的Cloud Backup之間進行通訊。
+
+.. 在使用者名稱和密碼欄位中、指定具有系統管理員角色的使用者認證。
+
+
+. 按一下 * 註冊 * 。
+
+
+*完成後*
+
+按一下「*備份與還原>虛擬機器*」、即可檢視所有符合VMware SnapCenter vSphere之已登錄的「還原外掛程式」保護資格的資料存放區和虛擬機器。
+
+
+
+== 備份資料存放區
+
+您可以使用單一原則、將一或多個資料存放區同時備份到雲端。只能將預設原則指派給資料存放區。
+
+.步驟
+. 在Cloud Manager UI中、按一下*備份與還原*>*虛擬機器*。
+. 按一下 image:icon-action.png["行動"] 與您要備份的資料存放區相對應、然後按一下「*啟動備份*」。
+. 新增工作環境。
++
+設定ONTAP 您想要Cloud Manager探索的各個叢集、以備份資料存放區。在新增其中一個資料存放區的工作環境之後、可將其重複用於位於同ONTAP 一個叢集上的所有其他資料存放區。
+
++
+.. 按一下與SVM對應的*新增工作環境*。
+.. 在「新增工作環境」精靈中：
++
+... 指定ONTAP 叢集的IP位址。
+... 指定ONTAP 叢集使用者的認證資料。
+
+
+.. 按一下「 * 新增工作環境 * 」。
+
+
+. 選取並設定雲端供應商。
++
+[role="tabbed-block"]
+====
+.設定Amazon Web Services
+--
+.. 指定AWS帳戶。
+.. 在AWS存取金鑰欄位中、指定資料加密的金鑰。
+.. 在AWS Secret Key（AWS機密金鑰）欄位中、指定資料加密的密碼。
+.. 選取您要建立備份的區域。
+.. 指定ONTAP 新增為工作環境的各種不完整叢集的IP位址。
+
+
+--
+.設定Microsoft Azure
+--
+.. 指定Azure訂閱ID。
+.. 選取您要建立備份的區域。
+.. 建立新的資源群組或使用現有的資源群組。
+.. 指定ONTAP 新增為工作環境的各種不完整叢集的IP位址。
+
+
+--
+====
+
+
+. 在「指派原則」頁面中、選取原則、然後按「*下一步*」。
+. 檢閱詳細資料、然後按一下*啟動備份*。
+

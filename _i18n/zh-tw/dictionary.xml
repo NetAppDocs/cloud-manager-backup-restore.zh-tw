@@ -1907,4 +1907,98 @@
   <block id="d58fcd28ca27643e7a41fc5c17398721" category="paragraph">如果您使用連接埠443（HTTPS）與私有端點通訊、則必須從VPC S3端點複製憑證、並將憑證新增至ONTAP 您的故障叢集、如接下來4個步驟所示。</block>
   <block id="9494561b819165d9f1e8e339562e316d" category="list-text">從VPC S3端點取得憑證。您的做法是<block ref="0617c2fce5134dbc852516af04fe18ee" category="inline-link-rx"></block> 並執行下列命令。輸入端點的DNS名稱時、請在開頭加入「pucket」、取代「*」：</block>
   <block id="35902f649443d8dd6c5f04595fff3035" category="paragraph">如果您在雲端備份啟動後、將新的持續磁碟區新增至Kubernetes叢集、過去您需要記住為這些磁碟區設定備份。現在、您可以選取要自動套用至新建立磁碟區的原則。當為新的Kubernetes叢集啟動Cloud Backup時、此選項可在設定精靈中使用。</block>
+  <block id="677e0bc1aa65f4ce3324deca0bcf87f0" category="section-title">2022年6月8日</block>
+  <block id="afd87a86d8a5973d91f3fcc4e85c719f" category="section-title">適用於虛擬機器的Cloud Backup 1.1.0現已上市</block>
+  <block id="f1567e25bd3a491ec53134f59ea7cea7" category="paragraph">您可以將SnapCenter VMware vSphere的VMware vSphere的VMware vCenter外掛程式與Cloud Manager整合、以保護虛擬機器上的資料。您可以將資料存放區備份到雲端、SnapCenter 並輕鬆將虛擬機器還原回內部部署的VMware vSphere版的內部部署功能。</block>
+  <block id="6717b62dda7e2cf5be6115ad2b4e21c0" category="paragraph"><block ref="5aaaed2bc5a1633b4c8e00ce27b6998a" category="inline-link-rx"></block>。</block>
+  <block id="db46ba2f888d41e44da25c2d8c1f406d" category="summary">您可以檢視資料存放區和虛擬機器、並編輯SnapCenter VMware vSphere執行個體的VMware vCenter外掛程式。</block>
+  <block id="880521c077c3d9130e51f737ddd86b15" category="doc">管理虛擬機器的保護</block>
+  <block id="3dea1ab8ef5c1f9d8be4e192694f4eda" category="paragraph">您可以在備份及還原資料之前、先檢視原則、資料存放區及虛擬機器。視資料庫、原則或資源群組的變更而定、您可以從Cloud Manager UI重新整理更新。</block>
+  <block id="20fa0d77fdaa3a45a8f87701c0342e8b" category="paragraph">您可以檢視所有預設的預設預設預設預設預設原則。針對每個原則、當您檢視詳細資料時、會列出所有相關聯的適用於虛擬機器的Cloud Backup原則和所有相關的虛擬機器。</block>
+  <block id="cacf5a65afb2740f7b7eea2375db4d1b" category="list-text">按一下*備份與還原&gt;虛擬機器*。</block>
+  <block id="0eaea88f7ff41f67b59dccbcf68165fd" category="paragraph">會列出相關的「適用於虛擬機器的雲端備份」原則和所有虛擬機器。</block>
+  <block id="c592537d7c4342754740fa8b36640686" category="section-title">檢視資料存放區和虛擬機器</block>
+  <block id="3fad99d665e8244fc38412e798c501af" category="paragraph">系統會顯示使用VMware SnapCenter vSphere的已登錄版的VMware vSphere的VMware vCenter外掛程式來保護的資料存放區和虛擬機器。</block>
+  <block id="78166ce4ccceeedfbf6aeb8682851072" category="paragraph">*關於此工作*</block>
+  <block id="6b0050118b87748ccc2e6422181d4463" category="list-text">只會顯示NFS資料存放區。</block>
+  <block id="4a60f4a892ee2b36c77a92d2aa8f7a15" category="list-text">僅SnapCenter 會顯示至少在VMware vSphere的VMware vSphere的VMware外掛程式中執行一次成功備份的資料存放區。</block>
+  <block id="b465deeb69e36d63e03f7051f878a92d" category="list-text">在Cloud Manager UI中、按一下* Backup &amp; Restore *&gt;* Virtual Machines *&gt;* Settings*&gt;* SnapCenter 《VMware vSpher**的*》外掛程式。</block>
+  <block id="21d67fc25940b8b3b749e37ad8e29e79" category="list-text">按一下SnapCenter 您要查看其資料存放區和虛擬機器的VMware vSphere的「VMware vSphere的VMware vCenter外掛程式」。</block>
+  <block id="b4aa547260f4fe266f03ec3a845576a5" category="section-title">編輯SnapCenter VMware vSphere執行個體的VMware vCenter外掛程式</block>
+  <block id="ed806e2cce658c6725869517d91c4932" category="paragraph">您可以在SnapCenter Cloud Manager中編輯VMware vSphere的《VMware vSphere的VMware解決方案》外掛程式詳細資料</block>
+  <block id="65e94d24e7bbe43abc97d317024d0fcd" category="list-text">按一下並選取*編輯*</block>
+  <block id="de272c17799e442dfec66612b8e9058b" category="list-text">視需要修改詳細資料</block>
+  <block id="4cc186df234138a57b2e8c5d8e5f7f8d" category="list-text">按一下「 * 儲存 * 」。</block>
+  <block id="1b6f5433333a05ee720166b3bef29b73" category="section-title">重新整理保護狀態</block>
+  <block id="6701db38a1eb11efa12fa6c9ee0fa66a" category="paragraph">當新磁碟區新增至資料庫、或是原則或資源群組有變更時、您應該重新整理保護。</block>
+  <block id="2ffa396b01e2ea9f2f8a8e7307a1e28e" category="list-text">從*設定*下拉式清單中、按一下* SnapCenter 適用於VMware vSpher*的「*」「外掛程式」。</block>
+  <block id="418c5509e2171d55b0aee5c2ea4442b5" category="inline-image-macro">行動</block>
+  <block id="f9d6d89e14fa868377d75b60a21b7841" category="list-text">按一下 <block ref="1d94ccc08c31bc8efbc06bfabc6854b6" category="inline-image-macro-rx" type="image"></block> 對應SnapCenter 於託管虛擬機器的VMware vSphere的VMware vCenter外掛程式、然後按一下「* Refresh*（*重新整理*）」。</block>
+  <block id="048b394365a250ed3a53a1b28e83733e" category="paragraph">新的變更將會被探索到。</block>
+  <block id="3e99ccad833881d9a8aeec4e2665baae" category="list-text">按一下 <block ref="1d94ccc08c31bc8efbc06bfabc6854b6" category="inline-image-macro-rx" type="image"></block> 對應於資料存放區、然後按一下*重新整理保護*、即可針對變更啟用雲端保護。</block>
+  <block id="bbbaf82896842e907feabc7ba91e68b5" category="list-text">按一下*備份與還原&gt;工作監控*。</block>
+  <block id="529795f55723488071425500df0ff5d6" category="summary">您可以將虛擬機器從雲端還原至內部部署SnapCenter 的內部部署。</block>
+  <block id="70861b61c8a43f84ddd14a22316ee5af" category="doc">從雲端還原虛擬機器</block>
+  <block id="f88ada8e94660fca714cd251aa019028" category="paragraph">您可以將虛擬機器從雲端還原至內部部署的vCenter。備份會還原至執行備份的完全相同位置。您無法將備份還原至任何其他替代位置。您可以從資料存放區或VM檢視中還原虛擬機器。</block>
+  <block id="d464a140825c1e9f8813a3b52ebddc03" category="admonition">您無法還原跨資料存放區跨區的虛擬機器。</block>
+  <block id="b4851e92b19af0c5c82447fc0937709d" category="inline-link-macro">需求</block>
+  <block id="1344fa03cfc0e1e9c9a94eebf3e3c1a9" category="paragraph">確保您已滿足所有需求 <block ref="a5bf58fdc6833048fad2d714a6e89f9c" category="inline-link-macro-rx"></block> 從雲端還原虛擬機器之前。</block>
+  <block id="47c414628aeaee4f21cf0f968923cd62" category="list-text">在Cloud Manager中、按一下*備份與還原*&gt;*虛擬機器*&gt;* SnapCenter 適用於VMware vSphere的*還原外掛程式*、然後選取SnapCenter 您要還原其虛擬機器的VMware vSphere的「VMware vSphere的還原外掛程式」。</block>
+  <block id="ba26d8297d09a35c1a83c9b66fc8f0e9" category="admonition">如果將來源虛擬機器移至其他位置（vMotion）、而且使用者從Cloud Manager觸發該虛擬機器的還原、則虛擬機器將會還原至進行備份的原始來源位置。</block>
+  <block id="d97e3ee694bea96c30606b68a9d786db" category="list-text">若要從資料存放區還原：</block>
+  <block id="ceb4a235a226f19c172c9cf7c46d00dc" category="list-text">按一下 <block ref="1d94ccc08c31bc8efbc06bfabc6854b6" category="inline-image-macro-rx" type="image"></block> 與您要還原的資料存放區相對應、然後按一下「*檢視詳細資料*」。</block>
+  <block id="a03a09176193c264d8dcbdcb8f2f9043" category="list-text">按一下您要還原的備份對應的*還原*。</block>
+  <block id="0ff9c86e6cb7e9150a24770fd6ae4e8d" category="list-text">選取您要從備份還原的虛擬機器、然後按一下「*下一步*」。</block>
+  <block id="cbf0f67cafb8adff0e22d1448f5921f1" category="list-text">若要從虛擬機器還原：</block>
+  <block id="0291e73f7c30c841795ff165a80bdc0e" category="list-text">按一下 <block ref="1d94ccc08c31bc8efbc06bfabc6854b6" category="inline-image-macro-rx" type="image"></block> 與您要還原的虛擬機器相對應、然後按一下*還原*。</block>
+  <block id="9ed4c9021fe62521b5d2326bd893b1c0" category="list-text">選取您要用來還原虛擬機器的備份、然後按一下「*下一步*」。</block>
+  <block id="42387e1cb260fd1fb8624acde3767841" category="paragraph">VM會還原至備份所在的相同位置。</block>
+  <block id="4d9574931c16abc6d4b59b575083bffd" category="summary">將資料存放區從內部部署ONTAP 的地方還原至雲端。</block>
+  <block id="7048662b75c8f210e59f898d992521cc" category="doc">將資料存放區備份到雲端</block>
+  <block id="6dd46b526b8b23de64849cb2b9161407" category="paragraph">您可以整合SnapCenter VMware vSphere的VMware vSphere for VMware vSphere with Cloud Manager、將資料存放區備份到雲端。這將有助於VM管理員輕鬆快速地備份及歸檔資料、以提升儲存效率並加速雲端移轉。</block>
+  <block id="9a0c42190771559c2a8da5fac845d24d" category="admonition">確保您已滿足所有需求 <block ref="a5bf58fdc6833048fad2d714a6e89f9c" category="inline-link-macro-rx"></block> 將資料存放區備份到雲端之前。</block>
+  <block id="8f2653c5938080ffdd57904f850bc430" category="section-title">註冊SnapCenter VMware vSphere的VMware外掛程式</block>
+  <block id="908b804c1d5eb33816dbfe2d033e3e43" category="paragraph">您應該在SnapCenter Cloud Manager中登錄VMware vSphere的VMware vCenter外掛程式、以便在Cloud Manager中顯示資料存放區和虛擬機器。只有擁有管理存取權的使用者才能登錄SnapCenter VMware vSphere的VMware vSphere的VMware vCenter外掛程式。</block>
+  <block id="8129ec59f397c5afc10f7d884869f8a5" category="admonition">您可以為SnapCenter VMware vSphere登錄多個VMware vCenter外掛程式。不過、一旦登錄完成、您就無法移除SnapCenter VMware vSphere的VMware vCenter外掛程式。</block>
+  <block id="d03248b995d99977502081ed2dc6be57" category="list-text">在Cloud Manager UI中、按一下*備份與還原*&gt;*虛擬機器*。</block>
+  <block id="4e5b953e1349e67f48dba9317bba75d3" category="list-text">按一下「*登錄SnapCenter VMware vSpher*的更新外掛程式」。</block>
+  <block id="d530421284e594531ff677ce26aca840" category="list-text">在VMware vSphere的「VMware vSphere的解決方法外掛程式」欄位中、指定VMware vSphere的「VMware vSphere的VMware vSphere的解決方法」的FQDN或IP位址。SnapCenter SnapCenter</block>
+  <block id="0db60886ecbee2c8ae4b0a650b7ef422" category="list-text">在連接埠欄位中、指定SnapCenter 執行VMware vSphere的VMware vSphere的VMware外掛程式連接埠號碼。</block>
+  <block id="d89a3944c2a1428f7efcadcc74009254" category="paragraph">您應確保連接埠已開啟、SnapCenter 以便在VMware vSphere的VMware vSphere的VMware外掛程式與適用於應用程式的Cloud Backup之間進行通訊。</block>
+  <block id="4eb88f79049bc78204f8659b66b7b655" category="list-text">在使用者名稱和密碼欄位中、指定具有系統管理員角色的使用者認證。</block>
+  <block id="a5f2332b8c4899ab96469750896f3abd" category="paragraph">按一下「*備份與還原&gt;虛擬機器*」、即可檢視所有符合VMware SnapCenter vSphere之已登錄的「還原外掛程式」保護資格的資料存放區和虛擬機器。</block>
+  <block id="767d5a2c4b139b3eaffd11e9a1772a77" category="section-title">備份資料存放區</block>
+  <block id="2f95ab0bd04ff2aa6411e15c863087be" category="paragraph">您可以使用單一原則、將一或多個資料存放區同時備份到雲端。只能將預設原則指派給資料存放區。</block>
+  <block id="1d419e3005bf4974f6070bbb53e5816f" category="list-text">按一下 <block ref="1d94ccc08c31bc8efbc06bfabc6854b6" category="inline-image-macro-rx" type="image"></block> 與您要備份的資料存放區相對應、然後按一下「*啟動備份*」。</block>
+  <block id="2b0057ced0fbbcb82bd3aeddd916912e" category="paragraph">設定ONTAP 您想要Cloud Manager探索的各個叢集、以備份資料存放區。在新增其中一個資料存放區的工作環境之後、可將其重複用於位於同ONTAP 一個叢集上的所有其他資料存放區。</block>
+  <block id="925e322b8ed2bad21cf3391e5e93df0a" category="list-text">按一下與SVM對應的*新增工作環境*。</block>
+  <block id="73f07eefb51e62cc902b672233bd4977" category="list-text">指定ONTAP 叢集使用者的認證資料。</block>
+  <block id="0b6515b0d85be4c32021431c5119a675" category="list-text">在AWS存取金鑰欄位中、指定資料加密的金鑰。</block>
+  <block id="095a532bc2c4eed2ec2c64b6008b497f" category="list-text">在AWS Secret Key（AWS機密金鑰）欄位中、指定資料加密的密碼。</block>
+  <block id="db7f740fbee2466830a1f559dba6b17b" category="list-text">建立新的資源群組或使用現有的資源群組。</block>
+  <block id="ddac760f2c60fbb2375807e939befa9d" category="summary">深入瞭解如何保護虛擬機器上的資料、並瞭解不同的原則。</block>
+  <block id="97bfb69bf5a1d719c6265b922436bbaa" category="doc">保護您的虛擬機器資料</block>
+  <block id="9dfb41ef96b06970eed334ebe8ebfdce" category="paragraph">您可以將資料存放區備份至Amazon Web Services S3或Microsoft Azure Blob。</block>
+  <block id="bf12440e355f2cc41683d5da523c5fce" category="paragraph">請先閱讀下列需求、確定您擁有支援的組態、再開始將資料存放區和虛擬機器備份至雲端服務。</block>
+  <block id="d511399444cf864b695600d159b7c93b" category="list-text">VMware vSphere 4.6P1或更新版本的適用插件SnapCenter</block>
+  <block id="2d65c0d587a717a1de564ac474c18bc8" category="list-text">Cloud Manager 3.9或更新版本</block>
+  <block id="bff3cdd2fd5f993f3bc3fbbd3c43fb30" category="list-text">VMware vSphere 4.6P1的VMware vCenter外掛程式應至少進行一次備份SnapCenter 。</block>
+  <block id="0c827a1221e7770d3ee8c7de2bb9a3f8" category="list-text">VMware vSphere適用的VMware vSphere中至少有一項SnapCenter 每天、每週或每月政策、沒有標籤或標籤與Cloud Manager中的Cloud Backup for Virtual Machines原則相同。</block>
+  <block id="9c2d7e78a68e18061466c4c12001d828" category="list-text">對於預先安裝的原則、VMware SnapCenter vSphere的VMware vSphere及雲端的VMware Infrastructure的VMware Plug-in資料存放區排程層應相同。</block>
+  <block id="ad747f24f06324c9bc58eeaa274f014a" category="list-text">請確認FlexGroup 資料存放區中沒有任何不支援的資料區、因為不FlexGroup 支援備份和還原功能。</block>
+  <block id="d4e9a319924f580f8d8c025f39e06dc3" category="list-text">請確定不支援還原加密磁碟區、因此不會加密任何磁碟區。</block>
+  <block id="f8038513f93eb5ca7b2505674255b67b" category="list-text">在所需的資源群組上停用「*最近*」。如果您已為資源群組啟用「*最近*」、則這些資源群組的備份將無法用於雲端的資料保護、因此無法用於還原作業。</block>
+  <block id="391eb750d98c55b72607ff6ec6311db2" category="list-text">確保虛擬機器還原所在的目的地資料存放區擁有足夠空間、可容納VMDK、VMX、VMSD等所有虛擬機器檔案的複本。</block>
+  <block id="6ee2c41b7a9bfae5bb618327d9499834" category="list-text">請確認目的地資料存放區沒有舊的虛擬機器檔案、其格式為先前還原作業失敗中的「還原xxx」xxxxxx_Filename。在觸發還原作業之前、您應該先刪除過時的檔案。</block>
+  <block id="a059803f1ed59324d3428d6aa42a2e5d" category="inline-image-macro">虛擬機器的雲端備份架構圖。</block>
+  <block id="9b56b7a48ea1f2ae532165c49455002a" category="paragraph"><block ref="9b56b7a48ea1f2ae532165c49455002a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b8b6d4fc48cb996b1ca14cbf78ac8cae" category="paragraph">您應該使用Cloud Backup中定義的其中一項原則、將資料存放區備份到雲端。</block>
+  <block id="37a8959a214e35c525dec921ae5021bc" category="admonition">不支援自訂原則。</block>
+  <block id="af84c6f32a8cf07ced1b300921376b2a" category="paragraph">您可以在Cloud Manager中按一下*備份與還原*&gt;*虛擬機器*&gt;*原則*來檢視預設原則。</block>
+  <block id="870077b3f635684d7232d0a3608babd9" category="sidebar">備份與還原虛擬機器資料</block>
+  <block id="4cfbdcb9aba741b123b3c46a8341bf59" category="sidebar">保護您的虛擬機器資料</block>
+  <block id="b2736084b30c35472d74c3c29a818a95" category="sidebar">管理虛擬機器的保護</block>
+  <block id="c2c86860cad5cd95ae9ef9c003e01d57" category="sidebar">還原虛擬機器資料</block>
+  <block id="3eb97a71011fe0dae37080fd785e4db5" category="sidebar">備份及還原虛擬機器資料</block>
+  <block id="b0105dd67bfb6e59c14b4606672bace7" category="sidebar">將資料存放區備份至雲端</block>
 </blocks>
