@@ -1910,7 +1910,6 @@
   <block id="677e0bc1aa65f4ce3324deca0bcf87f0" category="section-title">2022年6月8日</block>
   <block id="afd87a86d8a5973d91f3fcc4e85c719f" category="section-title">適用於虛擬機器的Cloud Backup 1.1.0現已上市</block>
   <block id="f1567e25bd3a491ec53134f59ea7cea7" category="paragraph">您可以將SnapCenter VMware vSphere的VMware vSphere的VMware vCenter外掛程式與Cloud Manager整合、以保護虛擬機器上的資料。您可以將資料存放區備份到雲端、SnapCenter 並輕鬆將虛擬機器還原回內部部署的VMware vSphere版的內部部署功能。</block>
-  <block id="6717b62dda7e2cf5be6115ad2b4e21c0" category="paragraph"><block ref="5aaaed2bc5a1633b4c8e00ce27b6998a" category="inline-link-rx"></block>。</block>
   <block id="db46ba2f888d41e44da25c2d8c1f406d" category="summary">您可以檢視資料存放區和虛擬機器、並編輯SnapCenter VMware vSphere執行個體的VMware vCenter外掛程式。</block>
   <block id="880521c077c3d9130e51f737ddd86b15" category="doc">管理虛擬機器的保護</block>
   <block id="3dea1ab8ef5c1f9d8be4e192694f4eda" category="paragraph">您可以在備份及還原資料之前、先檢視原則、資料存放區及虛擬機器。視資料庫、原則或資源群組的變更而定、您可以從Cloud Manager UI重新整理更新。</block>
@@ -1995,10 +1994,12 @@
   <block id="b8b6d4fc48cb996b1ca14cbf78ac8cae" category="paragraph">您應該使用Cloud Backup中定義的其中一項原則、將資料存放區備份到雲端。</block>
   <block id="37a8959a214e35c525dec921ae5021bc" category="admonition">不支援自訂原則。</block>
   <block id="af84c6f32a8cf07ced1b300921376b2a" category="paragraph">您可以在Cloud Manager中按一下*備份與還原*&gt;*虛擬機器*&gt;*原則*來檢視預設原則。</block>
-  <block id="870077b3f635684d7232d0a3608babd9" category="sidebar">備份與還原虛擬機器資料</block>
   <block id="4cfbdcb9aba741b123b3c46a8341bf59" category="sidebar">保護您的虛擬機器資料</block>
   <block id="b2736084b30c35472d74c3c29a818a95" category="sidebar">管理虛擬機器的保護</block>
   <block id="c2c86860cad5cd95ae9ef9c003e01d57" category="sidebar">還原虛擬機器資料</block>
   <block id="3eb97a71011fe0dae37080fd785e4db5" category="sidebar">備份及還原虛擬機器資料</block>
   <block id="b0105dd67bfb6e59c14b4606672bace7" category="sidebar">將資料存放區備份至雲端</block>
+  <block id="b418e05c847b656e4a8ac26f2f0cc045" category="inline-link">深入瞭解如何將虛擬機器保護至雲端</block>
+  <block id="3a5ea6bb0616fe3f66bd74e5e18fd1b3" category="paragraph"><block ref="95fa49d8f0b9a0affedd5e0d4a52c2d2" category="inline-link-rx"></block>。</block>
+  <block id="7c8db0bef9b3c6a1335fe8f0a09bfdef" category="sidebar">備份及還原虛擬機器資料</block>
 </blocks>

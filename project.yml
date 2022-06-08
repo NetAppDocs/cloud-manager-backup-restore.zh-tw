@@ -74,7 +74,7 @@ sidebar:
         url: "/task-restore-oracle-data.html"
       - title: 還原SQL Server資料庫
         url: "/task-restore-sql-data.html"
-  - title: 備份與還原虛擬機器資料
+  - title: 備份及還原虛擬機器資料
     entries:
     - title: 保護您的虛擬機器資料
       url: "/concept-protect-vm-data.html"

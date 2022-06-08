@@ -26,7 +26,7 @@ summary: 瞭解Cloud Backup的新功能。
 
 您可以將SnapCenter VMware vSphere的VMware vSphere的VMware vCenter外掛程式與Cloud Manager整合、以保護虛擬機器上的資料。您可以將資料存放區備份到雲端、SnapCenter 並輕鬆將虛擬機器還原回內部部署的VMware vSphere版的內部部署功能。
 
-https://docs.netapp.com/us-en/cloud-manager-backup-restore/concept-protect-vm-data.html["深入瞭解如何將內部部署應用程式資料保護至雲端"]。
+https://docs.netapp.com/us-en/cloud-manager-backup-restore/concept-protect-vm-data.html["深入瞭解如何將虛擬機器保護至雲端"]。
 
 
 
