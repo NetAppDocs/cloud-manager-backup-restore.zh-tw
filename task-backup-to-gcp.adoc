@@ -62,7 +62,7 @@ image:screenshot_backup_policy_gcp.png["顯示Cloud Backup設定的快照、您�
 
 image:diagram_cloud_backup_cvo_google.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
 
-支援 ONTAP 的支援版本:: 更新版本： Cloud Volumes ONTAP
+支援 ONTAP 的支援版本:: 最低ONTAP 版本為《》（更新ONTAP 版本）；建議使用《》（更新版本）。
 支援的 GCP 區域:: 所有GCP地區均支援雲端備份 https://cloud.netapp.com/cloud-volumes-global-regions["支援的地方 Cloud Volumes ONTAP"^]。
 授權需求:: 如需Cloud Backup PAYGO授權、請透過訂閱 https://console.cloud.google.com/marketplace/details/netapp-cloudmanager/cloud-manager?supportedpurview=project&rif_reserved["GCP 市場"^] 必須先啟用雲端備份。雲端備份計費是透過此訂閱完成。 https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-gcp.html["您可以從工作環境精靈的詳細資料 & 認證頁面訂閱"^]。
 +

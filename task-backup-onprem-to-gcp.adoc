@@ -67,13 +67,13 @@ image:screenshot_backup_policy_gcp.png["顯示Cloud Backup設定的快照、您�
 * 私有連線：使用VPN或私有服務連線、並透過使用私有IP位址的私有Google存取介面路由流量。
 
 
-下圖顯示公用連線方法、以及元件之間需要準備的連線：
+下圖顯示*公用連線*方法、以及元件之間需要準備的連線：
 
-image:diagram_cloud_backup_onprem_google.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
+image:diagram_cloud_backup_onprem_google.png["顯示Cloud Backup如何透過公共連線與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
 
-下圖顯示私有連線方法、以及元件之間需要準備的連線：
+下圖顯示*私有連線*方法、以及元件之間需要準備的連線：
 
-image:diagram_cloud_backup_onprem_google_vpc.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
+image:diagram_cloud_backup_onprem_google_vpc.png["顯示Cloud Backup如何透過私有連線與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
 
 
 
@@ -86,7 +86,7 @@ https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.
 需求 ONTAP::
 +
 --
-* 更新版本： ONTAP
+* 最低ONTAP 版本為《》（更新ONTAP 版本）；建議使用《》（更新版本）。
 * SnapMirror授權（包含在優質產品組合或資料保護產品組合中）。
 +
 *附註：*使用Cloud Backup時不需要「混合式雲端產品組合」。

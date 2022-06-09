@@ -43,7 +43,7 @@ summary: 請完成幾個步驟、開始將內部部署ONTAP 的資訊系統中�
 <<Prepare your ONTAP cluster,瞭解如何ONTAP 準備好內部部署的叢集。>>
 
 [role="quick-margin-para"]
-設定Connector權限、以建立及管理S3儲存區、並使用還原執行個體還原資料。並設定內部部署ONTAP 的內部環境的權限、以便能夠讀取及寫入S3儲存區的資料。
+設定Connector的權限、以建立及管理S3儲存區。您也需要設定內部部署ONTAP 的叢集權限、以便能夠讀取及寫入S3儲存區的資料。
 
 [role="quick-margin-para"]
 或者、您可以設定自己的自訂管理金鑰來進行資料加密、而非使用預設的Amazon S3加密金鑰。 <<Prepare your AWS environment,瞭解如何讓AWS S3環境準備好接收ONTAP 還原備份。>>
@@ -66,13 +66,11 @@ summary: 請完成幾個步驟、開始將內部部署ONTAP 的資訊系統中�
 
 下圖顯示*公用連線*方法、以及元件之間需要準備的連線：
 
-image:diagram_cloud_backup_onprem_aws.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
+image:diagram_cloud_backup_onprem_aws.png["顯示Cloud Backup如何透過公共連線與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
 
 下圖顯示*私有連線*方法、以及元件之間需要準備的連線：
 
-image:diagram_cloud_backup_onprem_aws_vpc.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
-
-請注意、當Cloud Restore執行個體部署在雲端時、它與Connector位於同一個子網路中。
+image:diagram_cloud_backup_onprem_aws_vpc.png["顯示Cloud Backup如何透過私有連線與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
 
 
 
@@ -186,7 +184,7 @@ IPspace內的所有叢集間生命體都必須擁有物件存放區的存取權�
 
 您需要設定兩組權限：
 
-* 連接器建立及管理S3儲存區的權限、以及使用還原執行個體還原資料的權限。
+* 連接器建立及管理S3儲存區的權限。
 * 內部部署ONTAP 的內部資源集區的權限、讓IT能夠讀取資料並將資料寫入S3儲存區。
 
 
@@ -236,17 +234,6 @@ IPspace內的所有叢集間生命體都必須擁有物件存放區的存取權�
 +
 如果您使用3.9.15版或更新版本部署Connector、則這些權限應已成為IAM角色的一部分。否則您必須新增遺失的權限。特別是「Athena」和「黏著」權限、因為它們是搜尋與還原所需的權限。請參閱 https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-edit.html["AWS文件：編輯IAM原則"]。
 
-. 將下列EC2權限新增至IAM角色、為Connector提供權限、以便其啟動、停止及終止Cloud Restore執行個體以進行瀏覽與還原作業：
-+
-[source, json]
-----
-          "Action": [
-              "ec2:DescribeInstanceTypeOfferings",
-              "ec2:StartInstances",
-              "ec2:StopInstances",
-              "ec2:TerminateInstances"
-          ],
-----
 . 啟動服務時、備份精靈會提示您輸入存取金鑰和秘密金鑰。這些認證資料會傳遞ONTAP 給整個叢集、ONTAP 以便讓支援中心能夠將資料備份並還原至S3儲存區。因此、您需要建立具有下列權限的IAM使用者：
 +
 [source, json]
@@ -278,25 +265,6 @@ IPspace內的所有叢集間生命體都必須擁有物件存放區的存取權�
 
 
 
-=== 驗證Cloud Restore網際網路存取
-
-如果您的虛擬或實體網路使用Proxy伺服器進行網際網路存取、請確定Cloud Restore執行個體具有傳出網際網路存取權限、以聯絡下列端點。
-
-[cols="50,50"]
-|===
-| 端點 | 目的 
-
-
-| http://amazonlinux.us-east-1.amazonaws.com/2/extras/docker/stable/ x86_64：4bf88ee77c395ffe1e0c3ca68530dfb3a683ec65a4a1ce9c0ff394be50e9222b2 | 適用於雲端還原執行個體AMI的CentOS套件。 
-
-
-| \https://download.docker.com/linux/centos/docker-ce.repo | 提供Docker Engine套件。 
-
-
-| \http://cloudmanagerinfraprod.azurecr.io \https://cloudmanagerinfraprod.azurecr.io | Cloud Restore執行個體映像儲存庫。 
-|===
-
-
 === 設定客戶管理的AWS金鑰以進行資料加密
 
 如果您想要使用預設的Amazon S3加密金鑰來加密在內部叢集和S3儲存區之間傳輸的資料、那麼您就會被設定、因為預設安裝會使用該類型的加密。
@@ -320,7 +288,7 @@ image:screenshot_backup_aws_sec_group.png["與Connector相關聯的AWS安全性�
 如果您使用連接埠80（HTTP）來與私有端點通訊、就會設定好。您現在可以在叢集上啟用Cloud Backup。
 
 +
-如果您使用連接埠443（HTTPS）與私有端點通訊、則必須從VPC S3端點複製憑證、並將憑證新增至ONTAP 您的故障叢集、如接下來4個步驟所示。
+如果您使用連接埠443（HTTPS）來與私有端點通訊、則必須從VPC S3端點複製憑證、並將其新增ONTAP 至您的故障叢集、如接下來的4個步驟所示。
 
 . 從AWS主控台取得端點的DNS名稱。
 +
@@ -363,6 +331,9 @@ Please enter Certificate: Press <Enter> when done
 
 .步驟
 . 從「畫版」中選取工作環境、然後按一下右窗格中「備份與還原」服務旁的*「啟用」>「備份磁碟區」*。
++
+如果用於備份的Amazon S3目的地是在Canvas上的工作環境、您可以將叢集拖曳至Amazon S3工作環境、以啟動設定精靈。
+
 +
 image:screenshot_backup_onprem_enable.png["螢幕擷取畫面會顯示「備份與安培」；「啟用還原」按鈕、可在您選取工作環境之後使用。"]
 

@@ -64,9 +64,7 @@ image:screenshot_backup_policy_azure.png["顯示Cloud Backup設定的快照、�
 
 image:diagram_cloud_backup_cvo_azure.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
 
-雲端還原虛擬機器部署於雲端時、其子網路與Connector位於同一個子網路中。
-
-支援 ONTAP 的支援版本:: 更新版本： Cloud Volumes ONTAP
+支援 ONTAP 的支援版本:: 最低ONTAP 版本為《》（更新ONTAP 版本）；建議使用《》（更新版本）。
 授權需求:: 對於Cloud Backup PAYGO授權、您必須先透過Azure Marketplace訂閱、才能啟用Cloud Backup。雲端備份計費是透過此訂閱完成。 https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-otc-azure.html["您可以從工作環境精靈的詳細資料 & 認證頁面訂閱"^]。
 +
 --
@@ -76,24 +74,9 @@ image:diagram_cloud_backup_cvo_azure.png["顯示Cloud Backup如何與來源系�
 
 --
 支援的 Azure 地區:: 所有Azure地區均支援雲端備份 https://cloud.netapp.com/cloud-volumes-global-regions["支援的地方 Cloud Volumes ONTAP"^]（包括Azure政府區域）。
-在不同Azure訂閱中建立備份所需的設定:: 根據預設、備份會使用與Cloud Volumes ONTAP 您的作業系統相同的訂閱方式建立。如果您想要使用不同的Azure訂閱來進行備份、您必須使用 link:reference-backup-multi-account-azure.html["登入Azure入口網站並連結這兩份訂閱"]。
 使用客戶管理金鑰進行資料加密的必要資訊:: 您可以在啟動精靈中使用自己的客戶管理金鑰進行資料加密、而非使用預設的Microsoft管理加密金鑰。在此情況下、您必須擁有Azure訂閱、Key Vault名稱及金鑰。 https://docs.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview["瞭解如何使用您自己的金鑰"]。
-Azure部署所需的傳出網際網路存取:: Cloud Restore虛擬機器需要存取傳出的網際網路。如果您的虛擬或實體網路使用Proxy伺服器進行網際網路存取、請確定執行個體具有傳出網際網路存取權限、以聯絡下列端點。
 
 
-[cols="43,57"]
-|===
-| 端點 | 目的 
-
-
-| \http://olcentgbl.trafficmanager.net \https://olcentgbl.trafficmanager.net | 提供Cloud Restore虛擬機器的CentOS套件。 
-
-
-| \https://download.docker.com/linux/centos/docker-ce.repo | 提供Docker Engine套件。 
-
-
-| \http://cloudmanagerinfraprod.azurecr.io \https://cloudmanagerinfraprod.azurecr.io | Cloud Restore虛擬機器映像儲存庫。 
-|===
 
 
 == 在新系統上啟用雲端備份
@@ -135,9 +118,6 @@ image:screenshot_backup_cvo_enable.png["螢幕擷取畫面顯示「啟用雲端�
 . 選取供應商詳細資料、然後按*下一步*。
 +
 .. Azure 訂閱用於儲存備份。這可能是與Cloud Volumes ONTAP 駐留於此系統不同的訂閱方式。
-+
-如果您想要使用不同的Azure訂閱來進行備份、您必須使用 link:reference-backup-multi-account-azure.html["登入Azure入口網站並連結這兩份訂閱"]。
-
 .. 儲存備份的區域。這可能與Cloud Volumes ONTAP 駐留的地方不同。
 .. 管理Blob容器的資源群組-您可以建立新的資源群組或選取現有的資源群組。
 .. 無論您是使用預設的Microsoft管理加密金鑰、還是選擇自己的客戶管理金鑰來管理資料加密。 (https://docs.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview["瞭解如何使用您自己的金鑰"]）。

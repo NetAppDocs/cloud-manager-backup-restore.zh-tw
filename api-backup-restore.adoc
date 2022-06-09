@@ -1,0 +1,194 @@
+---
+sidebar: sidebar 
+permalink: api-backup-restore.html 
+keywords: api, apis, rest, restful, authorization, getting started, body, header, token, reference, expired token, expires, expired, token expired, list apis 
+summary: 透過Web UI提供的Cloud Backup功能也可透過RESTful API取得。 
+---
+= 雲端備份API
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+透過Web UI提供的Cloud Backup功能也可透過RESTful API取得。
+
+在這個功能區中定義了八種端點：Cloud Backup Service
+
+* 備份
+* 目錄
+* 雲端
+* 工作
+* 授權
+* 還原
+* 單一檔案層級還原（SFR）
+* 工作環境
+
+
+
+
+== 快速入門
+
+若要開始使用Cloud Backup API、您必須取得使用者權杖、Cloud Central帳戶ID和Cloud Connector ID。
+
+撥打API呼叫時、您將在「授權」標頭中新增使用者權杖、並在X-agent-id標頭中新增Cloud Connector ID。您應該在API中使用Cloud Central帳戶ID。
+
+.步驟
+. 從 NetApp Cloud Central 取得使用者權杖。
++
+[source, http]
+----
+POST https://netapp-cloud-account.auth0.com/oauth/token
+Header: Content-Type: application/json
+Body:
+{
+              "username": "<user_email>",
+              "scope": "profile",
+              "audience": "https://api.cloud.netapp.com",
+              "client_id": "<Cloud_Connector_ID>",
+              "grant_type": "password",
+              "password": "<user_password>"
+}
+----
+. 取得您的NetApp Cloud Central帳戶ID。
++
+[source, http]
+----
+GET 'https://cloudmanager.cloud.netapp.com/tenancy/account' -H 'authority: cloudmanager.cloud.netapp.com'
+Header:
+-H 'accept: application/json'
+-H 'accept-language: en-GB,en;q=0.9'
+-H 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR………
+----
++
+此API會傳回如下回應。您可以剖析來自*的輸出來擷取帳戶ID。[帳戶PublicId]*。
+
++
+[source, text]
+----
+[{"accountPublicId":"account-i6vJXvZW","accountName":"rashidn","isSaas":true,"isGov":false,"isPrivatePreviewEnabled":false,"is3rdPartyServicesEnabled":false,"accountSerial":"96064469711530003565","userRole":"Role-1"}………
+----
+. 取得包含Cloud Manager Connector ID的X-agent-id。
++
+[source, http]
+----
+GET curl 'https://api.services.cloud.netapp.com/occm/list-occms/account-OOnAR4ZS?excludeStandalone=true&source=saas' \
+Header:
+  -H 'authority: api.services.cloud.netapp.com' \
+  -H 'accept: application/json' \
+  -H 'accept-language: en-GB,en;q=0.9' \
+  -H 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5…………
+----
++
+此API會傳回如下回應。您可以剖析* occm.[0].[agent].[agentId]*的輸出來擷取代理程式ID。
+
++
+[source, text]
+----
+{"occms":[{"account":"account-OOnAR4ZS","accountName":"cbs","occm":"imEdsEW4HyYTFbt8ZcNKTKDF05jMIe6Z","agentId":"imEdsEW4HyYTFbt8ZcNKTKDF05jMIe6Z","status":"ready","occmName":"cbsgcpdevcntsg-asia","primaryCallbackUri":"http://34.93.197.21","manualOverrideUris":[],"automaticCallbackUris":["http://34.93.197.21","http://34.93.197.21/occmui","https://34.93.197.21","https://34.93.197.21/occmui","http://10.138.0.16","http://10.138.0.16/occmui","https://10.138.0.16","https://10.138.0.16/occmui","http://localhost","http://localhost/occmui","http://localhost:1337","http://localhost:1337/occmui","https://localhost","https://localhost/occmui","https://localhost:1337","https://localhost:1337/occmui"],"createDate":"1652120369286","agent":{"useDockerInfra":true,"network":"default","name":"cbsgcpdevcntsg-asia","agentId":"imEdsEW4HyYTFbt8ZcNKTKDF05jMIe6Zclients","provider":"gcp","systemId":"a3aa3578-bfee-4d16-9e10-
+----
+
+
+
+
+== 使用API的範例
+
+以下範例顯示API呼叫、要求在工作環境中啟動備份、新原則在Azure雲端的東美2地區、將每日、每小時及每週標籤設定為180天之後歸檔。請注意、這只會在工作環境中啟用備份、但不會備份任何磁碟區。如果您選擇「自動備份已啟用」：true、則系統中已存在的任何磁碟區都會備份、再加上未來新增的磁碟區。
+
+您會發現我們使用Cloud Central帳戶ID「account-DpTFCxN3」、Cloud Manager Connector ID「iZwFFeVCzjWnzGlw8RgD0QNANZVP7IClients」、以及使用者權杖「beareYJhbGciOiJSUB1NIIsInUR5cCIM6W1001WPIH1001W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W100M100M100M1W1W1W1W1W1W1W1W1WPIKIMST1W1W1W1W1W1W1W
+
+[source, http]
+----
+curl --location --request POST 'https://cloudmanager.cloud.netapp.com/account/account-DpTFcxN3/providers/cloudmanager_cbs/api/v3/backup/working-environment/VsaWorkingEnvironment-99hPYEgk' \
+--header 'x-agent-id: iZwFFeVCZjWnzGlw8RgD0QQNANZvpP7Iclients' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rSXlPVFUzUWpZek1E…y6nyhBjwkeMwHc4ValobjUmju2x0xUH48g' \
+--data-raw '{
+    "provider":"AZURE",
+    "backup-policy": {
+      "archive-after-days": 180,
+      "rule": [
+        {
+          "label": "hourly",
+          "retention": "2"
+        },
+        {
+          "label": "daily",
+          "retention": "30"
+        },
+        {
+          "label": "weekly",
+          "retention": "52"
+        }
+      ]
+    },
+    "ip-space": "Default",
+    "region": "eastus2",
+    "azure": {
+      "resource-group": "rn-test-backup-rg",
+      "subscription": "3beb4dd0-25d4-464f-9bb0-303d7cf5c0c2"
+    }
+  }'
+----
+.回應是您可以監控的工作ID。
+[source, text]
+----
+{
+    "job-id": "1b34b6f6-8f43-40fb-9a52-485b0dfe893a"
+}
+----
+.監控回應。
+[source, http]
+----
+curl --location --request GET 'https://cloudmanager.cloud.netapp.com/account/account-DpTFcxN3/providers/cloudmanager_cbs/api/v1/job/1b34b6f6-8f43-40fb-9a52-485b0dfe893a' \
+--header 'x-agent-id: iZwFFeVCZjWnzGlw8RgD0QQNANZvpP7Iclients' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rSXlPVFUzUWpZek1E…hE9ss2NubK6wZRHUdSaORI7JvcOorUhJ8srqdiUiW6MvuGIFAQIh668of2M3dLbhVDBe8BBMtsa939UGnJx7Qz6Eg'
+----
+.回應：
+[source, text]
+----
+{
+    "job": [
+        {
+            "id": "1b34b6f6-8f43-40fb-9a52-485b0dfe893a",
+            "type": "backup-working-environment",
+            "status": "PENDING",
+            "error": "",
+            "time": 1651852160000
+        }
+    ]
+}
+----
+.監控直到「狀態」為「已完成」。
+[source, text]
+----
+{
+    "job": [
+        {
+            "id": "1b34b6f6-8f43-40fb-9a52-485b0dfe893a",
+            "type": "backup-working-environment",
+            "status": "COMPLETED",
+            "error": "",
+            "time": 1651852160000
+        }
+    ]
+}
+----
+.權杖過期時該怎麼辦？
+****
+NetApp Cloud Central 的使用者權杖有到期日。若要重新整理權杖、您需要再次從步驟 1 呼叫 API 。
+
+API 回應包含「 Expire_in 」欄位、指出權杖過期的時間。
+
+****
+
+
+== API 參考
+
+如需每個Cloud Backup API的文件、請參閱 https://docs.netapp.com/us-en/cloud-manager-automation/cbs/overview.html[]。

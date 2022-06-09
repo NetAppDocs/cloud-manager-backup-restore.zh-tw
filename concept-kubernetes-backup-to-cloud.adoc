@@ -45,31 +45,31 @@ Cloud Backup可讓您將Kubernetes磁碟區從下列工作環境備份到下列�
 
 [cols="45,40"]
 |===
-| 來源工作環境 | 備份檔案目的地 
+| 來源工作環境 | 備份檔案目的地ifdef：：AWS [] 
 
 
-| AWS中的Kubernetes叢集 | Amazon S3 
+| AWS中的Kubernetes叢集 | Amazon S3 endif:::AWS[] ifdef::azure[] 
 
 
-| Azure中的Kubernetes叢集 | Azure Blob 
+| Azure中的Kubernetes叢集 | Azure Blob endif::azure[] ifdef：：GCP[] 
 
 
-| Google的Kubernetes叢集 | Google Cloud Storage 
+| Google的Kubernetes叢集 | Google Cloud Storage endif..:GCP[] 
 |===
 您可以將磁碟區從Kubernetes備份檔案還原至下列工作環境：
 
 [cols="40,45"]
 |===
-| 備份檔案位置 | 目的地工作環境 
+| 備份檔案位置 | 目的地工作環境ifdef：：AWS [] 
 
 
-| Amazon S3 | AWS中的Kubernetes叢集 
+| Amazon S3 | AWS endif:AWS中的Kubernetes叢集：AWS [] ifdef：：azure[] 
 
 
-| Azure Blob | Azure中的Kubernetes叢集 
+| Azure Blob | Azure endif:azure[] ifdef中的Kubernetes叢集：GCP[] 
 
 
-| Google Cloud Storage | Google的Kubernetes叢集 
+| Google Cloud Storage | Google endif:GCP[]中的Kubernetes叢集 
 |===
 
 
@@ -150,10 +150,26 @@ image:diagram_cloud_backup_general_k8s.png["顯示Cloud Backup如何與來源系
 
 === 支援的儲存類別或存取層
 
+ifdef::aws[]
+
 * 在AWS中、備份是從_Standard_儲存類別開始、30天後轉換至_Standard-in頻繁 存取_儲存類別。
+
+
+endif::aws[]
+
+ifdef::azure[]
+
 * 在Azure中、備份會與_cool存取層建立關聯。
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
 * 在GCP中、預設會將備份與_Standard_儲存類別相關聯。
 
+
+endif::gcp[]
 
 
 

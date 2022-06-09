@@ -75,8 +75,6 @@ S3儲存區會自動建立在您輸入的S3存取金鑰和秘密金鑰所指示�
 
 image:diagram_cloud_backup_onprem_storagegrid.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
 
-請注意、本圖並未顯示Cloud Restore執行個體、因為使用StorageGRID 支援的是單一檔案還原。
-
 
 
 === 準備 ONTAP 您的叢集
@@ -88,7 +86,7 @@ https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.
 需求 ONTAP::
 +
 --
-* 更新版本： ONTAP
+* 最低ONTAP 版本為《》（更新ONTAP 版本）；建議使用《》（更新版本）。
 * SnapMirror授權（包含在優質產品組合或資料保護產品組合中）。
 +
 *附註：*使用Cloud Backup時不需要「混合式雲端產品組合」。

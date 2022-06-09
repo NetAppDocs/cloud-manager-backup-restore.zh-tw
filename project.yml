@@ -7,11 +7,22 @@ settings:
   prod:
     pdf_enabled: true
     harmony_enabled: false
+  filter:
+    label: 雲端供應商
+    default: 所有雲端供應商
+    options:
+    - name: Amazon Web Services
+      alias: AWS
+      id: aws
+    - name: Google Cloud
+      alias: Google Cloud
+      id: gcp
+    - name: Microsoft Azure
+      alias: Azure
+      id: azure
   langs: zh-tw,us-en,ja-jp,zh-cn,ko-kr
 sidebar:
   entries:
-  - title: 所有Cloud Manager文件
-    url: https://docs.netapp.com/us-en/cloud-manager-family
   - title: 雲端備份文件
     url: "/index.html"
   - title: 版本資訊
@@ -29,16 +40,22 @@ sidebar:
     - title: 保護ONTAP 您的資料
       url: "/concept-ontap-backup-to-cloud.html"
     - title: 備份Cloud Volumes ONTAP 到Amazon S3
+      flavor: aws
       url: "/task-backup-to-s3.html"
     - title: 備份Cloud Volumes ONTAP 到Azure Blob
+      flavor: azure
       url: "/task-backup-to-azure.html"
     - title: 備份Cloud Volumes ONTAP 到Google Cloud
+      flavor: gcp
       url: "/task-backup-to-gcp.html"
     - title: 將內部部署ONTAP 的不支援資料備份至Amazon S3
+      flavor: aws
       url: "/task-backup-onprem-to-aws.html"
     - title: 將內部部署ONTAP 的資料備份到Azure Blob
+      flavor: azure
       url: "/task-backup-onprem-to-azure.html"
     - title: 將內部部署ONTAP 的不全資料備份到Google Cloud
+      flavor: gcp
       url: "/task-backup-onprem-to-gcp.html"
     - title: 將內部部署ONTAP 的內部部署資料備份至StorageGRID
       url: "/task-backup-onprem-private-cloud.html"
@@ -51,10 +68,13 @@ sidebar:
     - title: 保護您的Kubernetes資料
       url: "/concept-kubernetes-backup-to-cloud.html"
     - title: 備份至 Amazon S3
+      flavor: aws
       url: "/task-backup-kubernetes-to-s3.html"
     - title: 備份至Azure Blob
+      flavor: azure
       url: "/task-backup-kubernetes-to-azure.html"
     - title: 備份至Google Cloud
+      flavor: gcp
       url: "/task-backup-kubernetes-to-gcp.html"
     - title: 管理Kubernetes備份
       url: "/task-manage-backups-kubernetes.html"
@@ -84,19 +104,14 @@ sidebar:
       url: "/task-manage-vm-data-in-cloud.html"
     - title: 還原虛擬機器資料
       url: "/task-restore-vm-data.html"
+  - title: 使用REST API進行自動化
+    url: "/api-backup-restore.html"
   - title: 參考資料
     entries:
     - title: 支援的AWS歸檔儲存層
       url: "/reference-aws-backup-tiers.html"
     - title: 支援的Azure歸檔存取層
       url: "/reference-azure-backup-tiers.html"
-    - title: 跨帳戶和跨區域組態
-      url: "/reference-cross-account.html"
-      entries:
-      - title: 在AWS中設定多帳戶存取的備份
-        url: "/reference-backup-multi-account-aws.html"
-      - title: 設定備份以在Azure中存取多個帳戶
-        url: "/reference-backup-multi-account-azure.html"
   - title: 知識與支援
     entries:
     - title: 註冊以取得支援
@@ -119,40 +134,49 @@ homepage:
     links:
     - title: 支援Amazon S3 Cloud Volumes ONTAP
       url: task-backup-to-s3.html
+      flavor: aws
     - title: 適用於Azure Blob Cloud Volumes ONTAP
       url: task-backup-to-azure.html
+      flavor: azure
     - title: 從NetApp移轉至Google Cloud Cloud Volumes ONTAP
       url: task-backup-to-gcp.html
+      flavor: gcp
     - title: 內部部署ONTAP 的不支援Amazon S3
       url: task-backup-onprem-to-aws.html
+      flavor: aws
     - title: 內部部署ONTAP 的不只是Azure Blob
       url: task-backup-onprem-to-azure.html
+      flavor: azure
     - title: 內部部署ONTAP 的不只是Google Cloud
       url: task-backup-onprem-to-gcp.html
+      flavor: gcp
     - title: 內部部署ONTAP 的功能從功能到StorageGRID 功能
       url: task-backup-onprem-private-cloud.html
   - title: 將Kubernetes資料備份到雲端
     links:
     - title: Kubernetes叢集至Amazon S3
       url: task-backup-kubernetes-to-s3.html
+      flavor: aws
     - title: Kubernetes叢集至Azure Blob
       url: task-backup-kubernetes-to-azure.html
+      flavor: azure
     - title: Kubernetes叢集至Google Cloud
       url: task-backup-kubernetes-to-gcp.html
+      flavor: gcp
   - title: 備份及還原內部部署應用程式資料
     links:
     - title: 將內部部署應用程式資料備份到雲端
-      url: "/task-backup-app-data-to-cloud.html"
+      url: task-backup-app-data-to-cloud.html
     - title: 還原Oracle資料庫
-      url: "/task-restore-oracle-data.html"
+      url: task-restore-oracle-data.html
     - title: 還原SQL Server資料庫
-      url: "/task-restore-sql-data.html"
+      url: task-restore-sql-data.html
   - title: 備份及還原虛擬機器資料
     links:
     - title: 將資料存放區備份至雲端
-      url: "/task-backup-vm-data-to-cloud.html"
+      url: task-backup-vm-data-to-cloud.html
     - title: 從雲端還原虛擬機器
-      url: "/task-restore-vm-data.html"
+      url: task-restore-vm-data.html
   - title: 從備份檔案還原資料
     links:
     - title: 還原ONTAP 功能
@@ -192,3 +216,4 @@ homepage:
 product-family:
   name: Cloud Manager
   repo: cloud-manager-family
+  sidebar_label: All Cloud Manager documentation

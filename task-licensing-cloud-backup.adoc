@@ -39,24 +39,44 @@ link:concept-ontap-backup-to-cloud.html#cost["深入瞭解使用雲端備份的�
 
 若為隨用隨付、您只需單一訂閱、就能支付雲端供應商的物件儲存成本和NetApp備份授權成本（每小時）。即使您有免費試用版或自帶授權（ BYOL ）、您仍應訂閱：
 
-* 訂閱可確保在免費試用結束後、服務不會中斷。
-+
-試用結束時、您將根據備份的資料量、每小時收取一次費用。
-
-* 如果您備份的資料超過BYOL授權所允許的數量、則資料備份會透過隨用隨付訂閱繼續進行。
-+
-例如、如果您有10個TiB BYOL授權、則10 TiB以外的所有容量都會透過PAYGO訂閱付費。
-
+* 訂閱可確保在免費試用結束後、服務不會中斷。試用結束時、您將根據備份的資料量、每小時收取一次費用。
+* 如果您備份的資料超過BYOL授權所允許的數量、則資料備份會透過隨用隨付訂閱繼續進行。例如、如果您有10個TiB BYOL授權、則10 TiB以外的所有容量都會透過PAYGO訂閱付費。
 
 
 在免費試用期間或未超過BYOL授權時、您將不會從隨用隨付訂閱中收取費用。
 
+有幾項PAYGO雲端備份計畫：
+
+* 「Cloud Backup Cloud Volumes ONTAP 」套件可讓您備份內部部署ONTAP 的各種資料。
+* 「CVO專業人員」套件可讓您搭售Cloud Volumes ONTAP 各種解決方案、包括這包括Cloud Volumes ONTAP 不受限制地備份此授權所收取的所有數量（備份容量不計入授權）。此選項無法讓您備份內部部署ONTAP 的支援資料。ifdef：：azure[]
+
+
+endif::azure[]
+
 請使用以下連結、從您的雲端供應商市場訂閱Cloud Backup：
 
+ifdef::aws[]
+
 * AWS ： https://aws.amazon.com/marketplace/pp/prodview-oorxakq6lq7m4?sr=0-8&ref_=beagle&applicationId=AWSMPContessa["如需價格詳細資料、請前往 Cloud Manager Marketplace 產品"^]。
+
+
+endif::aws[]
+
+ifdef::azure[]
+
 * Azure ： https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["如需價格詳細資料、請前往 Cloud Manager Marketplace 產品"^]。
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
 * GCP ： https://console.cloud.google.com/marketplace/details/netapp-cloudmanager/cloud-manager?supportedpurview=project["如需價格詳細資料、請前往 Cloud Manager Marketplace 產品"^]。
 
+
+endif::gcp[]
+
+ifdef::aws[]
 
 
 
@@ -76,6 +96,8 @@ link:concept-ontap-backup-to-cloud.html#cost["深入瞭解使用雲端備份的�
 如果您想要使用此選項、可以在建立Cloud Volumes ONTAP 一套可運作的環境時、設定年度合約、Cloud Manager會提示您訂閱AWS Marketplace。
 
 
+
+endif::aws[]
 
 
 

@@ -51,7 +51,7 @@ image:screenshot_restore_dashboard.png["「還原儀表板」顯示使用瀏覽&
 | 瀏覽資料夾樣式的結構、在單一備份檔案中尋找磁碟區或檔案 | 依部分或完整磁碟區名稱、部分或完整檔案名稱、大小範圍及其他搜尋篩選器、在*所有備份檔案*之間搜尋磁碟區或檔案 
 
 
-| Volume還原可搭配儲存在Amazon S3、Azure Blob、Google Cloud和NetApp StorageGRID 等系統中的備份檔案運作。檔案還原可與儲存在Amazon S3和Azure Blob中的備份檔案搭配使用 | Volume與檔案還原可與儲存在Amazon S3和Google Cloud中的備份檔案搭配使用 
+| Volume與檔案還原可搭配儲存在Amazon S3、Azure Blob、Google Cloud和NetApp StorageGRID 的備份檔案使用。 | Volume與檔案還原可與儲存在Amazon S3和Google Cloud中的備份檔案搭配使用 
 
 
 | 不會處理已重新命名或刪除的檔案 | 處理新建立/刪除/重新命名的目錄、以及新建立/刪除/重新命名的檔案 
@@ -60,13 +60,10 @@ image:screenshot_restore_dashboard.png["「還原儀表板」顯示使用瀏覽&
 | 瀏覽橫跨公有雲和私有雲的結果 | 瀏覽跨公有雲和本機Snapshot複本的結果 
 
 
-| 檔案還原需要獨立的Cloud Restore執行個體 | 不需要雲端還原執行個體 
-
-
 | 無需額外的雲端供應商資源 | 每個帳戶所需的額外資源庫和AWS或Google資源 
 
 
-| 瀏覽個別檔案的備份時、與Cloud Restore執行個體相關的成本 | 掃描備份和磁碟區以取得搜尋結果時、與AWS或Google資源相關的成本 
+| 無需額外的雲端供應商成本 | 掃描備份和磁碟區以取得搜尋結果時、與AWS或Google資源相關的成本 
 |===
 在使用任一還原方法之前、請先確定您的環境已針對獨特的資源需求進行設定。這些要求將在下節中說明。
 
@@ -83,9 +80,19 @@ image:screenshot_restore_dashboard.png["「還原儀表板」顯示使用瀏覽&
 
 在開始還原磁碟區或檔案之前、您應該知道要還原的磁碟區或檔案名稱、磁碟區所在工作環境的名稱、以及要還原的備份檔案大約日期。
 
-*附註：*如果您要還原的磁碟區備份檔案位於歸檔儲存設備（AWS和Azure可從ONTAP 版本號更新至版本號更新9.10.1開始使用）中、則還原作業將需要較長的時間、而且會產生成本。此外、目的地叢集也必須執行ONTAP 不含更新版本的版本資訊的版本。
+*附註：*如果您要還原的磁碟區備份檔案位於歸檔儲存設備（從ONTAP 版本號9.10.1開始）中、還原作業將需要較長的時間、而且會產生成本。此外、目的地叢集也必須執行ONTAP 不含更新版本的版本資訊的版本。
 
-link:reference-azure-backup-tiers.html["深入瞭解如何從Azure歸檔儲存設備還原"]。link:reference-aws-backup-tiers.html["深入瞭解如何從AWS歸檔儲存設備還原"]。
+ifdef::aws[]
+
+link:reference-aws-backup-tiers.html["深入瞭解如何從AWS歸檔儲存設備還原"]。
+
+endif::aws[]
+
+ifdef::azure[]
+
+link:reference-azure-backup-tiers.html["深入瞭解如何從Azure歸檔儲存設備還原"]。
+
+endif::azure[]
 
 
 
@@ -98,19 +105,19 @@ link:reference-azure-backup-tiers.html["深入瞭解如何從Azure歸檔儲存�
 | 備份檔案位置 2+| 目的地工作環境 
 
 
-|  | * 磁碟區還原 * | *檔案還原* 
+|  | * 磁碟區還原 * | *檔案還原* ifdef：：AWS [] 
 
 
-| Amazon S3 | AWS 內部部署的內部系統 Cloud Volumes ONTAP ONTAP | AWS 內部部署的內部系統 Cloud Volumes ONTAP ONTAP 
+| Amazon S3 | AWS 內部部署的內部系統 Cloud Volumes ONTAP ONTAP | AWS內部部署的不全系統endif::AWS [] ifdef:azure[] Cloud Volumes ONTAP ONTAP 
 
 
-| Azure Blob | Azure 內部部署的整套系統 Cloud Volumes ONTAP ONTAP | Azure 內部部署的整套系統 Cloud Volumes ONTAP ONTAP 
+| Azure Blob | Azure 內部部署的整套系統 Cloud Volumes ONTAP ONTAP | Azure內部部署的系統中的資料：：azure[] ifdef：：Cloud Volumes ONTAP ONTAP GCP[] 
 
 
-| Google Cloud Storage | 在Google內部部署的內部部署系統中使用Cloud Volumes ONTAP ONTAP |  
+| Google Cloud Storage | 在Google內部部署的內部部署系統中使用Cloud Volumes ONTAP ONTAP | 在Google內部部署中的系統資訊：Cloud Volumes ONTAP ONTAP GCP[] 
 
 
-| NetApp StorageGRID | 內部部署 ONTAP 的作業系統 |  
+| NetApp StorageGRID | 內部部署 ONTAP 的作業系統 | 內部部署 ONTAP 的作業系統 
 |===
 請注意、「內部部署ONTAP 的功能系統」的參考資料包括FAS 了功能性的功能、包括了功能性的功能、包括了功能性的功能、AFF 功能性的功能、以及ONTAP Select 功能
 
@@ -148,13 +155,33 @@ image:screenshot_restore_select_work_env_volume.png["為您要還原的磁碟區
 
 . 如果您選擇內部部署ONTAP 的一套系統、但尚未設定叢集連線至物件儲存設備、系統會提示您提供其他資訊：
 +
+ifdef::aws[]
+
++
 ** 從Amazon S3還原時、請在ONTAP 目標Volume所在的叢集中選取IPspace、輸入您所建立之使用者的存取金鑰和秘密金鑰、以便ONTAP 讓該叢集能夠存取S3儲存區、 此外、您也可以選擇私有VPC端點來進行安全的資料傳輸。
-** 從Azure Blob還原時、請在ONTAP 目的地Volume所在的叢集中選取IPspace、選取Azure訂閱以存取物件儲存設備、並選取vnet和Subnet（子網路）以選擇用於安全資料傳輸的私有端點。
-** 從Google Cloud Storage還原時、請選取Google Cloud Project和存取金鑰和秘密金鑰、以存取物件儲存設備、儲存備份的區域、ONTAP 以及目的地Volume所在的物件叢集中的IPspace。
-** 從StorageGRID 還原時、請選取存取物件儲存所需的存取金鑰和秘密金鑰、以及ONTAP 目的地Volume所在的物件叢集中的IPspace。
 
 
-. 輸入您要用於還原磁碟區的名稱、然後選取磁碟區所在的Storage VM。根據預設、*<SOUR_volume名稱>_restore *會用作磁碟區名稱。
+
+
+endif::aws[]
+
+ifdef::azure[]
+
+* 從Azure Blob還原時、請在ONTAP 目的地Volume所在的叢集中選取IPspace、選取Azure訂閱以存取物件儲存設備、並選取vnet和Subnet（子網路）以選擇用於安全資料傳輸的私有端點。
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+* 從Google Cloud Storage還原時、請選取Google Cloud Project和存取金鑰和秘密金鑰、以存取物件儲存設備、儲存備份的區域、ONTAP 以及目的地Volume所在的物件叢集中的IPspace。
+
+
+endif::gcp[]
+
+* 從StorageGRID 物件還原時、請輸入StorageGRID 用來ONTAP 與StorageGRID 物件進行HTTPS通訊的支援伺服器FQDN和連接埠、選擇存取物件儲存所需的存取金鑰和秘密金鑰、以及ONTAP 位於目的地Volume所在之資料中心內的IPspace。
++
+.. 輸入您要用於還原磁碟區的名稱、然後選取磁碟區所在的Storage VM。根據預設、*<SOUR_volume名稱>_restore *會用作磁碟區名稱。
 +
 image:screenshot_restore_new_vol_name.png["輸入您要還原之新磁碟區名稱的快照。"]
 
@@ -165,7 +192,21 @@ image:screenshot_restore_new_vol_name.png["輸入您要還原之新磁碟區名�
 如果您要從位於歸檔儲存層的備份檔案還原磁碟區（從ONTAP 版本號9.10.1開始提供）、則可以選取還原優先順序。
 
 +
-link:reference-azure-backup-tiers.html#restoring-data-from-archival-storage["深入瞭解如何從Azure歸檔儲存設備還原"]。link:reference-aws-backup-tiers.html#restoring-data-from-archival-storage["深入瞭解如何從AWS歸檔儲存設備還原"]。
+ifdef::aws[]
+
+
+
+
+
+link:reference-aws-backup-tiers.html#restoring-data-from-archival-storage["深入瞭解如何從AWS歸檔儲存設備還原"]。
+
+endif::aws[]
+
+ifdef::azure[]
+
+link:reference-azure-backup-tiers.html#restoring-data-from-archival-storage["深入瞭解如何從Azure歸檔儲存設備還原"]。
+
+endif::azure[]
 
 . 按一下「*還原*」、您就會回到「還原儀表板」、以便檢閱還原作業的進度。
 
@@ -190,11 +231,14 @@ TIP: 如果備份檔案位於歸檔儲存設備中、則無法還原個別檔案
 ==== 先決條件
 
 * 在您的不景點或內部部署的地方、執行檔案還原作業時、該版本必須為9.6或更高版本。ONTAP Cloud Volumes ONTAP ONTAP
-* 從備份檔案還原個別檔案時、會使用個別的還原執行個體/虛擬機器。請參閱 link:concept-ontap-backup-to-cloud.html#cost["將部署用於檔案還原作業的執行個體類型"] 並確保您的環境已就緒。
-* 若要從Amazon S3上的備份還原檔案、必須將特定AWS EC2權限新增至提供Cloud Manager權限的使用者角色。您也必須允許連絡特定端點的傳出網際網路存取。 link:task-backup-onprem-to-aws.html#preparing-amazon-s3-for-backups["確認您的組態已準備好還原檔案"]。
-* AWS跨帳戶還原需要在AWS主控台中手動執行動作。請參閱 AWS 主題 https://docs.aws.amazon.com/AmazonS3/latest/dev/example-walkthroughs-managing-access-example2.html["授予跨帳戶庫位權限"^] 以取得詳細資料。
-* 若要從Azure Blob上的備份還原檔案、則必須連絡特定端點、才能存取傳出的網際網路。 link:task-backup-onprem-to-azure.html#preparing-azure-blob-storage-for-backups["確認您的組態已準備好還原檔案"]。
 
+
+ifdef::aws[]
+
+* AWS跨帳戶還原需要在AWS主控台中手動執行動作。請參閱 AWS 主題 https://docs.aws.amazon.com/AmazonS3/latest/dev/example-walkthroughs-managing-access-example2.html["授予跨帳戶庫位權限"^] 以取得詳細資料。
+
+
+endif::aws[]
 
 
 
@@ -203,13 +247,10 @@ TIP: 如果備份檔案位於歸檔儲存設備中、則無法還原個別檔案
 流程如下：
 
 . 若要從磁碟區備份還原一或多個檔案、請按一下「*還原*」索引標籤、按一下「瀏覽與還原」下的「*還原檔案*」、然後選取檔案（或檔案）所在的備份檔案。
-. 還原執行個體隨即啟動、並顯示所選備份檔案中的資料夾和檔案。
-+
-*附註：*首次還原檔案時、還原執行個體會部署在雲端供應商的環境中。
-
+. Cloud Backup會顯示所選備份檔案中的資料夾和檔案。
 . 選擇您要從該備份還原的檔案。
 . 選取您要還原檔案的位置（工作環境、磁碟區和資料夾）、然後按一下*還原*。
-. 檔案隨即還原、還原執行個體會在一段無活動時間後關閉、以節省成本。
+. 檔案即會還原。
 
 
 image:diagram_browse_restore_file.png["顯示使用瀏覽&還原執行檔案還原作業流程的圖表。"]
@@ -236,10 +277,7 @@ image:screenshot_restore_files_selection.png["從「還原儀表板」選取「�
 +
 image:screenshot_restore_select_source.png["選取要還原之檔案的磁碟區與備份的快照。"]
 
-. 按一下「 * 繼續 * 」、即會啟動還原執行個體。幾分鐘後、即會顯示磁碟區備份中的資料夾和檔案清單。
-+
-*附註：*首次還原檔案時、還原執行個體會部署在雲端供應商的環境中、因此第一次還原可能需要幾分鐘的時間。
-
+. 按一下*繼續*、即會顯示Volume備份中的資料夾和檔案清單。
 +
 image:screenshot_restore_select_files.png["「選取檔案」頁面的快照、可讓您瀏覽至要還原的檔案。"]
 
@@ -261,31 +299,53 @@ image:screenshot_restore_select_work_env.png["選取您要還原之檔案的目�
 如果您選取內部部署叢集、但尚未設定與物件儲存設備的叢集連線、系統會提示您提供其他資訊：
 
 +
+ifdef::aws[]
+
++
 ** 從Amazon S3還原時、請在ONTAP 目的地Volume所在的叢集中輸入IPspace、以及存取物件儲存所需的AWS存取金鑰和秘密金鑰。
-** 從Azure Blob還原時、請在ONTAP 目的地Volume所在的叢集中輸入IPspace。
 
 
-. 然後選擇 * Volume * 和 * 資料夾 * 、您可以在其中還原檔案。
+
+
+endif::aws[]
+
+ifdef::azure[]
+
+* 從Azure Blob還原時、請在ONTAP 目的地Volume所在的叢集中輸入IPspace。
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+* 從Google Cloud Storage還原時、請在ONTAP 目標磁碟區所在的叢集中輸入IPspace、以及存取物件儲存所需的存取金鑰和秘密金鑰。
+
+
+endif::gcp[]
+
+* 從StorageGRID 物件還原時、請輸入StorageGRID 支援ONTAP 以HTTPS通訊的支援對象伺服器的FQDN和連接埠StorageGRID 、輸入存取物件儲存所需的存取金鑰和秘密金鑰、以及ONTAP 目的地Volume所在的物件叢集中的IPspace。
++
+.. 然後選擇 * Volume * 和 * 資料夾 * 、您可以在其中還原檔案。
 +
 image:screenshot_restore_select_dest.png["選取您要還原之檔案的磁碟區和資料夾的快照。"]
 
 +
 還原檔案時、您有幾個位置選項可以選擇。
 
+
+
+* 當您選擇 * 選取目標資料夾 * 時、如上所示：
 +
-** 當您選擇 * 選取目標資料夾 * 時、如上所示：
+** 您可以選取任何資料夾。
+** 您可以將游標暫留在資料夾上、然後按一下 image:button_subfolder.png[""] 在列末端向下切入子資料夾、然後選取資料夾。
+
+
+* 如果您選取的目的地工作環境和磁碟區與來源檔案所在的位置相同、您可以選取*維護來源資料夾路徑*、將檔案或所有檔案還原至來源結構中的相同資料夾。所有相同的資料夾和子資料夾都必須已經存在、而且不會建立資料夾。
 +
-*** 您可以選取任何資料夾。
-*** 您可以將游標暫留在資料夾上、然後按一下 image:button_subfolder.png[""] 在列末端向下切入子資料夾、然後選取資料夾。
+.. 按一下「*還原*」、您就會回到「還原儀表板」、以便檢閱還原作業的進度。您也可以按一下「*工作監視器*」標籤來查看還原進度。
 
 
-** 如果您選取的目的地工作環境和磁碟區與來源檔案所在的位置相同、您可以選取*維護來源資料夾路徑*、將檔案或所有檔案還原至來源結構中的相同資料夾。所有相同的資料夾和子資料夾都必須已經存在、而且不會建立資料夾。
 
-
-. 按一下「*還原*」、您就會回到「還原儀表板」、以便檢閱還原作業的進度。您也可以按一下「*工作監視器*」標籤來查看還原進度。
-
-
-還原執行個體會在一段無活動時間後關閉、以節省您的金錢、因此您只會在該執行個體處於作用中狀態時產生成本。
 
 
 
@@ -299,9 +359,17 @@ image:screenshot_restore_select_dest.png["選取您要還原之檔案的磁碟�
 
 您可以將檔案還原至原始磁碟區位置、相同工作環境中的不同磁碟區、或是使用相同雲端帳戶的不同工作環境。您也可以將檔案還原至內部部署 ONTAP 的作業系統上的 Volume 。
 
-如果您要還原的磁碟區備份檔案位於歸檔儲存區（從ONTAP 版本號為1.1開始、AWS可取得）、則還原作業需要較長的時間、而且會產生額外成本。請注意、目的地叢集也必須執行ONTAP 版本不支援的版本為《支援使用支援的功能》（更新版本）、而且目前不支援從歸檔儲存設備還原檔案。
+如果您要還原的磁碟區備份檔案位於歸檔儲存設備（ONTAP 從版本號9.10.1開始提供）、還原作業將需要較長的時間、並會產生額外成本。請注意、目的地叢集也必須執行ONTAP 版本不支援的版本為《支援使用支援的功能》（更新版本）、而且目前不支援從歸檔儲存設備還原檔案。
+
+ifdef::aws[]
 
 link:reference-aws-backup-tiers.html["深入瞭解如何從AWS歸檔儲存設備還原"]。
+
+endif::aws[]
+
+ifdef::azure[]
+
+endif::azure[]
 
 在開始之前、您應該先瞭解要還原的磁碟區或檔案名稱或位置。
 
@@ -319,13 +387,19 @@ video::RZktLe32hhQ[youtube,width=848,height=480]
 | 備份檔案位置 2+| 目的地工作環境 
 
 
-|  | * 磁碟區還原 * | *檔案還原* 
+|  | * 磁碟區還原 * | *檔案還原* ifdef：：AWS [] 
 
 
-| Amazon S3 | AWS 內部部署的內部系統 Cloud Volumes ONTAP ONTAP | AWS 內部部署的內部系統 Cloud Volumes ONTAP ONTAP 
+| Amazon S3 | AWS 內部部署的內部系統 Cloud Volumes ONTAP ONTAP | AWS內部部署的不全系統endif::AWS [] ifdef:azure[] Cloud Volumes ONTAP ONTAP 
 
 
-| Google Cloud Storage | 在Google內部部署的內部部署系統中使用Cloud Volumes ONTAP ONTAP | 在Google內部部署的內部部署系統中使用Cloud Volumes ONTAP ONTAP 
+| Azure Blob | 目前不支援 | endif::azure[] ifdef：：GCP[] 
+
+
+| Google Cloud Storage | 在Google內部部署的內部部署系統中使用Cloud Volumes ONTAP ONTAP | 在Google內部部署中的系統資訊：Cloud Volumes ONTAP ONTAP GCP[] 
+
+
+| NetApp StorageGRID | 目前不支援 |  
 |===
 請注意、「內部部署ONTAP 的功能系統」的參考資料包括FAS 了功能性的功能、包括了功能性的功能、包括了功能性的功能、AFF 功能性的功能、以及ONTAP Select 功能
 
@@ -341,6 +415,10 @@ video::RZktLe32hhQ[youtube,width=848,height=480]
 ** SnapDiff RPC伺服器必須在SVM上啟動。在工作環境中啟用索引時、Cloud Manager會自動執行此作業。
 
 
+
+
+ifdef::aws[]
+
 * AWS要求：
 +
 ** 必須將特定的Amazon Athena、AWS黏著及AWS S3權限新增至提供Cloud Manager權限的使用者角色。 link:task-backup-onprem-to-aws.html#set-up-s3-permissions["請確定所有權限均已正確設定"]。
@@ -348,6 +426,12 @@ video::RZktLe32hhQ[youtube,width=848,height=480]
 請注意、如果您已經使用Cloud Backup搭配過去設定的Connector、現在就必須將Athena新增並黏著權限給Cloud Manager使用者角色。這些都是新功能、搜尋與還原是必備功能。
 
 
+
+
+
+endif::aws[]
+
+ifdef::gcp[]
 
 * Google Cloud需求：
 +
@@ -358,6 +442,8 @@ video::RZktLe32hhQ[youtube,width=848,height=480]
 
 
 
+
+endif::gcp[]
 
 
 
@@ -388,9 +474,21 @@ image:diagram_search_restore_vol_file.png["顯示使用Search & Restore執行Vol
 
 啟用此功能時、Cloud Backup會在SVM上為您的磁碟區啟用SnapDiff v3、並會執行下列動作：
 
-* 對於儲存在AWS中的備份、它會配置新的S3儲存區和 https://aws.amazon.com/athena/faqs/["Amazon Athena互動查詢服務"^] 和 https://aws.amazon.com/glue/faqs/["AWS黏著伺服器無資料整合服務"^]。
-* 對於儲存在Google Cloud中的備份、IT會配置新的儲存庫、以及 https://cloud.google.com/bigquery["Google Cloud BigQuery服務"^] 在帳戶/專案層級上進行資源配置。如果您的工作環境已啟用索引、請前往下一節還原資料。
+ifdef::aws[]
 
+* 對於儲存在AWS中的備份、它會配置新的S3儲存區和 https://aws.amazon.com/athena/faqs/["Amazon Athena互動查詢服務"^] 和 https://aws.amazon.com/glue/faqs/["AWS黏著伺服器無資料整合服務"^]。
+
+
+endif::aws[]
+
+ifdef::gcp[]
+
+* 對於儲存在Google Cloud中的備份、IT會配置新的儲存庫、以及 https://cloud.google.com/bigquery["Google Cloud BigQuery服務"^] 在帳戶/專案層級上進行資源配置。
+
+
+endif::gcp[]
+
+如果您的工作環境已啟用索引、請前往下一節還原資料。
 
 若要啟用工作環境的索引：
 

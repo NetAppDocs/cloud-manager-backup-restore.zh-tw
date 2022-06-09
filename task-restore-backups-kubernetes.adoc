@@ -26,16 +26,16 @@ summary: 備份會儲存在雲端帳戶的物件存放區中、以便從特定�
 
 [cols="40,40"]
 |===
-| 備份檔案位置 | 目的地工作環境 
+| 備份檔案位置 | 目的地工作環境ifdef：：AWS [] 
 
 
-| Amazon S3 | AWS中的Kubernetes叢集 
+| Amazon S3 | AWS endif:AWS中的Kubernetes叢集：AWS [] ifdef：：azure[] 
 
 
-| Azure Blob | Azure中的Kubernetes叢集 
+| Azure Blob | Azure endif:azure[] ifdef中的Kubernetes叢集：GCP[] 
 
 
-| Google Cloud Storage | Google的Kubernetes叢集 
+| Google Cloud Storage | Google endif:GCP[]中的Kubernetes叢集 
 |===
 
 
@@ -51,7 +51,7 @@ summary: 備份會儲存在雲端帳戶的物件存放區中、以便從特定�
 +
 image:screenshot_backup_view_k8s_backups_button.png["Kubernetes儀表板的快照、其中包含正在備份的所有Kubernetes叢集和磁碟區清單。"]
 
-. 找到您要還原的磁碟區、然後按一下 image:screenshot_horizontal_more_button.gif["更多圖示"]，然後是* Volume Details *。
+. 找到您要還原的磁碟區、然後按一下 image:screenshot_horizontal_more_button.gif["更多圖示"]，然後按一下*詳細資料與備份清單*。
 +
 該磁碟區的所有備份檔案清單、以及來源磁碟區、目的地位置和備份詳細資料的詳細資料。
 

@@ -45,9 +45,27 @@ image:diagram_cloud_backup_general.png["顯示Cloud Backup如何與來源系統�
 
 備份複本儲存在Cloud Manager在雲端帳戶中建立的物件存放區中。每個叢集/工作環境有一個物件存放區、Cloud Manager會將物件存放區命名為：「NetApp-backup-clusteruuid」。請勿刪除此物件存放區。
 
+ifdef::aws[]
+
 * 在 AWS 中、 Cloud Manager 可啟用 https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html["Amazon S3 封鎖公共存取功能"^] 在 S3 儲存桶上。
+
+
+endif::aws[]
+
+ifdef::azure[]
+
 * 在 Azure 中、 Cloud Manager 使用新的或現有的資源群組、並為 Blob 容器提供儲存帳戶。Cloud Manager https://docs.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-prevent["封鎖對Blob資料的公開存取"] 依預設。
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
 * 在 GCP 中、 Cloud Manager 使用新的或現有的專案、並為 Google Cloud Storage 儲存庫使用儲存帳戶。
+
+
+endif::gcp[]
+
 * 在本報告中、Cloud Manager使用現有的儲存帳戶來儲存物件儲存庫。StorageGRID
 
 

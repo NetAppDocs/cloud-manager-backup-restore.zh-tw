@@ -65,9 +65,7 @@ image:screenshot_backup_policy_aws.png["顯示Cloud Backup設定的快照、您�
 
 image:diagram_cloud_backup_cvo_aws.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
 
-雲端還原執行個體部署在雲端時、其所在的子網路與Connector相同。
-
-支援 ONTAP 的支援版本:: 更新版本。 Cloud Volumes ONTAP
+支援 ONTAP 的支援版本:: 最低ONTAP 版本為32、9.6；ONTAP 建議使用32、8、11及更新版本。
 授權需求:: 對於Cloud Backup PAYGO授權、AWS Marketplace提供Cloud Manager訂閱服務、可讓您部署Cloud Volumes ONTAP 支援的功能包括：還原和雲端備份。您需要 https://aws.amazon.com/marketplace/pp/prodview-oorxakq6lq7m4?sr=0-8&ref_=beagle&applicationId=AWSMPContessa["訂閱此 Cloud Manager 訂閱"^] 在啟用Cloud Backup之前。雲端備份計費是透過此訂閱完成。
 +
 --
@@ -81,7 +79,6 @@ image:diagram_cloud_backup_cvo_aws.png["顯示Cloud Backup如何與來源系統�
 
 --
 支援的 AWS 區域:: 所有AWS區域均支援雲端備份 https://cloud.netapp.com/cloud-volumes-global-regions["支援的地方 Cloud Volumes ONTAP"^]；包括AWS GovCloud區域。
-在不同的AWS帳戶中建立備份所需的設定:: 根據預設、備份會使用Cloud Volumes ONTAP 與您的作業系統相同的帳戶建立。如果您想要使用不同的AWS帳戶進行備份、您必須使用 link:reference-backup-multi-account-aws.html["登入AWS入口網站並連結這兩個帳戶"]。
 使用客戶管理金鑰進行資料加密的必要資訊:: 您可以在啟動精靈中選擇自己的客戶管理資料加密金鑰、而非使用預設的Amazon S3加密金鑰。在此情況下、您必須先設定加密管理金鑰。 https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-setting-up-kms.html["瞭解如何使用您自己的金鑰"^]。
 需要AWS備份權限:: 提供 Cloud Manager 權限的 IAM 角色必須包含最新版本的 S3 權限 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則"^]。
 +
@@ -133,38 +130,6 @@ image:diagram_cloud_backup_cvo_aws.png["顯示Cloud Backup如何與來源系統�
 
 如果您使用3.9.15版或更新版本部署Connector、則這些權限應已成為IAM角色的一部分。否則您必須新增遺失的權限。特別是「Athena」和「黏著」權限、因為它們是搜尋與還原所需的權限。
 
-需要AWS還原權限:: 提供Cloud Manager權限的IAM角色需要下列EC2權限、以便能夠啟動、停止及終止Cloud Restore執行個體以進行瀏覽與還原作業：
-+
---
-[source, json]
-----
-          "Action": [
-              "ec2:DescribeInstanceTypeOfferings",
-              "ec2:StartInstances",
-              "ec2:StopInstances",
-              "ec2:TerminateInstances"
-          ],
-----
---
-AWS部署所需的傳出網際網路存取:: Cloud Restore執行個體需要傳出網際網路存取。如果您的虛擬或實體網路使用Proxy伺服器進行網際網路存取、請確定執行個體具有傳出網際網路存取權限、以聯絡下列端點。
-+
---
-[cols="43,57"]
-|===
-| 端點 | 目的 
-
-
-| http://amazonlinux.us-east-1.amazonaws.com/2/extras/docker/stable/ x86_64：4bf88ee77c395ffe1e0c3ca68530dfb3a683ec65a4a1ce9c0ff394be50e9222b2 | 適用於雲端還原執行個體AMI的CentOS套件。 
-
-
-| \https://download.docker.com/linux/centos/docker-ce.repo | 提供Docker Engine套件。 
-
-
-| \http://cloudmanagerinfraprod.azurecr.io \https://cloudmanagerinfraprod.azurecr.io | Cloud Restore執行個體映像儲存庫。 
-|===
---
-
-
 
 
 == 在新系統上啟用雲端備份
@@ -197,14 +162,14 @@ Cloud Backup可在系統上啟用、並每天備份磁碟區、並保留最近30
 .步驟
 . 選取工作環境、然後按一下右窗格中備份與還原服務旁的*啟用*。
 +
-image:screenshot_backup_cvo_enable.png["螢幕擷取畫面會顯示「Cloud Backup Settings」（雲端備份設定）按鈕、您可以在選取工作環境之後使用該按鈕。"]
+如果用於備份的Amazon S3目的地是在Canvas上的工作環境、您可以將叢集拖曳至Amazon S3工作環境、以啟動設定精靈。
+
++
+image:screenshot_backup_cvo_enable.png["螢幕擷取畫面會顯示「備份與安培」；「啟用還原」按鈕、可在您選取工作環境之後使用。"]
 
 . 選取供應商詳細資料、然後按*下一步*。
 +
 .. 用來儲存備份的AWS帳戶。這可能與Cloud Volumes ONTAP 駐留於此系統的帳戶不同。
-+
-如果您想要使用不同的AWS帳戶進行備份、您必須使用 link:reference-backup-multi-account-aws.html["登入AWS入口網站並連結這兩個帳戶"]。
-
 .. 儲存備份的區域。這可能與Cloud Volumes ONTAP 駐留的地方不同。
 .. 無論您是使用預設的Amazon S3加密金鑰、還是從AWS帳戶選擇自己的客戶管理金鑰、都能管理資料的加密。 (https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-setting-up-kms.html["瞭解如何使用您自己的加密金鑰"]）。
 +

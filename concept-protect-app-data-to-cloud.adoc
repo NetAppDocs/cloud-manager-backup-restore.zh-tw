@@ -16,7 +16,23 @@ summary: 整合Cloud Backup for Applications與Cloud Manager及內部部署SnapC
 [role="lead"]
 您可以將Cloud Backup for Applications與Cloud Manager和內部部署SnapCenter 的解決方案整合、將應用程式一致的Snapshot從內部部署ONTAP 的地方還原到雲端。必要時、您可以從雲端還原至內部部署SnapCenter 的功能。
 
-您可以將Oracle和Microsoft SQL應用程式資料從內部部署ONTAP 的功能還原備份到Amazon Web Services或Microsoft Azure。
+您可以將Oracle和Microsoft SQL應用程式資料從內部部署ONTAP 的支援系統備份到下列雲端供應商：
+
+* Amazon Web Services
+* Microsoft Azure
+
+
+ifdef::aws[]
+
+endif::aws[]
+
+ifdef::azure[]
+
+endif::azure[]
+
+ifdef::gcp[]
+
+endif::gcp[]
 
 
 NOTE: 您應該使用SnapCenter 的是功能不實的軟體4.6。

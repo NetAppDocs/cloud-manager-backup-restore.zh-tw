@@ -83,18 +83,26 @@ image:screenshot_backup_manage_policy_page_edit.png["顯示「管理原則」頁
 image:screenshot_backup_edit_policy.png["螢幕擷取畫面會顯示備份原則設定、您可以在其中修改備份排程和備份保留設定。"]
 
 +
-如果您的叢集執行ONTAP 的是版本不支援的版本號（例如更新版本的版本）、而且您使用AWS或Azure來儲存雲端、您也可以選擇在特定天數後、啟用或停用將備份分層至歸檔儲存設備的功能。
+如果您的叢集執行ONTAP 的是版本不支援的版本號、您也可以選擇在特定天數後啟用或停用將備份分層至歸檔儲存設備。
 
 +
-link:reference-azure-backup-tiers.html["深入瞭解如何使用Azure歸檔儲存設備"]。link:reference-aws-backup-tiers.html["深入瞭解使用AWS歸檔儲存設備"]。
-
-+
-image:screenshot_backup_modify_policy_page2.png["這是一份快照、顯示雲端備份的歸檔儲存設定分層。"]
-
-+
-請注意、如果您停止分層備份至歸檔儲存設備、任何已分層至歸檔儲存設備的備份檔案都會留在該層中、而不會自動移回標準層級。
+ifdef::aws[]
 
 
+
+link:reference-aws-backup-tiers.html["深入瞭解使用AWS歸檔儲存設備"]。
+
+endif::aws[]
+
+ifdef::azure[]
+
+link:reference-azure-backup-tiers.html["深入瞭解如何使用Azure歸檔儲存設備"]。
+
+endif::azure[]
+
++image:screenshot_backup_modify_policy_page2.png["這是一份快照、顯示雲端備份的歸檔儲存設定分層。"]
+
++請注意、如果您停止分層備份至歸檔儲存設備、任何已分層至歸檔儲存設備的備份檔案都會留在該層中、不會自動移回標準層級。
 
 
 
@@ -122,15 +130,24 @@ image:screenshot_backup_manage_policy_page_add.png["顯示「管理原則」頁�
 image:screenshot_backup_add_new_policy.png["顯示備份原則設定的快照、您可以在其中新增備份排程和備份保留設定。"]
 
 +
-如果您的叢集執行ONTAP 的是版本不支援的版本號（例如更新版本的版本）、而且您使用AWS或Azure來儲存雲端、您也可以選擇在特定天數後、啟用或停用將備份分層至歸檔儲存設備的功能。
+如果您的叢集執行ONTAP 的是版本不支援的版本號、您也可以選擇在特定天數後啟用或停用將備份分層至歸檔儲存設備。
 
 +
-link:reference-azure-backup-tiers.html["深入瞭解如何使用Azure歸檔儲存設備"]。link:reference-aws-backup-tiers.html["深入瞭解使用AWS歸檔儲存設備"]。
-
-+
-image:screenshot_backup_modify_policy_page2.png["這是一份快照、顯示雲端備份的歸檔儲存設定分層。"]
+ifdef::aws[]
 
 
+
+link:reference-aws-backup-tiers.html["深入瞭解使用AWS歸檔儲存設備"]。
+
+endif::aws[]
+
+ifdef::azure[]
+
+link:reference-azure-backup-tiers.html["深入瞭解如何使用Azure歸檔儲存設備"]。
+
+endif::azure[]
+
++image:screenshot_backup_modify_policy_page2.png["這是一份快照、顯示雲端備份的歸檔儲存設定分層。"]
 
 
 
