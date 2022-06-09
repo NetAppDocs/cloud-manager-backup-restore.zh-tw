@@ -169,7 +169,39 @@
   
   <!-- Start Page Toolbar -->
   
-  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[將Cloud Volumes ONTAP 不支援的資料備份到Azure Blob儲存設備](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/task-backup-to-azure.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/task-backup-to-azure.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+  <div class="page-nav-toolbar">
+<div id="flavor-dropdown" class="custom-dropdown" data-url="/zh-tw/cloud-manager-backup-restore/task-backup-to-azure.html">
+  
+  <div class="custom-dropdown-select unselected" title="所有雲端供應商">
+    <label>雲端供應商</label>
+    <span>所有雲端供應商</span>
+    <img src="/zh-tw/cloud-manager-backup-restore/images/filter.svg" class="custom-icon" alt="" />
+  </div>
+  
+
+  <ul class="custom-dropdown-menu">
+    
+    
+    <li data-value="aws" data-url="/zh-tw/cloud-manager-backup-restore/aws">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/aws-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Amazon Web Services
+    </li>
+    
+    
+    
+    <li data-value="gcp" data-url="/zh-tw/cloud-manager-backup-restore/gcp">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/gcp-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Google Cloud
+    </li>
+    
+    
+    
+    <li data-value="azure" data-url="/zh-tw/cloud-manager-backup-restore/azure/task-backup-to-azure.html">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/azure-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Microsoft Azure
+    </li>
+    
+    
+  </ul>
+</div>
+<div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[將Cloud Volumes ONTAP 不支援的資料備份到Azure Blob儲存設備](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/task-backup-to-azure.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/task-backup-to-azure.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">在此頁面上</div>
@@ -352,8 +384,6 @@
         
         <a target="_blank" href="/zh-tw/cloud-manager-backup-restore/pdfs/fullsite-sidebar/雲端備份文件.pdf" >
           <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
-
-
 
 
 
@@ -574,6 +604,8 @@
 
 
 
+
+
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
@@ -591,35 +623,6 @@
           
 
 
-
-
-
-    
-      <ul class="subfolders" style="display:none;">
-        <li class="pdf-ux-container">
-          
-          
-          
-          <a target="_blank" 
-            
-              href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/跨帳戶和跨區域組態.pdf" 
-            
-          >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
-            跨帳戶和跨區域組態
-          </a>
-          
-
-
-
-
-
-          
-        </li>
-      </ul>
-    
-
-  
 
 
 
@@ -698,10 +701,10 @@
     $("#toggleContainerPdf").toggle('display');
     $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
   });
-</script><div class="sidebar-nav-container" id="mysidebardiv">
-  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/cloud-manager-family">
-        所有Cloud Manager文件
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/index.html">
+</script><div class="prod-nav" id="product-nav">
+  <a target="_self" class="prod-fam-nav" href="https://docs.netapp.com/zh-tw/cloud-manager-family/"><img src="/zh-tw/cloud-manager-backup-restore/images/left_arrow.png" alt=""><pre>All Cloud Manager documentation</pre></a>
+</div><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/index.html">
         雲端備份文件
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/whats-new.html">
         版本資訊
@@ -779,21 +782,16 @@
         管理虛擬機器的保護
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/task-restore-vm-data.html">
         還原虛擬機器資料
-      </a></li></ul></li><li class="subfolders "><a href="#">
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/api-backup-restore.html">
+        使用REST API進行自動化
+      </a></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 參考資料</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-aws-backup-tiers.html">
         支援的AWS歸檔儲存層
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-azure-backup-tiers.html">
         支援的Azure歸檔存取層
-      </a></li><li class="subfolders "><a href="/zh-tw/cloud-manager-backup-restore/reference-cross-account.html">
-        <div class="na-navbar-padding"> 跨帳戶和跨區域組態</div>
-      </a>
-      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-backup-multi-account-aws.html">
-        在AWS中設定多帳戶存取的備份
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-backup-multi-account-azure.html">
-        設定備份以在Azure中存取多個帳戶
-      </a></li></ul></li></ul></li><li class="subfolders "><a href="#">
+      </a></li></ul></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 知識與支援</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/task-support-registration.html">
@@ -871,7 +869,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-05-03 06:06:48 +0000">05/03/2022</time>
+    <time datetime="2022-06-09 15:51:35 +0000">06/09/2022</time>
     
   
 
@@ -951,14 +949,11 @@
 <div class="paragraph">
 <p><span class="image"><img src="./media/diagram_cloud_backup_cvo_azure.png" alt="顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"></span></p>
 </div>
-<div class="paragraph">
-<p>雲端還原虛擬機器部署於雲端時、其子網路與Connector位於同一個子網路中。</p>
-</div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">支援 ONTAP 的支援版本</dt>
 <dd>
-<p>更新版本： Cloud Volumes ONTAP</p>
+<p>最低ONTAP 版本為《》（更新ONTAP 版本）；建議使用《》（更新版本）。</p>
 </dd>
 <dt class="hdlist1">授權需求</dt>
 <dd>
@@ -978,46 +973,12 @@
 <dd>
 <p>所有Azure地區均支援雲端備份 <a href="https://cloud.netapp.com/cloud-volumes-global-regions" target="_blank" rel="noopener">"支援的地方 Cloud Volumes ONTAP"</a>（包括Azure政府區域）。</p>
 </dd>
-<dt class="hdlist1">在不同Azure訂閱中建立備份所需的設定</dt>
-<dd>
-<p>根據預設、備份會使用與Cloud Volumes ONTAP 您的作業系統相同的訂閱方式建立。如果您想要使用不同的Azure訂閱來進行備份、您必須使用 <a href="reference-backup-multi-account-azure.html">"登入Azure入口網站並連結這兩份訂閱"</a>。</p>
-</dd>
 <dt class="hdlist1">使用客戶管理金鑰進行資料加密的必要資訊</dt>
 <dd>
 <p>您可以在啟動精靈中使用自己的客戶管理金鑰進行資料加密、而非使用預設的Microsoft管理加密金鑰。在此情況下、您必須擁有Azure訂閱、Key Vault名稱及金鑰。 <a href="https://docs.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview">"瞭解如何使用您自己的金鑰"</a>。</p>
 </dd>
-<dt class="hdlist1">Azure部署所需的傳出網際網路存取</dt>
-<dd>
-<p>Cloud Restore虛擬機器需要存取傳出的網際網路。如果您的虛擬或實體網路使用Proxy伺服器進行網際網路存取、請確定執行個體具有傳出網際網路存取權限、以聯絡下列端點。</p>
-</dd>
 </dl>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 43%;">
-<col style="width: 57%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">端點</th>
-<th class="tableblock halign-left valign-top">目的</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">http://olcentgbl.trafficmanager.net https://olcentgbl.trafficmanager.net</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">提供Cloud Restore虛擬機器的CentOS套件。</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">https://download.docker.com/linux/centos/docker-ce.repo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">提供Docker Engine套件。</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">http://cloudmanagerinfraprod.azurecr.io https://cloudmanagerinfraprod.azurecr.io</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cloud Restore虛擬機器映像儲存庫。</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect1">
@@ -1096,9 +1057,6 @@
 <ol class="loweralpha" type="a">
 <li>
 <p>Azure 訂閱用於儲存備份。這可能是與Cloud Volumes ONTAP 駐留於此系統不同的訂閱方式。</p>
-<div class="paragraph">
-<p>如果您想要使用不同的Azure訂閱來進行備份、您必須使用 <a href="reference-backup-multi-account-azure.html">"登入Azure入口網站並連結這兩份訂閱"</a>。</p>
-</div>
 </li>
 <li>
 <p>儲存備份的區域。這可能與Cloud Volumes ONTAP 駐留的地方不同。</p>

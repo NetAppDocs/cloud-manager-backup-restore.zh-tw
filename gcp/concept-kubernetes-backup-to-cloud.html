@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head class="at-element-marker">
+  <title>使用Cloud Backup保護Kubernetes叢集資料 | NetApp Documentation</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="使用Cloud Backup保護Kubernetes叢集資料 | NetApp Documentation" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/concept-kubernetes-backup-to-cloud.html" />
+	<meta property="og:description" content="Cloud Backup提供備份與還原功能、可保護Kubernetes叢集資料並進行長期歸檔。備份會自動產生、並儲存在公有雲或私有雲帳戶的物件存放區中。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Cloud Backup提供備份與還原功能、可保護Kubernetes叢集資料並進行長期歸檔。備份會自動產生、並儲存在公有雲或私有雲帳戶的物件存放區中。">
+  <meta name="keywords" content=" backing up, restoring, back up, backup, restore, aws, azure, s3, blob, google cloud, back up volumes, cloud backup, restore volumes, billing, cost, kubernetes"><!-- Icons -->
+  <link rel="icon" href="/zh-tw/cloud-manager-backup-restore/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="NetApp Documentation" href="/zh-tw/cloud-manager-backup-restore/feed.xml"><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Controls AsciiDoctor Admonition Blocks -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/cloud-manager-backup-restore/css/font-awesome.min.css">
+
+  <!-- Controls the shadow effect for search dropdown menu -->
+  <link rel="stylesheet" href="/zh-tw/cloud-manager-backup-restore/css/boxshadowproperties.css">
+
+  <!-- NetApp CSS controls the technical content -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/cloud-manager-backup-restore/css/netapp.css">
+
+  <!-- WWW CSS Content -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/cloud-manager-backup-restore/css/www-luci-dotcom.min.css">
+  <link rel="stylesheet" type="text/css" href="/zh-tw/cloud-manager-backup-restore/css/www-netapp-dotcom.css">
+  <link rel="stylesheet" href="/zh-tw/cloud-manager-backup-restore/css/www-netapp-library-critical.min.css" media="all" >
+  <link rel="stylesheet" href="/zh-tw/cloud-manager-backup-restore/css/www-netapp-library-non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="/zh-tw/cloud-manager-backup-restore/css/www-netapp-library-global-header-footer.min.css">
+
+  <!-- NetApp IE Customizations -->
+  <link rel="stylesheet" href='/zh-tw/cloud-manager-backup-restore/css/na-utility.css' type='text/css'>
+  <link rel="stylesheet" href='/zh-tw/cloud-manager-backup-restore/css/na-sidebar.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/cloud-manager-backup-restore/css/clouddocs.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/cloud-manager-backup-restore/css/custom-dropdown.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/cloud-manager-backup-restore/css/na-pagenav.css' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/zh-tw/cloud-manager-backup-restore/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-tw/cloud-manager-backup-restore/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  
+    
+    <link rel="canonical" href="https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/concept-kubernetes-backup-to-cloud.html" />
+  <link rel='stylesheet' href='/zh-tw/cloud-manager-backup-restore/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    if (document.location.hostname === "docs.netapp.com") {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = "72570c5c-fe30-465f-b0e0-b77f7fb4ae34";
+      head.appendChild(onetrustScript);
+    }
+
+    function OptanonWrapper() { }
+
+    if (document.location.hostname === "docs.netapp.com") {
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js";
+      head.appendChild(adobe);
+
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id=UA-81697994-3";
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-81697994-3');
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-tw/cloud-manager-backup-restore/js/na-search.js'></script><script src='/zh-tw/cloud-manager-backup-restore/js/na-pagenav.js'></script><link rel='stylesheet' href='/zh-tw/cloud-manager-backup-restore/css/prism.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/cloud-manager-backup-restore/css/prism-netapp.css' type='text/css'>
+
+
+  <script src='/zh-tw/cloud-manager-backup-restore/js/na-utility.js'></script>
+  <script src='/zh-tw/cloud-manager-backup-restore/js/clouddocs.js'></script>
+  <script src='/zh-tw/cloud-manager-backup-restore/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/zh-tw/cloud-manager-backup-restore/js/toc.js'></script>
+  <script src='/zh-tw/cloud-manager-backup-restore/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/zh-tw/cloud-manager-backup-restore/js/custom-dropdown.js'></script>
+  <script src='/zh-tw/cloud-manager-backup-restore/js/FileSaver.min.js'></script>
+  <script src='/zh-tw/cloud-manager-backup-restore/js/jszip-utils.min.js'></script>
+  <script src='/zh-tw/cloud-manager-backup-restore/js/jszip.min.js'></script>
+  <script src='/zh-tw/cloud-manager-backup-restore/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="gcp">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar">
+<div id="flavor-dropdown" class="custom-dropdown" data-url="/zh-tw/cloud-manager-backup-restore/concept-kubernetes-backup-to-cloud.html">
+  
+  
+  <div class="custom-dropdown-select selected" title="Google Cloud">
+    <label>雲端供應商</label>
+    <div>Google Cloud</div>  
+    <img src="/zh-tw/cloud-manager-backup-restore/images/filter.svg" class="custom-icon selected" alt="" />
+    <img src="/zh-tw/cloud-manager-backup-restore/images/dismiss.svg" class="custom-icon selected" id="remove-flavor" alt="" />
+  </div>
+  
+
+  <ul class="custom-dropdown-menu">
+    
+    
+    <li data-value="aws" data-url="/zh-tw/cloud-manager-backup-restore/aws/concept-kubernetes-backup-to-cloud.html">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/aws-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Amazon Web Services
+    </li>
+    
+    
+    
+    <li data-value="gcp" data-url="/zh-tw/cloud-manager-backup-restore/gcp/concept-kubernetes-backup-to-cloud.html">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/gcp-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Google Cloud
+    </li>
+    
+    
+    
+    <li data-value="azure" data-url="/zh-tw/cloud-manager-backup-restore/azure/concept-kubernetes-backup-to-cloud.html">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/azure-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Microsoft Azure
+    </li>
+    
+    
+  </ul>
+</div>
+<div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[使用Cloud Backup保護Kubernetes叢集資料](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/concept-kubernetes-backup-to-cloud.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/concept-kubernetes-backup-to-cloud.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">在此頁面上</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">產品與解決方案</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">支援與訓練</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">社群</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">部落格</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">客戶成功案例</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">聯絡人</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">聯絡人</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/zh-tw/cloud-manager-backup-restore/search.html"
+          data-type="widget" 
+          data-placeholder="搜尋文件" 
+          data-no-results-found="找不到符合 {query} 的相關結果。" 
+          data-did-you-mean="搜尋 {suggestion}。" 
+          data-no-results-found-did-you-mean="找不到符合 {query} 的相關結果。您是否要找的是{suggestion}？" 
+          data-results-found="找到 {hitCount} 筆結果"  
+          data-sk-es-pf-indexes=""
+          data-flavor="gcp"></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+      <div class="custom-dropdown-select custom-dropdown-select-lang">
+      <span class="lang-name">繁體中文</span>
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="custom-dropdown-menu"><li>
+          <a href="https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/concept-kubernetes-backup-to-cloud.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/us-en/cloud-manager-backup-restore/concept-kubernetes-backup-to-cloud.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ja-jp/cloud-manager-backup-restore/concept-kubernetes-backup-to-cloud.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-cn/cloud-manager-backup-restore/concept-kubernetes-backup-to-cloud.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ko-kr/cloud-manager-backup-restore/concept-kubernetes-backup-to-cloud.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li></ul>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>可用的 PDF<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/fullsite-sidebar/雲端備份文件.pdf" >
+          <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/備份及還原ONTAP_資料.pdf" 
+            
+          >
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            備份及還原ONTAP 資料
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/備份及還原Kubernetes資料.pdf" 
+            
+          >
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            備份及還原Kubernetes資料
+          </a>
+          
+    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
+  <a target="_blank" href="/zh-tw/cloud-manager-backup-restore/pdfs/pages/concept-kubernetes-backup-to-cloud.pdf" >
+    <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+    PDF of this page
+  </a>
+</li>
+
+</ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/備份及還原內部部署應用程式資料.pdf" 
+            
+          >
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            備份及還原內部部署應用程式資料
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/還原應用程式資料.pdf" 
+            
+          >
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            還原應用程式資料
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/備份及還原虛擬機器資料.pdf" 
+            
+          >
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            備份及還原虛擬機器資料
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/參考資料.pdf" 
+            
+          >
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            參考資料
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/知識與支援.pdf" 
+            
+          >
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            知識與支援
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/zh-tw/cloud-manager-backup-restore/images/pdf-zip.png" width="16" height="16"/>
+      <pre>個別 PDF 文件的集合<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="prod-nav" id="product-nav">
+  <a target="_self" class="prod-fam-nav" href="https://docs.netapp.com/zh-tw/cloud-manager-family/"><img src="/zh-tw/cloud-manager-backup-restore/images/left_arrow.png" alt=""><pre>All Cloud Manager documentation</pre></a>
+</div><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/index.html">
+        雲端備份文件
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/whats-new.html">
+        版本資訊
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 開始使用</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/concept-backup-to-cloud.html">
+        深入瞭解Cloud Backup
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-licensing-cloud-backup.html">
+        設定授權
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-monitor-backup-jobs.html">
+        監控備份與還原工作的狀態
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 備份及還原ONTAP 資料</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/concept-ontap-backup-to-cloud.html">
+        保護ONTAP 您的資料
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-backup-to-gcp.html">
+        備份Cloud Volumes ONTAP 到Google Cloud
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-backup-onprem-to-gcp.html">
+        將內部部署ONTAP 的不全資料備份到Google Cloud
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-backup-onprem-private-cloud.html">
+        將內部部署ONTAP 的內部部署資料備份至StorageGRID
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-manage-backups-ontap.html">
+        管理ONTAP 還原備份
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-restore-backups-ontap.html">
+        從ONTAP 還原備份還原
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 備份及還原Kubernetes資料</div>
+      </a>
+      <ul><li class="  active "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/concept-kubernetes-backup-to-cloud.html">
+        保護您的Kubernetes資料
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-backup-kubernetes-to-gcp.html">
+        備份至Google Cloud
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-manage-backups-kubernetes.html">
+        管理Kubernetes備份
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-restore-backups-kubernetes.html">
+        從Kubernetes備份還原
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 備份及還原內部部署應用程式資料</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/concept-protect-app-data-to-cloud.html">
+        保護內部部署的應用程式資料
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-backup-app-data-to-cloud.html">
+        將內部部署應用程式資料備份到雲端
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-manage-app-backups.html">
+        管理應用程式保護
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 還原應用程式資料</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-restore-oracle-data.html">
+        還原Oracle資料庫
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-restore-sql-data.html">
+        還原SQL Server資料庫
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 備份及還原虛擬機器資料</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/concept-protect-vm-data.html">
+        保護您的虛擬機器資料
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-backup-vm-data-to-cloud.html">
+        將資料存放區備份到雲端
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-manage-vm-data-in-cloud.html">
+        管理虛擬機器的保護
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-restore-vm-data.html">
+        還原虛擬機器資料
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/api-backup-restore.html">
+        使用REST API進行自動化
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 參考資料</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/reference-aws-backup-tiers.html">
+        支援的AWS歸檔儲存層
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/reference-azure-backup-tiers.html">
+        支援的Azure歸檔存取層
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 知識與支援</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-support-registration.html">
+        註冊以取得支援
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-get-help.html">
+        取得協助
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/legal-notices.html">
+        法律聲明
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content">
+      <div class="ie-utility">
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com/us-en/cloud/">Cloud Docs</a>
+        </li>
+        
+
+        
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com/zh-tw/cloud-manager-family/">Cloud Manager</a>
+        </li>
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/zh-tw/cloud-manager-backup-restore/">Cloud&nbsp;Backup</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> 本繁體中文版使用機器翻譯，譯文僅供參考，若與英文版本牴觸，應以英文版本為準。 </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">使用Cloud Backup保護Kubernetes叢集資料</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-06-09 15:51:35 +0000">06/09/2022</time>
+    
+  
+
+
+</p>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>Cloud Backup提供備份與還原功能、可保護Kubernetes叢集資料並進行長期歸檔。備份會自動產生、並儲存在公有雲或私有雲帳戶的物件存放區中。</p>
+</div>
+<div class="paragraph">
+<p>必要時、您可以將整個_volume從備份還原至相同或不同的工作環境。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能">功能</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>備份功能：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>將持續磁碟區的獨立複本備份到低成本物件儲存設備。</p>
+</li>
+<li>
+<p>將單一備份原則套用至叢集中的所有磁碟區、或將不同的備份原則指派給具有獨特還原點目標的磁碟區。</p>
+</li>
+<li>
+<p>備份資料會以 AES-256 位元加密的閒置和 TLS 1.2 HTTPS 傳輸連線加以保護。</p>
+</li>
+<li>
+<p>單一磁碟區最多可支援4、000個備份。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>還原功能：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>從特定時間點還原資料。</p>
+</li>
+<li>
+<p>將磁碟區還原至來源系統或其他系統。</p>
+</li>
+<li>
+<p>還原區塊層級的資料、將資料直接放在您指定的位置、同時保留原始ACL。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="支援的kubernetes工作環境和物件儲存供應商">支援的Kubernetes工作環境和物件儲存供應商</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Backup可讓您將Kubernetes磁碟區從下列工作環境備份到下列公有和私有雲端供應商的物件式儲存設備：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 52.9411%;">
+<col style="width: 47.0589%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">來源工作環境</th>
+<th class="tableblock halign-left valign-top">備份檔案目的地ifdef：：AWS []</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS中的Kubernetes叢集</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Amazon S3 endif:::AWS[] ifdef::azure[]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure中的Kubernetes叢集</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Blob endif::azure[] ifdef：：GCP[]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Google的Kubernetes叢集</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Google Cloud Storage endif..:GCP[]</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>您可以將磁碟區從Kubernetes備份檔案還原至下列工作環境：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 47.0588%;">
+<col style="width: 52.9412%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">備份檔案位置</th>
+<th class="tableblock halign-left valign-top">目的地工作環境ifdef：：AWS []</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Amazon S3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS endif:AWS中的Kubernetes叢集：AWS [] ifdef：：azure[]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Blob</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure endif:azure[] ifdef中的Kubernetes叢集：GCP[]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Google Cloud Storage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Google endif:GCP[]中的Kubernetes叢集</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="成本">成本</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>使用Cloud Backup有兩種相關成本：資源費用和服務費用。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>資源費用 *</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>資源費用會支付給雲端供應商、以取得雲端的物件儲存容量。由於Cloud Backup保留了來源Volume的儲存效率、因此您需要支付雲端供應商的物件儲存成本、以獲得資料ONTAP 效益（在套用重複資料刪除和壓縮之後、資料量會變小）。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>服務費用 *</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>服務費用會支付給NetApp、並從這些備份中同時支付_建立_備份和_還原_磁碟區的成本。您只需支付所保護資料的費用、此資料是根據ONTAP 備份至物件儲存設備之磁碟區的來源邏輯已用容量（_fore_效率）計算而得。此容量也稱為前端TB（FTB）。</p>
+</div>
+<div class="paragraph">
+<p>有兩種方式可以支付備份服務的費用。第一個選項是向雲端供應商訂閱、讓您每月付費。第二種選擇是直接向 NetApp 購買授權。閱讀 <a href="#Licensing">授權</a> 章節以取得詳細資料。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="授權">授權</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Backup提供兩種授權選項：隨用隨付（PAYGO）、以及自帶授權（BYOL）。如果您沒有授權、則可免費試用 30 天。</p>
+</div>
+<div class="sect2">
+<h3 id="免費試用">免費試用</h3>
+<div class="paragraph">
+<p>使用30天免費試用版時、系統會通知您剩餘的免費試用天數。在免費試用結束時、將停止建立備份。您必須訂閱服務或購買授權、才能繼續使用服務。</p>
+</div>
+<div class="paragraph">
+<p>停用服務時、不會刪除備份檔案。除非您刪除備份、否則雲端供應商會繼續向您收取備份所使用容量的物件儲存成本。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="隨用隨付訂閱">隨用隨付訂閱</h3>
+<div class="paragraph">
+<p>Cloud Backup以隨用隨付模式提供消費型授權。透過雲端供應商的市場訂閱之後、您需要支付每GB的備份資料費用、而無需預付任何款項。您的雲端供應商會透過每月帳單向您收費。</p>
+</div>
+<div class="paragraph">
+<p>即使您有免費試用版或自帶授權（ BYOL ）、您仍應訂閱：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>訂閱可確保在免費試用結束後、服務不會中斷。</p>
+<div class="paragraph">
+<p>試用結束時、您將根據備份的資料量、每小時收取一次費用。</p>
+</div>
+</li>
+<li>
+<p>如果您備份的資料超過BYOL授權所允許的數量、則資料備份會透過隨用隨付訂閱繼續進行。</p>
+<div class="paragraph">
+<p>例如、如果您擁有10 TB BYOL授權、超過10 TB的所有容量都會透過PAYGO訂購付費。</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>在免費試用期間或未超過BYOL授權時、您將不會從隨用隨付訂閱中收取費用。</p>
+</div>
+<div class="paragraph">
+<p><a href="task-licensing-cloud-backup.html#use-a-cloud-backup-paygo-subscription">"瞭解如何設定隨用隨付訂閱"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="請自帶授權">請自帶授權</h3>
+<div class="paragraph">
+<p>BYOL以1 TB為單位、以期限為基準（12、24或36個月）_和_容量為基準。您向NetApp支付一段時間使用服務的費用、例如1年、如果容量上限為10 TB。</p>
+</div>
+<div class="paragraph">
+<p>您將會收到在Cloud Manager Digital Wallet頁面中輸入的序號、以啟用服務。達到任一限制時、您都需要續約授權。備份BYOL授權適用於與相關聯的所有來源系統 <a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-netapp-accounts.html" target="_blank" rel="noopener">"Cloud Manager帳戶"</a>。</p>
+</div>
+<div class="paragraph">
+<p><a href="task-licensing-cloud-backup.html#use-a-cloud-backup-byol-license">"瞭解如何管理BYOL授權"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="雲端備份的運作方式">雲端備份的運作方式</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>當您在Kubernetes系統上啟用Cloud Backup時、該服務會執行資料的完整備份。在初始備份之後、所有其他備份都是遞增的、這表示只會備份變更的區塊和新的區塊。如此可將網路流量維持在最低。</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/cloud-manager-backup-restore/images/caution.svg" alt="注意">
+</td>
+<td class="content">
+直接從雲端供應商環境中採取的任何管理或變更備份檔案的動作、都可能會毀損檔案、並導致不支援的組態。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>下圖顯示每個元件之間的關係：</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/diagram_cloud_backup_general_k8s.png" alt="顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地物件儲存區進行通訊的圖表。"></span></p>
+</div>
+<div class="sect2">
+<h3 id="支援的儲存類別或存取層">支援的儲存類別或存取層</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>在GCP中、預設會將備份與_Standard_儲存類別相關聯。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="每個叢集可自訂的備份排程和保留設定">每個叢集可自訂的備份排程和保留設定</h3>
+<div class="paragraph">
+<p>在工作環境中啟用Cloud Backup時、您最初選取的所有磁碟區都會使用您定義的預設備份原則進行備份。如果您想要將不同的備份原則指派給具有不同恢復點目標（RPO）的特定磁碟區、您可以為該叢集建立其他原則、並將這些原則指派給其他磁碟區。</p>
+</div>
+<div class="paragraph">
+<p>您可以選擇每小時、每日、每週及每月備份所有磁碟區的組合。</p>
+</div>
+<div class="paragraph">
+<p>一旦您達到某個類別或時間間隔的最大備份數、舊備份就會移除、因此您永遠擁有最新的備份。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="支援的磁碟區">支援的磁碟區</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Backup支援持續磁碟區（PV）。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="限制">限制</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>建立或編輯備份原則時、若未將任何磁碟區指派給原則、則保留備份的數量最多可達1018個。因應措施是減少建立原則所需的備份數量。然後您可以編輯原則、在指派磁碟區至原則之後、建立最多4000個備份。</p>
+</li>
+<li>
+<p>Kubernetes磁碟區不支援使用*立即備份*按鈕進行臨機操作磁碟區備份。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">條款與條件</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Privacy Policy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie Policy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Cookie 設定</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <span class="n-footer__fine-print">對我們的網站有任何意見或要求？</span>
+              <a target="_self" href="javascript:netapp_mailto()">請與我們聯絡</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://docs.netapp.com/zh-tw/announcements/">公告</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/cloud-manager-backup-restore/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-tw/cloud-manager-backup-restore/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-tw/cloud-manager-backup-restore/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-tw/cloud-manager-backup-restore/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-tw/cloud-manager-backup-restore/js/www-ntap.js'></script>
+    <script src='/zh-tw/cloud-manager-backup-restore/js/tabbed-blocks.js'></script>
+    <script src='/zh-tw/cloud-manager-backup-restore/js/sidebar.js'></script>
+  </body></html>

@@ -169,7 +169,39 @@
   
   <!-- Start Page Toolbar -->
   
-  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[將內部部署ONTAP 的不全資料備份到Amazon S3](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/task-backup-onprem-to-aws.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/task-backup-onprem-to-aws.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+  <div class="page-nav-toolbar">
+<div id="flavor-dropdown" class="custom-dropdown" data-url="/zh-tw/cloud-manager-backup-restore/task-backup-onprem-to-aws.html">
+  
+  <div class="custom-dropdown-select unselected" title="所有雲端供應商">
+    <label>雲端供應商</label>
+    <span>所有雲端供應商</span>
+    <img src="/zh-tw/cloud-manager-backup-restore/images/filter.svg" class="custom-icon" alt="" />
+  </div>
+  
+
+  <ul class="custom-dropdown-menu">
+    
+    
+    <li data-value="aws" data-url="/zh-tw/cloud-manager-backup-restore/aws/task-backup-onprem-to-aws.html">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/aws-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Amazon Web Services
+    </li>
+    
+    
+    
+    <li data-value="gcp" data-url="/zh-tw/cloud-manager-backup-restore/gcp">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/gcp-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Google Cloud
+    </li>
+    
+    
+    
+    <li data-value="azure" data-url="/zh-tw/cloud-manager-backup-restore/azure">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/azure-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Microsoft Azure
+    </li>
+    
+    
+  </ul>
+</div>
+<div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[將內部部署ONTAP 的不全資料備份到Amazon S3](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/task-backup-onprem-to-aws.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/task-backup-onprem-to-aws.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">在此頁面上</div>
@@ -352,8 +384,6 @@
         
         <a target="_blank" href="/zh-tw/cloud-manager-backup-restore/pdfs/fullsite-sidebar/雲端備份文件.pdf" >
           <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
-
-
 
 
 
@@ -574,6 +604,8 @@
 
 
 
+
+
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
@@ -591,35 +623,6 @@
           
 
 
-
-
-
-    
-      <ul class="subfolders" style="display:none;">
-        <li class="pdf-ux-container">
-          
-          
-          
-          <a target="_blank" 
-            
-              href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/跨帳戶和跨區域組態.pdf" 
-            
-          >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
-            跨帳戶和跨區域組態
-          </a>
-          
-
-
-
-
-
-          
-        </li>
-      </ul>
-    
-
-  
 
 
 
@@ -698,10 +701,10 @@
     $("#toggleContainerPdf").toggle('display');
     $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
   });
-</script><div class="sidebar-nav-container" id="mysidebardiv">
-  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/cloud-manager-family">
-        所有Cloud Manager文件
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/index.html">
+</script><div class="prod-nav" id="product-nav">
+  <a target="_self" class="prod-fam-nav" href="https://docs.netapp.com/zh-tw/cloud-manager-family/"><img src="/zh-tw/cloud-manager-backup-restore/images/left_arrow.png" alt=""><pre>All Cloud Manager documentation</pre></a>
+</div><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/index.html">
         雲端備份文件
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/whats-new.html">
         版本資訊
@@ -779,21 +782,16 @@
         管理虛擬機器的保護
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/task-restore-vm-data.html">
         還原虛擬機器資料
-      </a></li></ul></li><li class="subfolders "><a href="#">
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/api-backup-restore.html">
+        使用REST API進行自動化
+      </a></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 參考資料</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-aws-backup-tiers.html">
         支援的AWS歸檔儲存層
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-azure-backup-tiers.html">
         支援的Azure歸檔存取層
-      </a></li><li class="subfolders "><a href="/zh-tw/cloud-manager-backup-restore/reference-cross-account.html">
-        <div class="na-navbar-padding"> 跨帳戶和跨區域組態</div>
-      </a>
-      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-backup-multi-account-aws.html">
-        在AWS中設定多帳戶存取的備份
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-backup-multi-account-azure.html">
-        設定備份以在Azure中存取多個帳戶
-      </a></li></ul></li></ul></li><li class="subfolders "><a href="#">
+      </a></li></ul></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 知識與支援</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/task-support-registration.html">
@@ -871,7 +869,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-05-13 17:47:37 +0000">05/13/2022</time>
+    <time datetime="2022-06-09 15:51:35 +0000">06/09/2022</time>
     
   
 
@@ -913,7 +911,7 @@
 <p><a href="#Prepare your ONTAP cluster">瞭解如何ONTAP 準備好內部部署的叢集。</a></p>
 </div>
 <div class="paragraph quick-margin-para">
-<p>設定Connector權限、以建立及管理S3儲存區、並使用還原執行個體還原資料。並設定內部部署ONTAP 的內部環境的權限、以便能夠讀取及寫入S3儲存區的資料。</p>
+<p>設定Connector的權限、以建立及管理S3儲存區。您也需要設定內部部署ONTAP 的叢集權限、以便能夠讀取及寫入S3儲存區的資料。</p>
 </div>
 <div class="paragraph quick-margin-para">
 <p>或者、您可以設定自己的自訂管理金鑰來進行資料加密、而非使用預設的Amazon S3加密金鑰。 <a href="#Prepare your AWS environment">瞭解如何讓AWS S3環境準備好接收ONTAP 還原備份。</a></p>
@@ -946,16 +944,13 @@
 <p>下圖顯示*公用連線*方法、以及元件之間需要準備的連線：</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./media/diagram_cloud_backup_onprem_aws.png" alt="顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"></span></p>
+<p><span class="image"><img src="./media/diagram_cloud_backup_onprem_aws.png" alt="顯示Cloud Backup如何透過公共連線與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"></span></p>
 </div>
 <div class="paragraph">
 <p>下圖顯示*私有連線*方法、以及元件之間需要準備的連線：</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./media/diagram_cloud_backup_onprem_aws_vpc.png" alt="顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"></span></p>
-</div>
-<div class="paragraph">
-<p>請注意、當Cloud Restore執行個體部署在雲端時、它與Connector位於同一個子網路中。</p>
+<p><span class="image"><img src="./media/diagram_cloud_backup_onprem_aws_vpc.png" alt="顯示Cloud Backup如何透過私有連線與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"></span></p>
 </div>
 </div>
 </div>
@@ -1130,7 +1125,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>連接器建立及管理S3儲存區的權限、以及使用還原執行個體還原資料的權限。</p>
+<p>連接器建立及管理S3儲存區的權限。</p>
 </li>
 <li>
 <p>內部部署ONTAP 的內部資源集區的權限、讓IT能夠讀取資料並將資料寫入S3儲存區。</p>
@@ -1188,19 +1183,6 @@
 </div>
 </li>
 <li>
-<p>將下列EC2權限新增至IAM角色、為Connector提供權限、以便其啟動、停止及終止Cloud Restore執行個體以進行瀏覽與還原作業：</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">          "Action": [
-              "ec2:DescribeInstanceTypeOfferings",
-              "ec2:StartInstances",
-              "ec2:StopInstances",
-              "ec2:TerminateInstances"
-          ],</code></pre>
-</div>
-</div>
-</li>
-<li>
 <p>啟動服務時、備份精靈會提示您輸入存取金鑰和秘密金鑰。這些認證資料會傳遞ONTAP 給整個叢集、ONTAP 以便讓支援中心能夠將資料備份並還原至S3儲存區。因此、您需要建立具有下列權限的IAM使用者：</p>
 <div class="listingblock">
 <div class="content">
@@ -1233,38 +1215,6 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="驗證cloud-restore網際網路存取">驗證Cloud Restore網際網路存取</h3>
-<div class="paragraph">
-<p>如果您的虛擬或實體網路使用Proxy伺服器進行網際網路存取、請確定Cloud Restore執行個體具有傳出網際網路存取權限、以聯絡下列端點。</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">端點</th>
-<th class="tableblock halign-left valign-top">目的</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://amazonlinux.us-east-1.amazonaws.com/2/extras/docker/stable/" class="bare">http://amazonlinux.us-east-1.amazonaws.com/2/extras/docker/stable/</a> x86_64：4bf88ee77c395ffe1e0c3ca68530dfb3a683ec65a4a1ce9c0ff394be50e9222b2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">適用於雲端還原執行個體AMI的CentOS套件。</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">https://download.docker.com/linux/centos/docker-ce.repo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">提供Docker Engine套件。</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">http://cloudmanagerinfraprod.azurecr.io https://cloudmanagerinfraprod.azurecr.io</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cloud Restore執行個體映像儲存庫。</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
 <h3 id="設定客戶管理的aws金鑰以進行資料加密">設定客戶管理的AWS金鑰以進行資料加密</h3>
 <div class="paragraph">
 <p>如果您想要使用預設的Amazon S3加密金鑰來加密在內部叢集和S3儲存區之間傳輸的資料、那麼您就會被設定、因為預設安裝會使用該類型的加密。</p>
@@ -1295,7 +1245,7 @@
 <p>如果您使用連接埠80（HTTP）來與私有端點通訊、就會設定好。您現在可以在叢集上啟用Cloud Backup。</p>
 </div>
 <div class="paragraph">
-<p>如果您使用連接埠443（HTTPS）與私有端點通訊、則必須從VPC S3端點複製憑證、並將憑證新增至ONTAP 您的故障叢集、如接下來4個步驟所示。</p>
+<p>如果您使用連接埠443（HTTPS）來與私有端點通訊、則必須從VPC S3端點複製憑證、並將其新增ONTAP 至您的故障叢集、如接下來的4個步驟所示。</p>
 </div>
 </li>
 <li>
@@ -1353,6 +1303,9 @@ Please enter Certificate: Press &lt;Enter&gt; when done</code></pre>
 <ol class="arabic">
 <li>
 <p>從「畫版」中選取工作環境、然後按一下右窗格中「備份與還原」服務旁的*「啟用」&gt;「備份磁碟區」*。</p>
+<div class="paragraph">
+<p>如果用於備份的Amazon S3目的地是在Canvas上的工作環境、您可以將叢集拖曳至Amazon S3工作環境、以啟動設定精靈。</p>
+</div>
 <div class="paragraph">
 <p><span class="image"><img src="./media/screenshot_backup_onprem_enable.png" alt="螢幕擷取畫面會顯示「備份與安培」；「啟用還原」按鈕、可在您選取工作環境之後使用。"></span></p>
 </div>

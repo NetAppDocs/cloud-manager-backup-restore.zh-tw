@@ -169,7 +169,39 @@
   
   <!-- Start Page Toolbar -->
   
-  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[管理ONTAP 您的還原系統的備份](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/task-manage-backups-ontap.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/task-manage-backups-ontap.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+  <div class="page-nav-toolbar">
+<div id="flavor-dropdown" class="custom-dropdown" data-url="/zh-tw/cloud-manager-backup-restore/task-manage-backups-ontap.html">
+  
+  <div class="custom-dropdown-select unselected" title="所有雲端供應商">
+    <label>雲端供應商</label>
+    <span>所有雲端供應商</span>
+    <img src="/zh-tw/cloud-manager-backup-restore/images/filter.svg" class="custom-icon" alt="" />
+  </div>
+  
+
+  <ul class="custom-dropdown-menu">
+    
+    
+    <li data-value="aws" data-url="/zh-tw/cloud-manager-backup-restore/aws/task-manage-backups-ontap.html">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/aws-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Amazon Web Services
+    </li>
+    
+    
+    
+    <li data-value="gcp" data-url="/zh-tw/cloud-manager-backup-restore/gcp/task-manage-backups-ontap.html">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/gcp-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Google Cloud
+    </li>
+    
+    
+    
+    <li data-value="azure" data-url="/zh-tw/cloud-manager-backup-restore/azure/task-manage-backups-ontap.html">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/azure-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Microsoft Azure
+    </li>
+    
+    
+  </ul>
+</div>
+<div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[管理ONTAP 您的還原系統的備份](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/task-manage-backups-ontap.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/task-manage-backups-ontap.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">在此頁面上</div>
@@ -352,8 +384,6 @@
         
         <a target="_blank" href="/zh-tw/cloud-manager-backup-restore/pdfs/fullsite-sidebar/雲端備份文件.pdf" >
           <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
-
-
 
 
 
@@ -574,6 +604,8 @@
 
 
 
+
+
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
@@ -591,35 +623,6 @@
           
 
 
-
-
-
-    
-      <ul class="subfolders" style="display:none;">
-        <li class="pdf-ux-container">
-          
-          
-          
-          <a target="_blank" 
-            
-              href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/跨帳戶和跨區域組態.pdf" 
-            
-          >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
-            跨帳戶和跨區域組態
-          </a>
-          
-
-
-
-
-
-          
-        </li>
-      </ul>
-    
-
-  
 
 
 
@@ -698,10 +701,10 @@
     $("#toggleContainerPdf").toggle('display');
     $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
   });
-</script><div class="sidebar-nav-container" id="mysidebardiv">
-  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/cloud-manager-family">
-        所有Cloud Manager文件
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/index.html">
+</script><div class="prod-nav" id="product-nav">
+  <a target="_self" class="prod-fam-nav" href="https://docs.netapp.com/zh-tw/cloud-manager-family/"><img src="/zh-tw/cloud-manager-backup-restore/images/left_arrow.png" alt=""><pre>All Cloud Manager documentation</pre></a>
+</div><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/index.html">
         雲端備份文件
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/whats-new.html">
         版本資訊
@@ -779,21 +782,16 @@
         管理虛擬機器的保護
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/task-restore-vm-data.html">
         還原虛擬機器資料
-      </a></li></ul></li><li class="subfolders "><a href="#">
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/api-backup-restore.html">
+        使用REST API進行自動化
+      </a></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 參考資料</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-aws-backup-tiers.html">
         支援的AWS歸檔儲存層
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-azure-backup-tiers.html">
         支援的Azure歸檔存取層
-      </a></li><li class="subfolders "><a href="/zh-tw/cloud-manager-backup-restore/reference-cross-account.html">
-        <div class="na-navbar-padding"> 跨帳戶和跨區域組態</div>
-      </a>
-      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-backup-multi-account-aws.html">
-        在AWS中設定多帳戶存取的備份
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-backup-multi-account-azure.html">
-        設定備份以在Azure中存取多個帳戶
-      </a></li></ul></li></ul></li><li class="subfolders "><a href="#">
+      </a></li></ul></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 知識與支援</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/task-support-registration.html">
@@ -871,7 +869,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-05-05 19:25:45 +0000">05/05/2022</time>
+    <time datetime="2022-06-09 15:51:35 +0000">06/09/2022</time>
     
   
 
@@ -996,19 +994,22 @@
 <p><span class="image"><img src="./media/screenshot_backup_edit_policy.png" alt="螢幕擷取畫面會顯示備份原則設定、您可以在其中修改備份排程和備份保留設定。"></span></p>
 </div>
 <div class="paragraph">
-<p>如果您的叢集執行ONTAP 的是版本不支援的版本號（例如更新版本的版本）、而且您使用AWS或Azure來儲存雲端、您也可以選擇在特定天數後、啟用或停用將備份分層至歸檔儲存設備的功能。</p>
-</div>
-<div class="paragraph">
-<p><a href="reference-azure-backup-tiers.html">"深入瞭解如何使用Azure歸檔儲存設備"</a>。<a href="reference-aws-backup-tiers.html">"深入瞭解使用AWS歸檔儲存設備"</a>。</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_backup_modify_policy_page2.png" alt="這是一份快照、顯示雲端備份的歸檔儲存設定分層。"></span></p>
-</div>
-<div class="paragraph">
-<p>請注意、如果您停止分層備份至歸檔儲存設備、任何已分層至歸檔儲存設備的備份檔案都會留在該層中、而不會自動移回標準層級。</p>
+<p>如果您的叢集執行ONTAP 的是版本不支援的版本號、您也可以選擇在特定天數後啟用或停用將備份分層至歸檔儲存設備。</p>
 </div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p><a href="reference-aws-backup-tiers.html">"深入瞭解使用AWS歸檔儲存設備"</a>。</p>
+</div>
+<div class="paragraph">
+<p><a href="reference-azure-backup-tiers.html">"深入瞭解如何使用Azure歸檔儲存設備"</a>。</p>
+</div>
+<div class="paragraph">
+<p>+<span class="image"><img src="./media/screenshot_backup_modify_policy_page2.png" alt="這是一份快照、顯示雲端備份的歸檔儲存設定分層。"></span></p>
+</div>
+<div class="paragraph">
+<p>+請注意、如果您停止分層備份至歸檔儲存設備、任何已分層至歸檔儲存設備的備份檔案都會留在該層中、不會自動移回標準層級。</p>
 </div>
 </div>
 </div>
@@ -1048,16 +1049,19 @@
 <p><span class="image"><img src="./media/screenshot_backup_add_new_policy.png" alt="顯示備份原則設定的快照、您可以在其中新增備份排程和備份保留設定。"></span></p>
 </div>
 <div class="paragraph">
-<p>如果您的叢集執行ONTAP 的是版本不支援的版本號（例如更新版本的版本）、而且您使用AWS或Azure來儲存雲端、您也可以選擇在特定天數後、啟用或停用將備份分層至歸檔儲存設備的功能。</p>
-</div>
-<div class="paragraph">
-<p><a href="reference-azure-backup-tiers.html">"深入瞭解如何使用Azure歸檔儲存設備"</a>。<a href="reference-aws-backup-tiers.html">"深入瞭解使用AWS歸檔儲存設備"</a>。</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./media/screenshot_backup_modify_policy_page2.png" alt="這是一份快照、顯示雲端備份的歸檔儲存設定分層。"></span></p>
+<p>如果您的叢集執行ONTAP 的是版本不支援的版本號、您也可以選擇在特定天數後啟用或停用將備份分層至歸檔儲存設備。</p>
 </div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p><a href="reference-aws-backup-tiers.html">"深入瞭解使用AWS歸檔儲存設備"</a>。</p>
+</div>
+<div class="paragraph">
+<p><a href="reference-azure-backup-tiers.html">"深入瞭解如何使用Azure歸檔儲存設備"</a>。</p>
+</div>
+<div class="paragraph">
+<p>+<span class="image"><img src="./media/screenshot_backup_modify_policy_page2.png" alt="這是一份快照、顯示雲端備份的歸檔儲存設定分層。"></span></p>
 </div>
 </div>
 </div>

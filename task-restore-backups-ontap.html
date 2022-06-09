@@ -169,7 +169,39 @@
   
   <!-- Start Page Toolbar -->
   
-  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[從ONTAP 備份檔案還原支援資料](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/task-restore-backups-ontap.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/task-restore-backups-ontap.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+  <div class="page-nav-toolbar">
+<div id="flavor-dropdown" class="custom-dropdown" data-url="/zh-tw/cloud-manager-backup-restore/task-restore-backups-ontap.html">
+  
+  <div class="custom-dropdown-select unselected" title="所有雲端供應商">
+    <label>雲端供應商</label>
+    <span>所有雲端供應商</span>
+    <img src="/zh-tw/cloud-manager-backup-restore/images/filter.svg" class="custom-icon" alt="" />
+  </div>
+  
+
+  <ul class="custom-dropdown-menu">
+    
+    
+    <li data-value="aws" data-url="/zh-tw/cloud-manager-backup-restore/aws/task-restore-backups-ontap.html">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/aws-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Amazon Web Services
+    </li>
+    
+    
+    
+    <li data-value="gcp" data-url="/zh-tw/cloud-manager-backup-restore/gcp/task-restore-backups-ontap.html">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/gcp-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Google Cloud
+    </li>
+    
+    
+    
+    <li data-value="azure" data-url="/zh-tw/cloud-manager-backup-restore/azure/task-restore-backups-ontap.html">
+      <img alt="" src="/zh-tw/cloud-manager-backup-restore/images/azure-ico.svg" onerror="this.src='/zh-tw/cloud-manager-backup-restore/images/blank-ico.png'" class="custom-icon" />Microsoft Azure
+    </li>
+    
+    
+  </ul>
+</div>
+<div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[從ONTAP 備份檔案還原支援資料](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/task-restore-backups-ontap.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/task-restore-backups-ontap.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">在此頁面上</div>
@@ -352,8 +384,6 @@
         
         <a target="_blank" href="/zh-tw/cloud-manager-backup-restore/pdfs/fullsite-sidebar/雲端備份文件.pdf" >
           <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
-
-
 
 
 
@@ -574,6 +604,8 @@
 
 
 
+
+
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
@@ -591,35 +623,6 @@
           
 
 
-
-
-
-    
-      <ul class="subfolders" style="display:none;">
-        <li class="pdf-ux-container">
-          
-          
-          
-          <a target="_blank" 
-            
-              href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/跨帳戶和跨區域組態.pdf" 
-            
-          >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
-            跨帳戶和跨區域組態
-          </a>
-          
-
-
-
-
-
-          
-        </li>
-      </ul>
-    
-
-  
 
 
 
@@ -698,10 +701,10 @@
     $("#toggleContainerPdf").toggle('display');
     $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
   });
-</script><div class="sidebar-nav-container" id="mysidebardiv">
-  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/cloud-manager-family">
-        所有Cloud Manager文件
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/index.html">
+</script><div class="prod-nav" id="product-nav">
+  <a target="_self" class="prod-fam-nav" href="https://docs.netapp.com/zh-tw/cloud-manager-family/"><img src="/zh-tw/cloud-manager-backup-restore/images/left_arrow.png" alt=""><pre>All Cloud Manager documentation</pre></a>
+</div><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/index.html">
         雲端備份文件
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/whats-new.html">
         版本資訊
@@ -779,21 +782,16 @@
         管理虛擬機器的保護
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/task-restore-vm-data.html">
         還原虛擬機器資料
-      </a></li></ul></li><li class="subfolders "><a href="#">
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/api-backup-restore.html">
+        使用REST API進行自動化
+      </a></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 參考資料</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-aws-backup-tiers.html">
         支援的AWS歸檔儲存層
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-azure-backup-tiers.html">
         支援的Azure歸檔存取層
-      </a></li><li class="subfolders "><a href="/zh-tw/cloud-manager-backup-restore/reference-cross-account.html">
-        <div class="na-navbar-padding"> 跨帳戶和跨區域組態</div>
-      </a>
-      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-backup-multi-account-aws.html">
-        在AWS中設定多帳戶存取的備份
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-backup-multi-account-azure.html">
-        設定備份以在Azure中存取多個帳戶
-      </a></li></ul></li></ul></li><li class="subfolders "><a href="#">
+      </a></li></ul></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 知識與支援</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/task-support-registration.html">
@@ -871,7 +869,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-06-08 11:41:30 +0000">06/08/2022</time>
+    <time datetime="2022-06-09 15:51:35 +0000">06/09/2022</time>
     
   
 
@@ -946,7 +944,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">依部分或完整磁碟區名稱、部分或完整檔案名稱、大小範圍及其他搜尋篩選器、在*所有備份檔案*之間搜尋磁碟區或檔案</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Volume還原可搭配儲存在Amazon S3、Azure Blob、Google Cloud和NetApp StorageGRID 等系統中的備份檔案運作。檔案還原可與儲存在Amazon S3和Azure Blob中的備份檔案搭配使用</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Volume與檔案還原可搭配儲存在Amazon S3、Azure Blob、Google Cloud和NetApp StorageGRID 的備份檔案使用。</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Volume與檔案還原可與儲存在Amazon S3和Google Cloud中的備份檔案搭配使用</p></td>
 </tr>
 <tr>
@@ -958,15 +956,11 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">瀏覽跨公有雲和本機Snapshot複本的結果</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">檔案還原需要獨立的Cloud Restore執行個體</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">不需要雲端還原執行個體</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">無需額外的雲端供應商資源</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">每個帳戶所需的額外資源庫和AWS或Google資源</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">瀏覽個別檔案的備份時、與Cloud Restore執行個體相關的成本</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">無需額外的雲端供應商成本</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">掃描備份和磁碟區以取得搜尋結果時、與AWS或Google資源相關的成本</p></td>
 </tr>
 </tbody>
@@ -999,10 +993,13 @@
 <p>在開始還原磁碟區或檔案之前、您應該知道要還原的磁碟區或檔案名稱、磁碟區所在工作環境的名稱、以及要還原的備份檔案大約日期。</p>
 </div>
 <div class="paragraph">
-<p>*附註：*如果您要還原的磁碟區備份檔案位於歸檔儲存設備（AWS和Azure可從ONTAP 版本號更新至版本號更新9.10.1開始使用）中、則還原作業將需要較長的時間、而且會產生成本。此外、目的地叢集也必須執行ONTAP 不含更新版本的版本資訊的版本。</p>
+<p>*附註：*如果您要還原的磁碟區備份檔案位於歸檔儲存設備（從ONTAP 版本號9.10.1開始）中、還原作業將需要較長的時間、而且會產生成本。此外、目的地叢集也必須執行ONTAP 不含更新版本的版本資訊的版本。</p>
 </div>
 <div class="paragraph">
-<p><a href="reference-azure-backup-tiers.html">"深入瞭解如何從Azure歸檔儲存設備還原"</a>。<a href="reference-aws-backup-tiers.html">"深入瞭解如何從AWS歸檔儲存設備還原"</a>。</p>
+<p><a href="reference-aws-backup-tiers.html">"深入瞭解如何從AWS歸檔儲存設備還原"</a>。</p>
+</div>
+<div class="paragraph">
+<p><a href="reference-azure-backup-tiers.html">"深入瞭解如何從Azure歸檔儲存設備還原"</a>。</p>
 </div>
 <div class="sect2">
 <h3 id="瀏覽及還原支援的工作環境和物件儲存供應商">瀏覽及還原支援的工作環境和物件儲存供應商</h3>
@@ -1025,27 +1022,27 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">* 磁碟區還原 *</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>檔案還原</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>檔案還原</strong> ifdef：：AWS []</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Amazon S3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AWS 內部部署的內部系統 Cloud Volumes ONTAP ONTAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AWS 內部部署的內部系統 Cloud Volumes ONTAP ONTAP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS內部部署的不全系統endif::AWS [] ifdef:azure[] Cloud Volumes ONTAP ONTAP</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Azure Blob</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Azure 內部部署的整套系統 Cloud Volumes ONTAP ONTAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Azure 內部部署的整套系統 Cloud Volumes ONTAP ONTAP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure內部部署的系統中的資料：：azure[] ifdef：：Cloud Volumes ONTAP ONTAP GCP[]</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Google Cloud Storage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">在Google內部部署的內部部署系統中使用Cloud Volumes ONTAP ONTAP</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">在Google內部部署中的系統資訊：Cloud Volumes ONTAP ONTAP GCP[]</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NetApp StorageGRID</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">內部部署 ONTAP 的作業系統</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">內部部署 ONTAP 的作業系統</p></td>
 </tr>
 </tbody>
 </table>
@@ -1120,7 +1117,8 @@
 <ul>
 <li>
 <p>從Amazon S3還原時、請在ONTAP 目標Volume所在的叢集中選取IPspace、輸入您所建立之使用者的存取金鑰和秘密金鑰、以便ONTAP 讓該叢集能夠存取S3儲存區、 此外、您也可以選擇私有VPC端點來進行安全的資料傳輸。</p>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p>從Azure Blob還原時、請在ONTAP 目的地Volume所在的叢集中選取IPspace、選取Azure訂閱以存取物件儲存設備、並選取vnet和Subnet（子網路）以選擇用於安全資料傳輸的私有端點。</p>
 </li>
@@ -1128,26 +1126,40 @@
 <p>從Google Cloud Storage還原時、請選取Google Cloud Project和存取金鑰和秘密金鑰、以存取物件儲存設備、儲存備份的區域、ONTAP 以及目的地Volume所在的物件叢集中的IPspace。</p>
 </li>
 <li>
-<p>從StorageGRID 還原時、請選取存取物件儲存所需的存取金鑰和秘密金鑰、以及ONTAP 目的地Volume所在的物件叢集中的IPspace。</p>
-</li>
-</ul>
-</div>
-</li>
+<p>從StorageGRID 物件還原時、請輸入StorageGRID 用來ONTAP 與StorageGRID 物件進行HTTPS通訊的支援伺服器FQDN和連接埠、選擇存取物件儲存所需的存取金鑰和秘密金鑰、以及ONTAP 位於目的地Volume所在之資料中心內的IPspace。</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
 <li>
 <p>輸入您要用於還原磁碟區的名稱、然後選取磁碟區所在的Storage VM。根據預設、*&lt;SOUR_volume名稱&gt;_restore *會用作磁碟區名稱。</p>
 <div class="paragraph">
 <p><span class="image"><img src="./media/screenshot_restore_new_vol_name.png" alt="輸入您要還原之新磁碟區名稱的快照。"></span></p>
 </div>
+</li>
+</ol>
+</div>
 <div class="paragraph">
 <p>您只能在將Volume還原至內部部署ONTAP 的還原系統時、選取要用於其容量的集合體。</p>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>如果您要從位於歸檔儲存層的備份檔案還原磁碟區（從ONTAP 版本號9.10.1開始提供）、則可以選取還原優先順序。</p>
 </div>
-<div class="paragraph">
-<p><a href="reference-azure-backup-tiers.html#restoring-data-from-archival-storage">"深入瞭解如何從Azure歸檔儲存設備還原"</a>。<a href="reference-aws-backup-tiers.html#restoring-data-from-archival-storage">"深入瞭解如何從AWS歸檔儲存設備還原"</a>。</p>
+</li>
+</ul>
 </div>
 </li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a href="reference-aws-backup-tiers.html#restoring-data-from-archival-storage">"深入瞭解如何從AWS歸檔儲存設備還原"</a>。</p>
+</div>
+<div class="paragraph">
+<p><a href="reference-azure-backup-tiers.html#restoring-data-from-archival-storage">"深入瞭解如何從Azure歸檔儲存設備還原"</a>。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>按一下「<strong>還原</strong>」、您就會回到「還原儀表板」、以便檢閱還原作業的進度。</p>
 </li>
@@ -1188,16 +1200,7 @@
 <p>在您的不景點或內部部署的地方、執行檔案還原作業時、該版本必須為9.6或更高版本。ONTAP Cloud Volumes ONTAP ONTAP</p>
 </li>
 <li>
-<p>從備份檔案還原個別檔案時、會使用個別的還原執行個體/虛擬機器。請參閱 <a href="concept-ontap-backup-to-cloud.html#cost">"將部署用於檔案還原作業的執行個體類型"</a> 並確保您的環境已就緒。</p>
-</li>
-<li>
-<p>若要從Amazon S3上的備份還原檔案、必須將特定AWS EC2權限新增至提供Cloud Manager權限的使用者角色。您也必須允許連絡特定端點的傳出網際網路存取。 <a href="task-backup-onprem-to-aws.html#preparing-amazon-s3-for-backups">"確認您的組態已準備好還原檔案"</a>。</p>
-</li>
-<li>
 <p>AWS跨帳戶還原需要在AWS主控台中手動執行動作。請參閱 AWS 主題 <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/example-walkthroughs-managing-access-example2.html" target="_blank" rel="noopener">"授予跨帳戶庫位權限"</a> 以取得詳細資料。</p>
-</li>
-<li>
-<p>若要從Azure Blob上的備份還原檔案、則必須連絡特定端點、才能存取傳出的網際網路。 <a href="task-backup-onprem-to-azure.html#preparing-azure-blob-storage-for-backups">"確認您的組態已準備好還原檔案"</a>。</p>
 </li>
 </ul>
 </div>
@@ -1213,10 +1216,7 @@
 <p>若要從磁碟區備份還原一或多個檔案、請按一下「<strong>還原</strong>」索引標籤、按一下「瀏覽與還原」下的「<strong>還原檔案</strong>」、然後選取檔案（或檔案）所在的備份檔案。</p>
 </li>
 <li>
-<p>還原執行個體隨即啟動、並顯示所選備份檔案中的資料夾和檔案。</p>
-<div class="paragraph">
-<p>*附註：*首次還原檔案時、還原執行個體會部署在雲端供應商的環境中。</p>
-</div>
+<p>Cloud Backup會顯示所選備份檔案中的資料夾和檔案。</p>
 </li>
 <li>
 <p>選擇您要從該備份還原的檔案。</p>
@@ -1225,7 +1225,7 @@
 <p>選取您要還原檔案的位置（工作環境、磁碟區和資料夾）、然後按一下*還原*。</p>
 </li>
 <li>
-<p>檔案隨即還原、還原執行個體會在一段無活動時間後關閉、以節省成本。</p>
+<p>檔案即會還原。</p>
 </li>
 </ol>
 </div>
@@ -1271,10 +1271,7 @@
 </div>
 </li>
 <li>
-<p>按一下「 * 繼續 * 」、即會啟動還原執行個體。幾分鐘後、即會顯示磁碟區備份中的資料夾和檔案清單。</p>
-<div class="paragraph">
-<p>*附註：*首次還原檔案時、還原執行個體會部署在雲端供應商的環境中、因此第一次還原可能需要幾分鐘的時間。</p>
-</div>
+<p>按一下*繼續*、即會顯示Volume備份中的資料夾和檔案清單。</p>
 <div class="paragraph">
 <p><span class="image"><img src="./media/screenshot_restore_select_files.png" alt="「選取檔案」頁面的快照、可讓您瀏覽至要還原的檔案。"></span></p>
 </div>
@@ -1310,17 +1307,31 @@
 <ul>
 <li>
 <p>從Amazon S3還原時、請在ONTAP 目的地Volume所在的叢集中輸入IPspace、以及存取物件儲存所需的AWS存取金鑰和秘密金鑰。</p>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p>從Azure Blob還原時、請在ONTAP 目的地Volume所在的叢集中輸入IPspace。</p>
 </li>
-</ul>
-</div>
+<li>
+<p>從Google Cloud Storage還原時、請在ONTAP 目標磁碟區所在的叢集中輸入IPspace、以及存取物件儲存所需的存取金鑰和秘密金鑰。</p>
 </li>
+<li>
+<p>從StorageGRID 物件還原時、請輸入StorageGRID 支援ONTAP 以HTTPS通訊的支援對象伺服器的FQDN和連接埠StorageGRID 、輸入存取物件儲存所需的存取金鑰和秘密金鑰、以及ONTAP 目的地Volume所在的物件叢集中的IPspace。</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
 <li>
 <p>然後選擇 * Volume * 和 * 資料夾 * 、您可以在其中還原檔案。</p>
 <div class="paragraph">
 <p><span class="image"><img src="./media/screenshot_restore_select_dest.png" alt="選取您要還原之檔案的磁碟區和資料夾的快照。"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>還原檔案時、您有幾個位置選項可以選擇。</p>
@@ -1342,17 +1353,18 @@
 </li>
 <li>
 <p>如果您選取的目的地工作環境和磁碟區與來源檔案所在的位置相同、您可以選取*維護來源資料夾路徑*、將檔案或所有檔案還原至來源結構中的相同資料夾。所有相同的資料夾和子資料夾都必須已經存在、而且不會建立資料夾。</p>
-</li>
-</ul>
-</div>
-</li>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
 <li>
 <p>按一下「<strong>還原</strong>」、您就會回到「還原儀表板」、以便檢閱還原作業的進度。您也可以按一下「<strong>工作監視器</strong>」標籤來查看還原進度。</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>還原執行個體會在一段無活動時間後關閉、以節省您的金錢、因此您只會在該執行個體處於作用中狀態時產生成本。</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -1374,7 +1386,7 @@
 <p>您可以將檔案還原至原始磁碟區位置、相同工作環境中的不同磁碟區、或是使用相同雲端帳戶的不同工作環境。您也可以將檔案還原至內部部署 ONTAP 的作業系統上的 Volume 。</p>
 </div>
 <div class="paragraph">
-<p>如果您要還原的磁碟區備份檔案位於歸檔儲存區（從ONTAP 版本號為1.1開始、AWS可取得）、則還原作業需要較長的時間、而且會產生額外成本。請注意、目的地叢集也必須執行ONTAP 版本不支援的版本為《支援使用支援的功能》（更新版本）、而且目前不支援從歸檔儲存設備還原檔案。</p>
+<p>如果您要還原的磁碟區備份檔案位於歸檔儲存設備（ONTAP 從版本號9.10.1開始提供）、還原作業將需要較長的時間、並會產生額外成本。請注意、目的地叢集也必須執行ONTAP 版本不支援的版本為《支援使用支援的功能》（更新版本）、而且目前不支援從歸檔儲存設備還原檔案。</p>
 </div>
 <div class="paragraph">
 <p><a href="reference-aws-backup-tiers.html">"深入瞭解如何從AWS歸檔儲存設備還原"</a>。</p>
@@ -1411,17 +1423,27 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">* 磁碟區還原 *</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>檔案還原</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>檔案還原</strong> ifdef：：AWS []</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Amazon S3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AWS 內部部署的內部系統 Cloud Volumes ONTAP ONTAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AWS 內部部署的內部系統 Cloud Volumes ONTAP ONTAP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS內部部署的不全系統endif::AWS [] ifdef:azure[] Cloud Volumes ONTAP ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Blob</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">目前不支援</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">endif::azure[] ifdef：：GCP[]</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Google Cloud Storage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">在Google內部部署的內部部署系統中使用Cloud Volumes ONTAP ONTAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">在Google內部部署的內部部署系統中使用Cloud Volumes ONTAP ONTAP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">在Google內部部署中的系統資訊：Cloud Volumes ONTAP ONTAP GCP[]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NetApp StorageGRID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">目前不支援</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -1532,9 +1554,12 @@
 <p>對於儲存在AWS中的備份、它會配置新的S3儲存區和 <a href="https://aws.amazon.com/athena/faqs/" target="_blank" rel="noopener">"Amazon Athena互動查詢服務"</a> 和 <a href="https://aws.amazon.com/glue/faqs/" target="_blank" rel="noopener">"AWS黏著伺服器無資料整合服務"</a>。</p>
 </li>
 <li>
-<p>對於儲存在Google Cloud中的備份、IT會配置新的儲存庫、以及 <a href="https://cloud.google.com/bigquery" target="_blank" rel="noopener">"Google Cloud BigQuery服務"</a> 在帳戶/專案層級上進行資源配置。如果您的工作環境已啟用索引、請前往下一節還原資料。</p>
+<p>對於儲存在Google Cloud中的備份、IT會配置新的儲存庫、以及 <a href="https://cloud.google.com/bigquery" target="_blank" rel="noopener">"Google Cloud BigQuery服務"</a> 在帳戶/專案層級上進行資源配置。</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>如果您的工作環境已啟用索引、請前往下一節還原資料。</p>
 </div>
 <div class="paragraph">
 <p>若要啟用工作環境的索引：</p>
