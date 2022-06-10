@@ -1932,4 +1932,9 @@
   <block id="310c228207a0f8446bbe4c5d16978cb7" category="paragraph">endif::gcp[]</block>
   <block id="b010c7530103ef9947582474d65ff9a3" category="paragraph">ifdef::azure[]</block>
   <block id="879701946bb2bc7241d0f85fd843455a" category="paragraph">endif::azure[]</block>
+  <block id="3aae0000d94bd57f0c950ff30a179de4" category="paragraph"><block ref="3aae0000d94bd57f0c950ff30a179de4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f53acd42cafa9ffd85119f579f947919" category="paragraph">如果您要在特定叢集中尋找特定的磁碟區、您可以依叢集和磁碟區精簡清單、也可以使用搜尋篩選器。</block>
+  <block id="9c3d211479947fe5a4243acecfe00203" category="paragraph"><block ref="de207573efa181ef2924818974bfa495" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e25a9f6fb169550c2eb662453971516f" category="paragraph"><block ref="e25a9f6fb169550c2eb662453971516f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f23af0fb3293030465a68a6d46401ecc" category="list-text">使用Cloud Backup for VMware將資料存放區備份到雲端、並將虛擬機器還原回內部部署的vCenter。 <block ref="7d3aa28b08d11afec4b666dd6503d425" category="inline-link-macro-rx"></block>。</block>
 </blocks>

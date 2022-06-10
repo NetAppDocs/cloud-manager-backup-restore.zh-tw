@@ -25,6 +25,7 @@ link:https://cloud.netapp.com/cloud-backup-service["深入瞭解Cloud Backup"^]�
 * 備份及還原ONTAP 來自於內部部署的不全系統的資料。Cloud Volumes ONTAP ONTAP link:concept-ontap-backup-to-cloud.html["請參閱此處的詳細功能"]。
 * 備份及還原Kubernetes持續磁碟區。 link:concept-kubernetes-backup-to-cloud.html["請參閱此處的詳細功能"]。
 * 使用Cloud Backup for Applications、將應用程式一致的Snapshot從內部部署ONTAP 到雲端。 link:concept-protect-app-data-to-cloud.html["請參閱此處的詳細功能"]。
+* 使用Cloud Backup for VMware將資料存放區備份到雲端、並將虛擬機器還原回內部部署的vCenter。 link:concept-protect-vm-data.html["請參閱此處的詳細功能"]。
 
 
 
