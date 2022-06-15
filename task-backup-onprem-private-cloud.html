@@ -869,7 +869,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-06-09 15:51:35 +0000">06/09/2022</time>
+    <time datetime="2022-06-15 13:19:19 +0000">06/15/2022</time>
     
   
 
@@ -915,6 +915,9 @@
 <p>您的內部部署安裝了Connector。</p>
 <div class="ulist">
 <ul>
+<li>
+<p>連接器可安裝在有或沒有網際網路存取的站台上。</p>
+</li>
 <li>
 <p>連接器的網路功能可將HTTPS連線傳出ONTAP 至支援叢集和StorageGRID 進行支援。</p>
 </li>
@@ -966,6 +969,9 @@
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="./media/diagram_cloud_backup_onprem_storagegrid.png" alt="顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"></span></p>
+</div>
+<div class="paragraph">
+<p>若將Connector和內部部署ONTAP 的系統安裝在內部部署位置、但無法存取網際網路、StorageGRID 則該系統必須位於同一個內部部署資料中心內。</p>
 </div>
 <div class="sect2">
 <h3 id="準備-ontap-您的叢集">準備 ONTAP 您的叢集</h3>
@@ -1028,7 +1034,7 @@
 </div>
 </li>
 <li>
-<p>節點的叢集間生命體能夠存取物件存放區。</p>
+<p>節點的叢集間LIF可存取物件存放區（當連接器安裝在「暗」站台時、則不需要）。</p>
 </li>
 <li>
 <p>DNS伺服器已針對磁碟區所在的儲存VM進行設定。瞭解如何操作 <a href="https://docs.netapp.com/us-en/ontap/networking/configure_dns_services_auto.html" target="_blank" rel="noopener">"設定SVM的DNS服務"</a>。</p>
@@ -1089,7 +1095,7 @@
 <div class="sect2">
 <h3 id="建立或切換連接器">建立或切換連接器</h3>
 <div class="paragraph">
-<p>將資料備份StorageGRID 到不支援的地方時、內部環境中必須有連接器。您可能需要安裝新的 Connector 、或確定目前選取的 Connector 位於內部部署。</p>
+<p>將資料備份StorageGRID 到不支援的地方時、內部環境中必須有連接器。您可能需要安裝新的 Connector 、或確定目前選取的 Connector 位於內部部署。連接器可安裝在有或沒有網際網路存取的站台上。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1100,9 +1106,24 @@
 <p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-installing-linux.html" target="_blank" rel="noopener">"在可存取網際網路的Linux主機上安裝Connector"</a></p>
 </li>
 <li>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-install-connector-onprem-no-internet.html" target="_blank" rel="noopener">"在無法存取網際網路的Linux主機上安裝Connector"</a></p>
+</li>
+<li>
 <p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-managing-connectors.html" target="_blank" rel="noopener">"在連接器之間切換"</a></p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/cloud-manager-backup-restore/images/note.svg" alt="附註">
+</td>
+<td class="content">
+Cloud Manager Connector內建Cloud Backup功能。安裝在沒有網際網路連線的站台時、您需要定期更新Connector軟體、才能存取新功能。請檢查 <a href="whats-new.html">"雲端備份新功能"</a> 若要查看每個Cloud Backup版本中的新功能、請依照下列步驟執行 <a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-managing-connectors.html#upgrading-the-connector-on-prem-without-internet-access" target="_blank" rel="noopener">"升級Connector軟體"</a> 當您想要使用新功能時。
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -1124,7 +1145,7 @@
 <p>透過連接埠443連線至ONTAP 您的SURF叢 集管理LIF的HTTPS連線</p>
 </li>
 <li>
-<p>透過連接埠443連至Cloud Backup的傳出網際網路連線</p>
+<p>透過連接埠443連至Cloud Backup的傳出網際網路連線（當連接器安裝在「暗」站台時、不需要）</p>
 </li>
 </ul>
 </div>
@@ -1181,7 +1202,7 @@
 <p>存取金鑰和秘密金鑰、用於存取儲存備份的儲存庫。</p>
 </li>
 <li>
-<p>您要備份的磁碟區所在的叢集中的 IPspace ONTAP 。此IPspace的叢集間生命體必須具有傳出網際網路存取。</p>
+<p>您要備份的磁碟區所在的叢集中的 IPspace ONTAP 。此IPspace的叢集間生命體必須具有傳出網際網路存取（當連接器安裝在「暗」站台時、則不需要）。</p>
 <div class="paragraph">
 <p>選擇正確的IPspace、可確保Cloud Backup能夠從ONTAP 功能區設定連接StorageGRID 到您的物件儲存區。</p>
 </div>
@@ -1232,7 +1253,7 @@
 <p>S3儲存區會自動建立在您輸入的S3存取金鑰和秘密金鑰所指示的服務帳戶中、並儲存備份檔案。Volume Backup Dashboard隨即顯示、以便您監控備份狀態。</p>
 </div>
 <div class="paragraph">
-<p>您可以 <a href="task-manage-backups-ontap.html" target="_blank" rel="noopener">"開始和停止磁碟區備份、或變更備份排程"</a>。您也可以 <a href="task-restore-backups-ontap.html" target="_blank" rel="noopener">"從備份檔案還原整個磁碟區"</a> 在內部部署ONTAP 的更新版次中、</p>
+<p>您可以 <a href="task-manage-backups-ontap.html" target="_blank" rel="noopener">"開始和停止磁碟區備份、或變更備份排程"</a>。您也可以 <a href="task-restore-backups-ontap.html" target="_blank" rel="noopener">"從備份檔案還原整個磁碟區或個別檔案"</a> 內部部署ONTAP 的系統。</p>
 </div>
 </div>
 </div>

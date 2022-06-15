@@ -862,7 +862,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-06-09 15:51:35 +0000">06/09/2022</time>
+    <time datetime="2022-06-15 13:19:19 +0000">06/15/2022</time>
     
   
 
@@ -973,6 +973,9 @@
 <div class="paragraph">
 <p>購買Cloud Backup授權之後、您可以在Cloud Manager中輸入Cloud Backup序號和nss/帳戶、或是上傳NLF授權檔案、以啟動授權。下列步驟說明如果您打算使用NLF授權檔案、該如何取得該檔案。</p>
 </div>
+<div class="paragraph">
+<p>如果您是在無法存取網際網路的內部部署網站上執行Cloud Backup、表示您已在離線內部部署網站的主機上部署Cloud Manager Connector、則必須從連網際網路的系統取得授權檔案。無法使用序號啟動授權、且無法離線（暗站）安裝。</p>
+</div>
 <div class="olist arabic">
 <div class="title">步驟</div>
 <ol class="arabic">
@@ -1025,7 +1028,7 @@
 </div>
 </li>
 <li>
-<p>如果您有備份授權檔案、請選取*上傳授權檔案*選項、然後依照提示附加檔案。</p>
+<p>如果您有備份授權檔案（安裝在暗處時需要）、請選取*上傳授權檔案*選項、然後依照提示附加檔案。</p>
 <div class="paragraph">
 <p><span class="image"><img src="./media/screenshot_services_license_add2.png" alt="顯示新增Cloud Backup BYOL授權頁面的快照。"></span></p>
 </div>
@@ -1060,7 +1063,7 @@
 </div>
 </li>
 <li>
-<p>如果Cloud Manager無法自動更新授權、則您必須手動上傳授權檔案。</p>
+<p>如果Cloud Manager無法自動更新授權（例如、安裝在暗點）、則您需要手動上傳授權檔案。</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1116,7 +1119,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>續約BYOL訂閱之後、Cloud Manager會自動更新授權。如果 Cloud Manager 無法透過安全的網際網路連線存取授權檔案、您可以自行取得檔案、然後手動將其上傳至 Cloud Manager 。如需相關指示、請參閱 <a href="task-licensing-cloud-backup.html#update-a-cloud-backup-byol-license">"如何更新Cloud Backup授權"</a>。</p>
+<p>續約BYOL訂閱之後、Cloud Manager會自動更新授權。如果Cloud Manager無法透過安全的網際網路連線存取授權檔案（例如、安裝在暗點）、您可以自行取得該檔案、然後手動將其上傳至Cloud Manager。如需相關指示、請參閱 <a href="task-licensing-cloud-backup.html#update-a-cloud-backup-byol-license">"如何更新Cloud Backup授權"</a>。</p>
 </div>
 <div class="paragraph">
 <p>移轉至 PAYGO 授權的系統會自動傳回 BYOL 授權。而在未取得授權的情況下執行的系統將停止顯示警告。</p>

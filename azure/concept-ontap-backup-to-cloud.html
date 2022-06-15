@@ -862,7 +862,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-06-09 15:51:35 +0000">06/09/2022</time>
+    <time datetime="2022-06-15 13:19:19 +0000">06/15/2022</time>
     
   
 
@@ -1018,6 +1018,12 @@
 </table>
 <div class="paragraph">
 <p>請注意、「內部部署ONTAP 的功能系統」的參考資料包括FAS 了功能性的功能、包括了功能性的功能、包括了功能性的功能、AFF 功能性的功能、以及ONTAP Select 功能</p>
+</div>
+<div class="sect2">
+<h3 id="支援無網際網路連線的站台">支援無網際網路連線的站台</h3>
+<div class="paragraph">
+<p>Cloud Backup可在沒有網際網路連線的站台（也稱為「離線」或「暗」站台）中使用、將大量資料從本機內部部署ONTAP 的還原系統備份到本機NetApp StorageGRID 的還原系統。在這種情況下、您需要在黑暗站台中部署Cloud Manager Connector（最低版本3.9.19）。請參閱 <a href="task-backup-onprem-private-cloud.html">"將內部部署ONTAP 的不全資料備份StorageGRID 至不全"</a> 以取得詳細資料。</p>
+</div>
 </div>
 </div>
 </div>
@@ -1366,6 +1372,9 @@
 </li>
 <li>
 <p>如果備份檔案位於歸檔儲存設備中、則無法還原個別檔案。</p>
+</li>
+<li>
+<p>若Connector安裝在沒有網際網路存取的站台（黑站）、則不支援使用搜尋與還原進行檔案層級還原。</p>
 </li>
 </ul>
 </div>
