@@ -54,6 +54,9 @@ image:screenshot_restore_dashboard.png["「還原儀表板」顯示使用瀏覽&
 | Volume與檔案還原可搭配儲存在Amazon S3、Azure Blob、Google Cloud和NetApp StorageGRID 的備份檔案使用。 | Volume與檔案還原可與儲存在Amazon S3和Google Cloud中的備份檔案搭配使用 
 
 
+| 從StorageGRID 無法存取網際網路的站台還原磁碟區和檔案 | 在黑暗站台不受支援 
+
+
 | 不會處理已重新命名或刪除的檔案 | 處理新建立/刪除/重新命名的目錄、以及新建立/刪除/重新命名的檔案 
 
 

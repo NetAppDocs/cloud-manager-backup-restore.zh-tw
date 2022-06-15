@@ -34,6 +34,7 @@ summary: 請完成幾個步驟、開始從內部部署ONTAP 的支援系統備�
 
 * 您的內部部署安裝了Connector。
 +
+** 連接器可安裝在有或沒有網際網路存取的站台上。
 ** 連接器的網路功能可將HTTPS連線傳出ONTAP 至支援叢集和StorageGRID 進行支援。
 
 
@@ -75,6 +76,8 @@ S3儲存區會自動建立在您輸入的S3存取金鑰和秘密金鑰所指示�
 
 image:diagram_cloud_backup_onprem_storagegrid.png["顯示Cloud Backup如何與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
 
+若將Connector和內部部署ONTAP 的系統安裝在內部部署位置、但無法存取網際網路、StorageGRID 則該系統必須位於同一個內部部署資料中心內。
+
 
 
 === 準備 ONTAP 您的叢集
@@ -113,7 +116,7 @@ https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.
 +
 設定Cloud Backup時、系統會提示您輸入要使用的IPspace。您應該選擇每個 LIF 所關聯的 IPspace 。這可能是您建立的「預設」 IPspace 或自訂 IPspace 。
 
-* 節點的叢集間生命體能夠存取物件存放區。
+* 節點的叢集間LIF可存取物件存放區（當連接器安裝在「暗」站台時、則不需要）。
 * DNS伺服器已針對磁碟區所在的儲存VM進行設定。瞭解如何操作 https://docs.netapp.com/us-en/ontap/networking/configure_dns_services_auto.html["設定SVM的DNS服務"^]。
 * 請注意、如果您使用的IPspace與預設值不同、則可能需要建立靜態路由才能存取物件儲存設備。
 * 如有必要、請更新防火牆規則、以便Cloud Backup Service 透過ONTAP 您指定的連接埠（通常是連接埠443）、將來自儲存VM的名稱解析流量透過連接埠53（TCP/IP）、從物件儲存設備連線至DNS伺服器。
@@ -151,12 +154,16 @@ S3 認證:: 當您設定將備份備份到StorageGRID SURITY時、備份精靈�
 
 === 建立或切換連接器
 
-將資料備份StorageGRID 到不支援的地方時、內部環境中必須有連接器。您可能需要安裝新的 Connector 、或確定目前選取的 Connector 位於內部部署。
+將資料備份StorageGRID 到不支援的地方時、內部環境中必須有連接器。您可能需要安裝新的 Connector 、或確定目前選取的 Connector 位於內部部署。連接器可安裝在有或沒有網際網路存取的站台上。
 
 * https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-connectors.html["深入瞭解連接器"^]
 * https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-installing-linux.html["在可存取網際網路的Linux主機上安裝Connector"^]
+* https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-install-connector-onprem-no-internet.html["在無法存取網際網路的Linux主機上安裝Connector"^]
 * https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-managing-connectors.html["在連接器之間切換"^]
 
+
+
+NOTE: Cloud Manager Connector內建Cloud Backup功能。安裝在沒有網際網路連線的站台時、您需要定期更新Connector軟體、才能存取新功能。請檢查 link:whats-new.html["雲端備份新功能"] 若要查看每個Cloud Backup版本中的新功能、請依照下列步驟執行 https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-managing-connectors.html#upgrading-the-connector-on-prem-without-internet-access["升級Connector軟體"^] 當您想要使用新功能時。
 
 
 
@@ -169,7 +176,7 @@ S3 認證:: 當您設定將備份備份到StorageGRID SURITY時、備份精靈�
 +
 ** 透過連接埠 443 連線至 StorageGRID 支援的 HTTPS 連線
 ** 透過連接埠443連線至ONTAP 您的SURF叢 集管理LIF的HTTPS連線
-** 透過連接埠443連至Cloud Backup的傳出網際網路連線
+** 透過連接埠443連至Cloud Backup的傳出網際網路連線（當連接器安裝在「暗」站台時、不需要）
 
 
 
@@ -200,7 +207,7 @@ image:screenshot_backup_onprem_enable.png["螢幕擷取畫面會顯示「備份�
 +
 .. 支援以HTTPS通訊的支援對象是支援支援支援使用支援支援的伺服StorageGRID 器的FQDN和連接埠ONTAP 、例如：「3.eng.company.com:8082`」StorageGRID
 .. 存取金鑰和秘密金鑰、用於存取儲存備份的儲存庫。
-.. 您要備份的磁碟區所在的叢集中的 IPspace ONTAP 。此IPspace的叢集間生命體必須具有傳出網際網路存取。
+.. 您要備份的磁碟區所在的叢集中的 IPspace ONTAP 。此IPspace的叢集間生命體必須具有傳出網際網路存取（當連接器安裝在「暗」站台時、則不需要）。
 +
 選擇正確的IPspace、可確保Cloud Backup能夠從ONTAP 功能區設定連接StorageGRID 到您的物件儲存區。
 
@@ -236,4 +243,4 @@ image:screenshot_backup_select_volumes.png["選取要備份之磁碟區的快照
 
 S3儲存區會自動建立在您輸入的S3存取金鑰和秘密金鑰所指示的服務帳戶中、並儲存備份檔案。Volume Backup Dashboard隨即顯示、以便您監控備份狀態。
 
-您可以 link:task-manage-backups-ontap.html["開始和停止磁碟區備份、或變更備份排程"^]。您也可以 link:task-restore-backups-ontap.html["從備份檔案還原整個磁碟區"^] 在內部部署ONTAP 的更新版次中、
+您可以 link:task-manage-backups-ontap.html["開始和停止磁碟區備份、或變更備份排程"^]。您也可以 link:task-restore-backups-ontap.html["從備份檔案還原整個磁碟區或個別檔案"^] 內部部署ONTAP 的系統。

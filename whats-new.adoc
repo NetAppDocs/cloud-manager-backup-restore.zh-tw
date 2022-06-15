@@ -18,6 +18,18 @@ summary: 瞭解Cloud Backup的新功能。
 
 
 
+== 2022年6月14日
+
+
+
+=== 我們新增支援功能、可在ONTAP 無法存取網際網路的站台中備份內部部署的叢集資料
+
+如果您的內部ONTAP 使用的叢集位於無法存取網際網路的站台、也稱為暗站或離線站台、現在您可以使用Cloud Backup將Volume資料備份到StorageGRID 位於同一個站台的NetApp作業系統。此功能需要Cloud Manager Connector（3.9.19或更新版本）也部署在離線站台。
+
+https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-install-connector-onprem-no-internet.html["瞭解如何在離線站台中安裝Connector"]。https://docs.netapp.com/us-en/cloud-manager-backup-restore/task-backup-onprem-private-cloud.html["瞭解如何在ONTAP 離線網站上備份不只是StorageGRID 資料的功能"]。
+
+
+
 == 2022年6月8日
 
 
@@ -39,7 +51,7 @@ https://docs.netapp.com/us-en/cloud-manager-backup-restore/concept-protect-vm-da
 * 在內部部署安裝Connector時、可支援從雲端瀏覽及還原檔案作業
 
 
-請注意、如果您先前使用Cloud Restore執行個體/ VM、將會自動移除。
+請注意、如果您先前使用Cloud Restore執行個體/ VM、將會自動移除。雲端備份程序會每天執行一次、以刪除所有舊的Cloud Restore執行個體。這項變更是完全透明的、不會對您的資料造成任何影響、而且您不會注意到備份或還原工作有任何變更。
 
 
 

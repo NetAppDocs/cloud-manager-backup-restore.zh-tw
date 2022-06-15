@@ -80,7 +80,7 @@ image:diagram_cloud_backup_cvo_aws.png["顯示Cloud Backup如何與來源系統�
 --
 支援的 AWS 區域:: 所有AWS區域均支援雲端備份 https://cloud.netapp.com/cloud-volumes-global-regions["支援的地方 Cloud Volumes ONTAP"^]；包括AWS GovCloud區域。
 使用客戶管理金鑰進行資料加密的必要資訊:: 您可以在啟動精靈中選擇自己的客戶管理資料加密金鑰、而非使用預設的Amazon S3加密金鑰。在此情況下、您必須先設定加密管理金鑰。 https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-setting-up-kms.html["瞭解如何使用您自己的金鑰"^]。
-需要AWS備份權限:: 提供 Cloud Manager 權限的 IAM 角色必須包含最新版本的 S3 權限 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則"^]。
+需要 AWS 權限:: 提供 Cloud Manager 權限的 IAM 角色必須包含最新版本的 S3 權限 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則"^]。
 +
 --
 以下是原則的特定權限：
