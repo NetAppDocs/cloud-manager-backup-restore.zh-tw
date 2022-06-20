@@ -39,19 +39,18 @@ summary: 透過Web UI提供的Cloud Backup功能也可透過RESTful API取得。
 .步驟
 . 從 NetApp Cloud Central 取得使用者權杖。
 +
+請務必從下列連結產生重新整理權杖：https://services.cloud.netapp.com/refresh-token/。重新整理權杖是一個英數字元字串、可用來產生使用者權杖。
+
++
 [source, http]
 ----
-POST https://netapp-cloud-account.auth0.com/oauth/token
-Header: Content-Type: application/json
-Body:
-{
-              "username": "<user_email>",
-              "scope": "profile",
-              "audience": "https://api.cloud.netapp.com",
-              "client_id": "<Cloud_Connector_ID>",
-              "grant_type": "password",
-              "password": "<user_password>"
-}
+curl --location --request POST 'https://netapp-cloud-account.auth0.com/oauth/token?=' \
+--header 'Content-Type: application/json' \
+-d '{
+    "grant_type": "refresh_token",
+    "refresh_token": "JxaVHn9cGkX92aPVCkhat3zxxxxxwsC9qMl_pLHkZtsVA",
+    "client_id": "Mu0V1ywgYteI6w1MbD15fKfVIUrNXGWC"
+}'
 ----
 . 取得您的NetApp Cloud Central帳戶ID。
 +

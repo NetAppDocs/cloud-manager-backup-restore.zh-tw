@@ -1959,4 +1959,6 @@
   <block id="826610554423c9dc8481da631ccae8be" category="inline-link">瞭解如何在ONTAP 離線網站上備份不只是StorageGRID 資料的功能</block>
   <block id="824ce1955c2b2d5f91cb80c86545d639" category="paragraph"><block ref="eb618b89294e80d594faecbc4641afee" category="inline-link-rx"></block>。<block ref="f39d73248b535226c2e16237e43ff2d0" category="inline-link-rx"></block>。</block>
   <block id="0a0c24e7fef8cd9bcb19d6db19987b93" category="paragraph">請注意、如果您先前使用Cloud Restore執行個體/ VM、將會自動移除。雲端備份程序會每天執行一次、以刪除所有舊的Cloud Restore執行個體。這項變更是完全透明的、不會對您的資料造成任何影響、而且您不會注意到備份或還原工作有任何變更。</block>
+  <block id="7d3723a161203e59b756ce8e77114fc0" category="admonition">當Cloud Manager Connector部署在雲端的政府區域、或是部署在沒有網際網路存取（黑點）的站台上時、Cloud Backup僅支援ONTAP 從還原系統進行備份與還原作業。使用這些替代部署方法時、Cloud Backup不支援從Kubernetes叢集、應用程式或虛擬機器進行備份與還原作業。</block>
+  <block id="d8fc7ce817e791d9288e2c5b2f30d2e4" category="paragraph">請務必從下列連結產生重新整理權杖：https://services.cloud.netapp.com/refresh-token/。重新整理權杖是一個英數字元字串、可用來產生使用者權杖。</block>
 </blocks>
