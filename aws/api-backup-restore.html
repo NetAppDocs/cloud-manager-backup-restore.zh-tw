@@ -862,7 +862,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-06-09 15:51:35 +0000">06/09/2022</time>
+    <time datetime="2022-06-20 18:43:54 +0000">06/20/2022</time>
     
   
 
@@ -921,19 +921,18 @@
 <ol class="arabic">
 <li>
 <p>從 NetApp Cloud Central 取得使用者權杖。</p>
+<div class="paragraph">
+<p>請務必從下列連結產生重新整理權杖：https://services.cloud.netapp.com/refresh-token/。重新整理權杖是一個英數字元字串、可用來產生使用者權杖。</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-http" data-lang="http">POST https://netapp-cloud-account.auth0.com/oauth/token
-Header: Content-Type: application/json
-Body:
-{
-              "username": "&lt;user_email&gt;",
-              "scope": "profile",
-              "audience": "https://api.cloud.netapp.com",
-              "client_id": "&lt;Cloud_Connector_ID&gt;",
-              "grant_type": "password",
-              "password": "&lt;user_password&gt;"
-}</code></pre>
+<pre class="highlight"><code class="language-http" data-lang="http">curl --location --request POST 'https://netapp-cloud-account.auth0.com/oauth/token?=' \
+--header 'Content-Type: application/json' \
+-d '{
+    "grant_type": "refresh_token",
+    "refresh_token": "JxaVHn9cGkX92aPVCkhat3zxxxxxwsC9qMl_pLHkZtsVA",
+    "client_id": "Mu0V1ywgYteI6w1MbD15fKfVIUrNXGWC"
+}'</code></pre>
 </div>
 </div>
 </li>
