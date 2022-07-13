@@ -26,7 +26,7 @@ CAUTION: 請勿直接從雲端供應商環境管理或變更備份檔案。這�
 您可以在備份儀表板中檢視目前正在備份的所有磁碟區清單。
 
 .步驟
-. 按一下*備份與還原*索引標籤。
+. 在Cloud Manager左側導覽功能表中、按一下*備份與還原*。
 . 按一下「* Volumes（* Volume）」索引標籤、即可檢視Cloud Volumes ONTAP 適用於內部部署ONTAP 的各種系統的Volume清單。
 +
 image:screenshot_backup_dashboard.png["顯示所有工作環境和具有備份檔案的磁碟區的快照。"]
@@ -99,8 +99,6 @@ ifdef::azure[]
 link:reference-azure-backup-tiers.html["深入瞭解如何使用Azure歸檔儲存設備"]。
 
 endif::azure[]
-
-+image:screenshot_backup_modify_policy_page2.png["這是一份快照、顯示雲端備份的歸檔儲存設定分層。"]
 
 +請注意、如果您停止分層備份至歸檔儲存設備、任何已分層至歸檔儲存設備的備份檔案都會留在該層中、不會自動移回標準層級。
 

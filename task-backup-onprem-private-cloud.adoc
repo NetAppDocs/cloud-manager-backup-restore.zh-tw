@@ -55,7 +55,7 @@ image:screenshot_backup_onprem_enable.png["螢幕擷取畫面會顯示「備份�
 image:screenshot_backup_provider_settings_storagegrid.png["快照顯示將磁碟區從ONTAP 一個叢集備份到StorageGRID 另一個叢集時、雲端供應商的詳細資料。"]
 
 [role="quick-margin-para"]
-預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每小時、每日、每週或每月備份、或選取其中一個系統定義的原則來提供更多選項。您也可以變更要保留的備份複本數量。
+預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每小時、每日、每週、每月或每年備份、 或選取其中一個系統定義的原則、以提供更多選項。您也可以變更要保留的備份複本數量。
 
 [role="quick-margin-para"]
 image:screenshot_backup_onprem_policy.png["顯示Cloud Backup設定的快照、您可在其中選擇備份排程和保留期間。"]
@@ -219,12 +219,14 @@ image:screenshot_backup_provider_settings_storagegrid.png["快照顯示將磁碟
 
 
 
-. 在_定義原則_頁面中、選取預設的備份排程和保留值、然後按一下*下一步*。
+. 輸入將用於預設原則的備份原則詳細資料、然後按一下「*下一步*」。您可以選取現有的原則、也可以在每個區段中輸入您的選擇來建立新原則：
++
+.. 輸入預設原則的名稱。您不需要變更名稱。
+.. 定義備份排程、並選擇要保留的備份數量。 link:concept-ontap-backup-to-cloud.html#customizable-backup-schedule-and-retention-settings-per-cluster["請參閱您可以選擇的現有原則清單"^]。
 +
 image:screenshot_backup_onprem_policy.png["顯示Cloud Backup設定的快照、您可在其中選擇備份排程和保留期間。"]
 
-+
-請參閱 link:concept-ontap-backup-to-cloud.html#customizable-backup-schedule-and-retention-settings-per-cluster["現有原則的清單"^]。
+
 
 . 在「Select Volumes（選取磁碟區）」頁面中、使用預設備份原則選取您要備份的磁碟區。如果您想要將不同的備份原則指派給特定磁碟區、可以建立其他原則、並於稍後將其套用至這些磁碟區。
 +

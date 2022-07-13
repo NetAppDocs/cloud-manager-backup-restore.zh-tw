@@ -112,6 +112,13 @@ sidebar:
       url: "/reference-aws-backup-tiers.html"
     - title: 支援的Azure歸檔存取層
       url: "/reference-azure-backup-tiers.html"
+    - title: 跨帳戶和跨區域組態
+      url: "/reference-cross-account.html"
+      entries:
+      - title: 在AWS中設定多帳戶存取的備份
+        url: "/reference-backup-multi-account-aws.html"
+      - title: 設定備份以在Azure中存取多個帳戶
+        url: "/reference-backup-multi-account-azure.html"
   - title: 知識與支援
     entries:
     - title: 註冊以取得支援

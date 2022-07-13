@@ -44,7 +44,7 @@ image:screenshot_backup_cvo_enable.png["螢幕擷取畫面會顯示「備份與�
 image:screenshot_backup_provider_settings_aws.png["快照顯示將磁碟區從Cloud Volumes ONTAP 某個系統備份到AWS S3時、雲端供應商的詳細資料。"]
 
 [role="quick-margin-para"]
-預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每小時、每日、每週或每月備份、或選取其中一個系統定義的原則來提供更多選項。您也可以變更要保留的備份複本數量。
+預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每小時、每日、每週、每月或每年備份、 或選取其中一個系統定義的原則、以提供更多選項。您也可以變更要保留的備份複本數量。
 
 [role="quick-margin-para"]
 根據預設、備份會儲存在S3 Standard儲存設備中。如果您的叢集使用ONTAP 的是更新版本的版本號、您可以選擇在數天後將備份層級至S3 Glacier或S3 Glacier Deep Archive儲存設備、以進一步最佳化成本。
@@ -79,6 +79,7 @@ image:diagram_cloud_backup_cvo_aws.png["顯示Cloud Backup如何與來源系統�
 
 --
 支援的 AWS 區域:: 所有AWS區域均支援雲端備份 https://cloud.netapp.com/cloud-volumes-global-regions["支援的地方 Cloud Volumes ONTAP"^]；包括AWS GovCloud區域。
+在不同的AWS帳戶中建立備份所需的設定:: 根據預設、備份會使用Cloud Volumes ONTAP 與您的作業系統相同的帳戶建立。如果您想要使用不同的AWS帳戶進行備份、您必須使用 link:reference-backup-multi-account-aws.html["登入AWS入口網站並連結這兩個帳戶"]。
 使用客戶管理金鑰進行資料加密的必要資訊:: 您可以在啟動精靈中選擇自己的客戶管理資料加密金鑰、而非使用預設的Amazon S3加密金鑰。在此情況下、您必須先設定加密管理金鑰。 https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-setting-up-kms.html["瞭解如何使用您自己的金鑰"^]。
 需要 AWS 權限:: 提供 Cloud Manager 權限的 IAM 角色必須包含最新版本的 S3 權限 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則"^]。
 +
@@ -170,6 +171,9 @@ image:screenshot_backup_cvo_enable.png["螢幕擷取畫面會顯示「備份與�
 . 選取供應商詳細資料、然後按*下一步*。
 +
 .. 用來儲存備份的AWS帳戶。這可能與Cloud Volumes ONTAP 駐留於此系統的帳戶不同。
++
+如果您想要使用不同的AWS帳戶進行備份、您必須使用 link:reference-backup-multi-account-aws.html["登入AWS入口網站並連結這兩個帳戶"]。
+
 .. 儲存備份的區域。這可能與Cloud Volumes ONTAP 駐留的地方不同。
 .. 無論您是使用預設的Amazon S3加密金鑰、還是從AWS帳戶選擇自己的客戶管理金鑰、都能管理資料的加密。 (https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-setting-up-kms.html["瞭解如何使用您自己的加密金鑰"]）。
 +
@@ -177,8 +181,9 @@ image:screenshot_backup_provider_settings_aws.png["快照顯示將磁碟區從Cl
 
 
 
-. 輸入預設的備份原則詳細資料、然後按一下「*下一步*」。
+. 輸入將用於預設原則的備份原則詳細資料、然後按一下「*下一步*」。您可以選取現有的原則、也可以在每個區段中輸入您的選擇來建立新原則：
 +
+.. 輸入預設原則的名稱。您不需要變更名稱。
 .. 定義備份排程、並選擇要保留的備份數量。 link:concept-ontap-backup-to-cloud.html#customizable-backup-schedule-and-retention-settings-per-cluster["請參閱您可以選擇的現有原則清單"^]。
 .. 若使用ONTAP 的是版本不含更新版本的版本、您可以選擇在數天後將備份分層至S3 Glacier或S3 Glacier Deep Archive儲存設備、以進一步最佳化成本。 link:reference-aws-backup-tiers.html["深入瞭解如何使用歸檔層"]。
 +

@@ -26,7 +26,7 @@ CAUTION: 請勿直接從雲端供應商環境管理或變更備份檔案。這�
 您可以檢視目前由Cloud Backup備份的所有磁碟區清單。
 
 .步驟
-. 按一下*備份與還原*服務。
+. 在Cloud Manager左側導覽功能表中、按一下*備份與還原*。
 . 按一下* Kubernetes*索引標籤、即可檢視Kubernetes系統的持續磁碟區清單。
 +
 image:screenshot_backup_dashboard_k8s.png["顯示所有工作環境和具有備份檔案的磁碟區的快照。"]

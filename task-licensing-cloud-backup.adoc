@@ -53,6 +53,8 @@ link:concept-ontap-backup-to-cloud.html#cost["深入瞭解使用雲端備份的�
 
 endif::azure[]
 
+https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/concept-licensing.html#capacity-based-licensing["深入瞭解這些容量型授權套件"]。
+
 請使用以下連結、從您的雲端供應商市場訂閱Cloud Backup：
 
 ifdef::aws[]
@@ -76,13 +78,15 @@ ifdef::gcp[]
 
 endif::gcp[]
 
+
+
+== 使用年度合約
+
+購買年度合約、每年支付雲端備份費用。
+
 ifdef::aws[]
 
-
-
-== 透過AWS訂閱年度合約
-
-您可以從取得兩份年度合約 https://aws.amazon.com/marketplace/pp/B086PDWSS8["AWS Marketplace頁面"^] 適用於Cloud Volumes ONTAP 內部和內部部署ONTAP 的不全系統。提供1年、2年或3年期限：
+使用AWS時、可從取得兩份年度合約 https://aws.amazon.com/marketplace/pp/B086PDWSS8["AWS Marketplace頁面"^] 適用於Cloud Volumes ONTAP 內部和內部部署ONTAP 的不全系統。提供1年、2年或3年期限：
 
 * 「雲端備份」計畫、可讓您備份Cloud Volumes ONTAP 內部部署ONTAP 的支援資料。
 +
@@ -98,6 +102,22 @@ ifdef::aws[]
 
 
 endif::aws[]
+
+ifdef::azure[]
+
+使用Azure時、請聯絡您的NetApp銷售代表以購買年度合約。該合約可在Azure Marketplace以私人優惠形式提供。
+
+在NetApp與您分享私人優惠之後、您可以在雲端備份啟動期間、從Azure Marketplace訂閱年度方案。
+
+endif::azure[]
+
+ifdef::gcp[]
+
+使用GCP時、請聯絡您的NetApp銷售代表以購買年度合約。合約可在Google Cloud Marketplace以私人優惠形式提供。
+
+在NetApp與您分享私有方案之後、您可以在雲端備份啟動期間、從Google Cloud Marketplace訂閱年度方案。
+
+endif::gcp[]
 
 
 
@@ -144,7 +164,7 @@ image:screenshot_cloud_backup_license_step2.gif["螢幕擷取畫面會顯示「G
 為NetApp帳戶購買Cloud Backup授權後、您必須將授權新增至Cloud Manager。
 
 .步驟
-. 按一下「*所有服務>數位錢包>資料服務授權*」。
+. 在Cloud Manager左側導覽功能表中、按一下* Digital Wallet *、然後選取* Data Services Licenses*索引標籤。
 . 按一下「 * 新增授權 * 」。
 . 在_新增授權_對話方塊中、輸入授權資訊、然後按一下*新增授權*：
 +

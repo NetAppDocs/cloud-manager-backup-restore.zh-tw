@@ -26,7 +26,7 @@ summary: 備份會儲存在雲端帳戶的物件存放區中、以便從特定�
 
 == 還原儀表板
 
-您可以使用還原儀表板來執行磁碟區和檔案還原作業。若要存取還原儀表板、請按一下Cloud Manager頂端的*備份與還原*、然後按一下*還原*索引標籤。您也可以按一下 image:screenshot_gallery_options.gif["更多按鈕"] >*從「服務」面板中的「備份與還原」服務中檢視「還原儀表板」*。
+您可以使用還原儀表板來執行磁碟區和檔案還原作業。若要存取還原儀表板、請按一下Cloud Manager左側導覽功能表中的*備份與還原*、然後按一下*還原*索引標籤。您也可以按一下 image:screenshot_gallery_options.gif["更多按鈕"] >*從「服務」面板中的「備份與還原」服務中檢視「還原儀表板」*。
 
 
 NOTE: 雲端備份必須已啟用、至少必須有一個工作環境、而且必須存在初始備份檔案。
@@ -63,10 +63,10 @@ image:screenshot_restore_dashboard.png["「還原儀表板」顯示使用瀏覽&
 | 瀏覽橫跨公有雲和私有雲的結果 | 瀏覽跨公有雲和本機Snapshot複本的結果 
 
 
-| 無需額外的雲端供應商資源 | 每個帳戶所需的額外資源庫和AWS或Google資源 
+| 無需額外的雲端供應商資源 | 每個帳戶所需的額外資源庫和公有雲供應商資源 
 
 
-| 無需額外的雲端供應商成本 | 掃描備份和磁碟區以取得搜尋結果時、與AWS或Google資源相關的成本 
+| 無需額外的雲端供應商成本 | 掃描備份和磁碟區以取得搜尋結果時、與公有雲供應商資源相關的成本 
 |===
 在使用任一還原方法之前、請先確定您的環境已針對獨特的資源需求進行設定。這些要求將在下節中說明。
 
@@ -117,11 +117,13 @@ endif::azure[]
 | Azure Blob | Azure 內部部署的整套系統 Cloud Volumes ONTAP ONTAP | Azure內部部署的系統中的資料：：azure[] ifdef：：Cloud Volumes ONTAP ONTAP GCP[] 
 
 
-| Google Cloud Storage | 在Google內部部署的內部部署系統中使用Cloud Volumes ONTAP ONTAP | 在Google內部部署中的系統資訊：Cloud Volumes ONTAP ONTAP GCP[] 
+| Google Cloud Storage | 在Google內部部署的內部部署系統中使用Cloud Volumes ONTAP ONTAP | 在Google中顯示（^1^）內部部署的不二系統（^1^）Cloud Volumes ONTAP ONTAP endif::GCP[] 
 
 
 | NetApp StorageGRID | 內部部署 ONTAP 的作業系統 | 內部部署 ONTAP 的作業系統 
 |===
+（^1^）_Connector必須部署在Google Cloud Platform VPC上、才能獲得此支援。_
+
 請注意、「內部部署ONTAP 的功能系統」的參考資料包括FAS 了功能性的功能、包括了功能性的功能、包括了功能性的功能、AFF 功能性的功能、以及ONTAP Select 功能
 
 
@@ -396,7 +398,7 @@ video::RZktLe32hhQ[youtube,width=848,height=480]
 | Amazon S3 | AWS 內部部署的內部系統 Cloud Volumes ONTAP ONTAP | AWS內部部署的不全系統endif::AWS [] ifdef:azure[] Cloud Volumes ONTAP ONTAP 
 
 
-| Azure Blob | 目前不支援 | endif::azure[] ifdef：：GCP[] 
+| Azure Blob | 目前不支援 | endif::azure[] ifdef::azure[] endif::azure[] ifdef::GCP[] 
 
 
 | Google Cloud Storage | 在Google內部部署的內部部署系統中使用Cloud Volumes ONTAP ONTAP | 在Google內部部署中的系統資訊：Cloud Volumes ONTAP ONTAP GCP[] 
@@ -404,6 +406,9 @@ video::RZktLe32hhQ[youtube,width=848,height=480]
 
 | NetApp StorageGRID | 目前不支援 |  
 |===
+
+TIP: 您必須在雲端供應商平台上部署Connector、才能獲得此支援。當連接器安裝在內部部署環境中時、不支援搜尋與還原。
+
 請注意、「內部部署ONTAP 的功能系統」的參考資料包括FAS 了功能性的功能、包括了功能性的功能、包括了功能性的功能、AFF 功能性的功能、以及ONTAP Select 功能
 
 
@@ -433,6 +438,10 @@ ifdef::aws[]
 
 
 endif::aws[]
+
+ifdef::azure[]
+
+endif::azure[]
 
 ifdef::gcp[]
 
@@ -483,6 +492,10 @@ ifdef::aws[]
 
 
 endif::aws[]
+
+ifdef::azure[]
+
+endif::azure[]
 
 ifdef::gcp[]
 

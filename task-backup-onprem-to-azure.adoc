@@ -55,7 +55,7 @@ image:screenshot_backup_onprem_to_azure.png["此螢幕快照顯示將磁碟區�
 image:screenshot_backup_onprem_azure_networking.png["快照顯示將磁碟區從ONTAP 某個系統備份到Azure Blob儲存設備時的網路詳細資料。"]
 
 [role="quick-margin-para"]
-預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每小時、每日、每週或每月備份、或選取其中一個系統定義的原則來提供更多選項。您也可以變更要保留的備份複本數量。
+預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每小時、每日、每週、每月或每年備份、 或選取其中一個系統定義的原則、以提供更多選項。您也可以變更要保留的備份複本數量。
 
 [role="quick-margin-para"]
 根據預設、備份會儲存在冷存取層中。如果您的叢集使用ONTAP 的是更新版本的版本、您可以選擇在特定天數後將備份分層至Azure歸檔儲存設備、以進一步最佳化成本。
@@ -78,13 +78,13 @@ image:screenshot_backup_policy_azure.png["顯示Cloud Backup設定的快照、�
 * 私有連線：使用VPN或ExpressRoute、並透過使用私有IP位址的vnet私有端點路由流量。
 
 
-下圖顯示*公用連線*方法、以及元件之間需要準備的連線：
+下圖顯示*公用連線*方法、以及元件之間需要準備的連線。您可以使用已安裝在內部部署中的Connector、或是已部署在Azure vnet中的Connector。
 
-image:diagram_cloud_backup_onprem_azure.png["顯示Cloud Backup如何透過公共連線與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
+image:diagram_cloud_backup_onprem_azure_public.png["顯示Cloud Backup如何透過公共連線與叢集上的磁碟區和備份檔案所在的Azure Blob儲存設備進行通訊的圖表。"]
 
-下圖顯示*私有連線*方法、以及元件之間需要準備的連線：
+下圖顯示*私有連線*方法、以及元件之間需要準備的連線。您可以使用已安裝在內部部署中的Connector、或是已部署在Azure vnet中的Connector。
 
-image:diagram_cloud_backup_onprem_azure_vnet.png["顯示Cloud Backup如何透過私有連線與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"]
+image:diagram_cloud_backup_onprem_azure_private.png["顯示Cloud Backup如何透過私有連線與叢集上的磁碟區和備份檔案所在的Azure Blob儲存設備進行通訊的圖表。"]
 
 
 
@@ -137,11 +137,12 @@ https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.
 
 === 建立或切換連接器
 
-需要連接器才能將資料備份至雲端、而將資料備份至Azure Blob儲存設備時、連接器必須位於Azure vnet中。您無法使用內部部署的Connector。您需要建立新的連接器、或確定目前選取的連接器位於正確的供應商。
+如果您已在Azure vnet或內部部署了Connector、您就能輕鬆完成設定。如果沒有、您需要在其中任一位置建立連接器、以便將ONTAP 還原資料備份到Azure Blob儲存設備。您無法使用部署於其他雲端供應商的Connector。
 
 * https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-connectors.html["深入瞭解連接器"^]
-* https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-azure.html["在 Azure 中建立 Connector"^]
-* https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-managing-connectors.html["在連接器之間切換"^]
+* https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-checklist-cm.html["連接器入門"^]
+* https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-azure.html["在Azure中安裝Connector"^]
+* https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-installing-linux.html["在內部環境中安裝連接器"^]
 
 
 
@@ -158,7 +159,7 @@ https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.
 ** 透過連接埠443連線至ONTAP 您的SURF叢 集管理LIF的HTTPS連線
 
 
-. 啟用vnet私有端點對Azure儲存設備。如果ONTAP 從您的DB2叢集到vnet有ExpressRoute或VPN連線、而且您想要連接器和Blob儲存設備之間的通訊保持在虛擬私有網路中、就需要此功能。
+. 啟用vnet私有端點對Azure儲存設備。如果ONTAP 從您的DB2叢集到vnet有ExpressRoute或VPN連線、而且您想要連接器與Blob儲存設備之間的通訊保持在虛擬私有網路（*私有*連線）中、就需要此功能。
 
 
 
@@ -223,8 +224,9 @@ image:screenshot_backup_onprem_azure_networking.png["快照顯示將磁碟區從
 
 
 
-. 輸入預設的備份原則詳細資料、然後按一下「*下一步*」。
+. 輸入將用於預設原則的備份原則詳細資料、然後按一下「*下一步*」。您可以選取現有的原則、也可以在每個區段中輸入您的選擇來建立新原則：
 +
+.. 輸入預設原則的名稱。您不需要變更名稱。
 .. 定義備份排程、並選擇要保留的備份數量。 link:concept-ontap-backup-to-cloud.html#customizable-backup-schedule-and-retention-settings-per-cluster["請參閱您可以選擇的現有原則清單"^]。
 .. 若使用ONTAP 的是更新版本的版本、您可以選擇在特定天數後將備份分層至Azure歸檔儲存設備、以進一步最佳化成本。 link:reference-azure-backup-tiers.html["深入瞭解如何使用歸檔層"]。
 +

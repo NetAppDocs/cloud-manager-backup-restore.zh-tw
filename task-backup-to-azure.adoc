@@ -43,7 +43,7 @@ image:screenshot_backup_cvo_enable.png["螢幕擷取畫面顯示「啟用雲端�
 image:screenshot_backup_provider_settings_azure.png["快照顯示雲端供應商將磁碟區從Cloud Volumes ONTAP 某個系統備份到Azure Blob層時的詳細資料。"]
 
 [role="quick-margin-para"]
-預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每小時、每日、每週或每月備份、或選取其中一個系統定義的原則來提供更多選項。您也可以變更要保留的備份複本數量。
+預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每小時、每日、每週、每月或每年備份、 或選取其中一個系統定義的原則、以提供更多選項。您也可以變更要保留的備份複本數量。
 
 [role="quick-margin-para"]
 根據預設、備份會儲存在冷存取層中。如果您的叢集使用ONTAP 的是更新版本的版本、您可以選擇在特定天數後將備份分層至Azure歸檔儲存設備、以進一步最佳化成本。
@@ -74,6 +74,7 @@ image:diagram_cloud_backup_cvo_azure.png["顯示Cloud Backup如何與來源系�
 
 --
 支援的 Azure 地區:: 所有Azure地區均支援雲端備份 https://cloud.netapp.com/cloud-volumes-global-regions["支援的地方 Cloud Volumes ONTAP"^]（包括Azure政府區域）。
+在不同Azure訂閱中建立備份所需的設定:: 根據預設、備份會使用與Cloud Volumes ONTAP 您的作業系統相同的訂閱方式建立。如果您想要使用不同的Azure訂閱來進行備份、您必須使用 link:reference-backup-multi-account-azure.html["登入Azure入口網站並連結這兩份訂閱"]。
 使用客戶管理金鑰進行資料加密的必要資訊:: 您可以在啟動精靈中使用自己的客戶管理金鑰進行資料加密、而非使用預設的Microsoft管理加密金鑰。在此情況下、您必須擁有Azure訂閱、Key Vault名稱及金鑰。 https://docs.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview["瞭解如何使用您自己的金鑰"]。
 
 
@@ -118,6 +119,9 @@ image:screenshot_backup_cvo_enable.png["螢幕擷取畫面顯示「啟用雲端�
 . 選取供應商詳細資料、然後按*下一步*。
 +
 .. Azure 訂閱用於儲存備份。這可能是與Cloud Volumes ONTAP 駐留於此系統不同的訂閱方式。
++
+如果您想要使用不同的Azure訂閱來進行備份、您必須使用 link:reference-backup-multi-account-azure.html["登入Azure入口網站並連結這兩份訂閱"]。
+
 .. 儲存備份的區域。這可能與Cloud Volumes ONTAP 駐留的地方不同。
 .. 管理Blob容器的資源群組-您可以建立新的資源群組或選取現有的資源群組。
 .. 無論您是使用預設的Microsoft管理加密金鑰、還是選擇自己的客戶管理金鑰來管理資料加密。 (https://docs.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview["瞭解如何使用您自己的金鑰"]）。
@@ -126,8 +130,9 @@ image:screenshot_backup_provider_settings_azure.png["快照顯示雲端供應商
 
 
 
-. 輸入預設的備份原則詳細資料、然後按一下「*下一步*」。
+. 輸入將用於預設原則的備份原則詳細資料、然後按一下「*下一步*」。您可以選取現有的原則、也可以在每個區段中輸入您的選擇來建立新原則：
 +
+.. 輸入預設原則的名稱。您不需要變更名稱。
 .. 定義備份排程、並選擇要保留的備份數量。 link:concept-ontap-backup-to-cloud.html#customizable-backup-schedule-and-retention-settings-per-cluster["請參閱您可以選擇的現有原則清單"^]。
 .. 若使用ONTAP 的是更新版本的版本、您可以選擇在特定天數後將備份分層至Azure歸檔儲存設備、以進一步最佳化成本。 link:reference-azure-backup-tiers.html["深入瞭解如何使用歸檔層"]。
 +
