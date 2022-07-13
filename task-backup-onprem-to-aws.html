@@ -201,7 +201,7 @@
     
   </ul>
 </div>
-<div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[將內部部署ONTAP 的不全資料備份到Amazon S3](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/task-backup-onprem-to-aws.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/task-backup-onprem-to-aws.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+<div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[將內部部署ONTAP 的不全資料備份到Amazon S3](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/task-backup-onprem-to-aws.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" alt="" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/task-backup-onprem-to-aws.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" alt="" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" alt="" class="github-icon" />瞭解如何作出貢獻</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">在此頁面上</div>
@@ -290,11 +290,13 @@
           <div id="react-search" 
           data-search-html="/zh-tw/cloud-manager-backup-restore/search.html"
           data-type="widget" 
-          data-placeholder="搜尋文件" 
-          data-no-results-found="找不到符合 {query} 的相關結果。" 
-          data-did-you-mean="搜尋 {suggestion}。" 
-          data-no-results-found-did-you-mean="找不到符合 {query} 的相關結果。您是否要找的是{suggestion}？" 
-          data-results-found="找到 {hitCount} 筆結果"  
+          data-placeholder="搜尋文件"
+          data-no-results-found="找不到符合 {query} 的相關結果。"
+          data-did-you-mean="搜尋 {suggestion}。"
+          data-no-results-found-did-you-mean="找不到符合 {query} 的相關結果。您是否要找的是{suggestion}？"
+          data-results-found="找到 {hitCount} 筆結果"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
           data-sk-es-pf-indexes=""
           data-flavor=""></div>
           <button class="n-property-bar__search-toggle-button" type="button">
@@ -373,7 +375,7 @@
   <div class="col-md-3" id="sidebar-height">
       <div class="n-pdf-header">
   <a id="toggleButtonPdf" class="n-pdf-button" type="button">
-    <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>可用的 PDF<span>
+    <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>可用的 PDF<span>
     </span>
   </a>
 </div>
@@ -383,7 +385,7 @@
         
         
         <a target="_blank" href="/zh-tw/cloud-manager-backup-restore/pdfs/fullsite-sidebar/雲端備份文件.pdf" >
-          <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
+          <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>此文件網站（PDF 格式）</a>
 
 
 
@@ -400,7 +402,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/開始使用.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             開始使用
           </a>
           
@@ -410,8 +412,6 @@
 
 
 
-
-          
         </li>
       </ul>
     
@@ -431,7 +431,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/備份及還原ONTAP_資料.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             備份及還原ONTAP 資料
           </a>
           
@@ -443,14 +443,7 @@
 
 
 
-    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
-  <a target="_blank" href="/zh-tw/cloud-manager-backup-restore/pdfs/pages/task-backup-onprem-to-aws.pdf" >
-    <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
-    PDF of this page
-  </a>
-</li>
-
-</ul>
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
   
 
 
@@ -464,8 +457,6 @@
 
 
 
-
-          
         </li>
       </ul>
     
@@ -485,7 +476,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/備份及還原Kubernetes資料.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             備份及還原Kubernetes資料
           </a>
           
@@ -501,8 +492,6 @@
 
 
 
-
-          
         </li>
       </ul>
     
@@ -522,7 +511,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/備份及還原內部部署應用程式資料.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             備份及還原內部部署應用程式資料
           </a>
           
@@ -544,7 +533,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/還原應用程式資料.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             還原應用程式資料
           </a>
           
@@ -552,8 +541,6 @@
 
 
 
-
-          
         </li>
       </ul>
     
@@ -561,8 +548,6 @@
   
 
 
-
-          
         </li>
       </ul>
     
@@ -582,7 +567,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/備份及還原虛擬機器資料.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             備份及還原虛擬機器資料
           </a>
           
@@ -594,8 +579,6 @@
 
 
 
-
-          
         </li>
       </ul>
     
@@ -617,7 +600,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/參考資料.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             參考資料
           </a>
           
@@ -626,7 +609,32 @@
 
 
 
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
           
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/跨帳戶和跨區域組態.pdf" 
+            
+          >
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
+            跨帳戶和跨區域組態
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
         </li>
       </ul>
     
@@ -646,7 +654,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/sidebar/知識與支援.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             知識與支援
           </a>
           
@@ -654,8 +662,6 @@
 
 
 
-
-          
         </li>
       </ul>
     
@@ -664,11 +670,10 @@
 
 
 
-
 </li></ul>
   <div class="zip-pdf-link-container" style="display: none;">   
     <a href="#" id="zipPdf">
-      <img src="/zh-tw/cloud-manager-backup-restore/images/pdf-zip.png" width="16" height="16"/>
+      <img src="/zh-tw/cloud-manager-backup-restore/images/pdf-zip.png" alt="" width="16" height="16"/>
       <pre>個別 PDF 文件的集合<span class="zip-size"></span></pre>
     </a><div id="zip-link-popup" class="hide">
     <div class="inner-modal">
@@ -791,7 +796,14 @@
         支援的AWS歸檔儲存層
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-azure-backup-tiers.html">
         支援的Azure歸檔存取層
-      </a></li></ul></li><li class="subfolders "><a href="#">
+      </a></li><li class="subfolders "><a href="/zh-tw/cloud-manager-backup-restore/reference-cross-account.html">
+        <div class="na-navbar-padding"> 跨帳戶和跨區域組態</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-backup-multi-account-aws.html">
+        在AWS中設定多帳戶存取的備份
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/reference-backup-multi-account-azure.html">
+        設定備份以在Azure中存取多個帳戶
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 知識與支援</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/task-support-registration.html">
@@ -869,7 +881,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-06-09 15:51:35 +0000">06/09/2022</time>
+    <time datetime="2022-07-13 13:08:30 +0000">07/13/2022</time>
     
   
 
@@ -899,7 +911,7 @@
 <p><a href="#Network diagrams for connection options">請參閱可用的連線方法。</a></p>
 </div>
 <div class="paragraph quick-margin-para">
-<p>如果您已在AWS VPC中部署Connector、您就能輕鬆完成所有設定。如果沒有、您需要在AWS中建立連接器、以便將ONTAP 支援的資料備份到AWS S3儲存設備。您也需要自訂Connector的網路設定、以便連接至AWS S3。</p>
+<p>如果您已在AWS VPC或內部部署部署了Connector、您就能輕鬆完成所有設定。如果沒有、則您需要建立連接器、以便將ONTAP 資訊備份到AWS S3儲存設備。您也需要自訂Connector的網路設定、以便連接至AWS S3。</p>
 </div>
 <div class="paragraph quick-margin-para">
 <p><a href="#Prepare your Connector">瞭解如何建立連接器、以及如何定義必要的網路設定。</a></p>
@@ -941,16 +953,16 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>下圖顯示*公用連線*方法、以及元件之間需要準備的連線：</p>
+<p>下圖顯示*公用連線*方法、以及元件之間需要準備的連線。您可以使用內部部署安裝的Connector、或是部署在AWS VPC中的Connector。</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./media/diagram_cloud_backup_onprem_aws.png" alt="顯示Cloud Backup如何透過公共連線與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"></span></p>
+<p><span class="image"><img src="./media/diagram_cloud_backup_onprem_aws_public.png" alt="顯示Cloud Backup如何透過公共連線與叢集上的磁碟區和備份檔案所在的AWS S3儲存設備進行通訊的圖表。"></span></p>
 </div>
 <div class="paragraph">
-<p>下圖顯示*私有連線*方法、以及元件之間需要準備的連線：</p>
+<p>下圖顯示*私有連線*方法、以及元件之間需要準備的連線。您可以使用內部部署安裝的Connector、或是部署在AWS VPC中的Connector。</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./media/diagram_cloud_backup_onprem_aws_vpc.png" alt="顯示Cloud Backup如何透過私有連線與來源系統上的磁碟區和備份檔案所在的目的地儲存設備進行通訊的圖表。"></span></p>
+<p><span class="image"><img src="./media/diagram_cloud_backup_onprem_aws_private.png" alt="顯示Cloud Backup如何透過私有連線與叢集上的磁碟區和備份檔案所在的AWS S3儲存設備進行通訊的圖表。"></span></p>
 </div>
 </div>
 </div>
@@ -963,7 +975,7 @@
 <div class="sect2">
 <h3 id="建立或切換連接器">建立或切換連接器</h3>
 <div class="paragraph">
-<p>如果您已在AWS VPC中部署了Connector、您就能輕鬆完成所有設定。如果沒有、您需要在AWS中建立新的Connector、才能將ONTAP 支援的資料備份到AWS S3儲存設備。您無法使用內部部署或部署於其他雲端供應商的Connector。</p>
+<p>如果您已在AWS VPC或內部部署部署了Connector、您就能輕鬆完成所有設定。如果沒有、則您需要在上述任一位置建立連接器、以便將ONTAP 支援的資料備份到AWS S3儲存設備。您無法使用部署於其他雲端供應商的Connector。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -974,7 +986,10 @@
 <p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-checklist-cm.html" target="_blank" rel="noopener">"連接器入門"</a></p>
 </li>
 <li>
-<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-aws.html" target="_blank" rel="noopener">"在 AWS 中建立連接器"</a></p>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-aws.html" target="_blank" rel="noopener">"在AWS中安裝Connector"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-installing-linux.html" target="_blank" rel="noopener">"在內部環境中安裝連接器"</a></p>
 </li>
 </ul>
 </div>
@@ -988,7 +1003,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>透過連接埠443連線至Cloud Backup Service 物件儲存區的HTTPS連線（請參閱端點清單） <a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-checklist-cm.html" target="_blank" rel="noopener">"請按這裡"</a>）</p>
+<p>透過連接埠443連接HTTPS、連接Cloud Backup Service 至整個物件儲存區 (<a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-checklist-cm.html" target="_blank" rel="noopener">"請參閱端點清單"</a>）</p>
 </li>
 <li>
 <p>透過連接埠443連線至ONTAP 您的SURF叢 集管理LIF的HTTPS連線</p>
@@ -1000,7 +1015,7 @@
 <p><a href="task-backup-onprem-to-aws.html#set-up-s3-permissions">"確認Connector具有管理S3儲存區的權限"</a>。</p>
 </li>
 <li>
-<p>如果ONTAP 您有從您的叢集到VPC的直接連線或VPN連線、而且您想要連接器和S3之間的通訊保持在AWS內部網路中、則必須啟用連接到S3的VPC端點介面。 <a href="#Configure your system for a private connection using a VPC endpoint interface">瞭解如何設定VPC端點介面。</a></p>
+<p>如果ONTAP 您有從您的叢集到VPC的直接連線或VPN連線、而且您想要連接器和S3之間的通訊保持在AWS內部網路（*私有*連線）中、您就必須啟用連接到S3的VPC端點介面。 <a href="#Configure your system for a private connection using a VPC endpoint interface">瞭解如何設定VPC端點介面。</a></p>
 </li>
 </ul>
 </div>
@@ -1242,7 +1257,7 @@
 <p><span class="image"><img src="./media/screenshot_backup_aws_sec_group.png" alt="與Connector相關聯的AWS安全性群組快照。"></span></p>
 </div>
 <div class="paragraph">
-<p>如果您使用連接埠80（HTTP）來與私有端點通訊、就會設定好。您現在可以在叢集上啟用Cloud Backup。</p>
+<p>如果您使用連接埠80（HTTP）來與私有端點通訊、您就能輕鬆完成所有設定。您現在可以在叢集上啟用Cloud Backup。</p>
 </div>
 <div class="paragraph">
 <p>如果您使用連接埠443（HTTPS）來與私有端點通訊、則必須從VPC S3端點複製憑證、並將其新增ONTAP 至您的故障叢集、如接下來的4個步驟所示。</p>
@@ -1355,9 +1370,12 @@ Please enter Certificate: Press &lt;Enter&gt; when done</code></pre>
 </div>
 </li>
 <li>
-<p>輸入預設的備份原則詳細資料、然後按一下「<strong>下一步</strong>」。</p>
+<p>輸入將用於預設原則的備份原則詳細資料、然後按一下「<strong>下一步</strong>」。您可以選取現有的原則、也可以在每個區段中輸入您的選擇來建立新原則：</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
+<li>
+<p>輸入預設原則的名稱。您不需要變更名稱。</p>
+</li>
 <li>
 <p>定義備份排程、並選擇要保留的備份數量。 <a href="concept-ontap-backup-to-cloud.html#customizable-backup-schedule-and-retention-settings-per-cluster" target="_blank" rel="noopener">"請參閱您可以選擇的現有原則清單"</a>。</p>
 </li>

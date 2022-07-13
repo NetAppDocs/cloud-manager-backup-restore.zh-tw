@@ -206,7 +206,7 @@
     
   </ul>
 </div>
-<div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[從ONTAP 備份檔案還原支援資料](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/task-restore-backups-ontap.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/task-restore-backups-ontap.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+<div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/issues/new?body=Page%3A%20[從ONTAP 備份檔案還原支援資料](https://docs.netapp.com/zh-tw/cloud-manager-backup-restore/task-restore-backups-ontap.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/discuss-sm.svg" alt="" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-backup-restore/blob/main/task-restore-backups-ontap.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/cloud-manager-backup-restore/images/edit-sm.svg" alt="" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/cloud-manager-backup-restore/images/article-sm.svg" alt="" class="github-icon" />瞭解如何作出貢獻</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">在此頁面上</div>
@@ -295,11 +295,13 @@
           <div id="react-search" 
           data-search-html="/zh-tw/cloud-manager-backup-restore/search.html"
           data-type="widget" 
-          data-placeholder="搜尋文件" 
-          data-no-results-found="找不到符合 {query} 的相關結果。" 
-          data-did-you-mean="搜尋 {suggestion}。" 
-          data-no-results-found-did-you-mean="找不到符合 {query} 的相關結果。您是否要找的是{suggestion}？" 
-          data-results-found="找到 {hitCount} 筆結果"  
+          data-placeholder="搜尋文件"
+          data-no-results-found="找不到符合 {query} 的相關結果。"
+          data-did-you-mean="搜尋 {suggestion}。"
+          data-no-results-found-did-you-mean="找不到符合 {query} 的相關結果。您是否要找的是{suggestion}？"
+          data-results-found="找到 {hitCount} 筆結果"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
           data-sk-es-pf-indexes=""
           data-flavor="gcp"></div>
           <button class="n-property-bar__search-toggle-button" type="button">
@@ -378,7 +380,7 @@
   <div class="col-md-3" id="sidebar-height">
       <div class="n-pdf-header">
   <a id="toggleButtonPdf" class="n-pdf-button" type="button">
-    <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>可用的 PDF<span>
+    <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>可用的 PDF<span>
     </span>
   </a>
 </div>
@@ -388,7 +390,7 @@
         
         
         <a target="_blank" href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/fullsite-sidebar/雲端備份文件.pdf" >
-          <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
+          <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>此文件網站（PDF 格式）</a>
 
 
 
@@ -405,7 +407,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/開始使用.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             開始使用
           </a>
           
@@ -415,8 +417,6 @@
 
 
 
-
-          
         </li>
       </ul>
     
@@ -436,7 +436,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/備份及還原ONTAP_資料.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             備份及還原ONTAP 資料
           </a>
           
@@ -458,19 +458,10 @@
 
 
 
-    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
-  <a target="_blank" href="/zh-tw/cloud-manager-backup-restore/pdfs/pages/task-restore-backups-ontap.pdf" >
-    <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
-    PDF of this page
-  </a>
-</li>
-
-</ul>
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
   
 
 
-
-          
         </li>
       </ul>
     
@@ -490,7 +481,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/備份及還原Kubernetes資料.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             備份及還原Kubernetes資料
           </a>
           
@@ -506,8 +497,6 @@
 
 
 
-
-          
         </li>
       </ul>
     
@@ -527,7 +516,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/備份及還原內部部署應用程式資料.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             備份及還原內部部署應用程式資料
           </a>
           
@@ -549,7 +538,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/還原應用程式資料.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             還原應用程式資料
           </a>
           
@@ -557,8 +546,6 @@
 
 
 
-
-          
         </li>
       </ul>
     
@@ -566,8 +553,6 @@
   
 
 
-
-          
         </li>
       </ul>
     
@@ -587,7 +572,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/備份及還原虛擬機器資料.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             備份及還原虛擬機器資料
           </a>
           
@@ -599,8 +584,6 @@
 
 
 
-
-          
         </li>
       </ul>
     
@@ -622,7 +605,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/參考資料.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             參考資料
           </a>
           
@@ -631,7 +614,32 @@
 
 
 
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
           
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/跨帳戶和跨區域組態.pdf" 
+            
+          >
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
+            跨帳戶和跨區域組態
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
         </li>
       </ul>
     
@@ -651,7 +659,7 @@
               href="/zh-tw/cloud-manager-backup-restore/pdfs/gcp/sidebar/知識與支援.pdf" 
             
           >
-            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" width="16" height="16"/>
+            <img src="/zh-tw/cloud-manager-backup-restore/images/pdf.png" alt="" width="16" height="16"/>
             知識與支援
           </a>
           
@@ -659,8 +667,6 @@
 
 
 
-
-          
         </li>
       </ul>
     
@@ -669,11 +675,10 @@
 
 
 
-
 </li></ul>
   <div class="zip-pdf-link-container" style="display: none;">   
     <a href="#" id="zipPdf">
-      <img src="/zh-tw/cloud-manager-backup-restore/images/pdf-zip.png" width="16" height="16"/>
+      <img src="/zh-tw/cloud-manager-backup-restore/images/pdf-zip.png" alt="" width="16" height="16"/>
       <pre>個別 PDF 文件的集合<span class="zip-size"></span></pre>
     </a><div id="zip-link-popup" class="hide">
     <div class="inner-modal">
@@ -784,7 +789,14 @@
         支援的AWS歸檔儲存層
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/reference-azure-backup-tiers.html">
         支援的Azure歸檔存取層
-      </a></li></ul></li><li class="subfolders "><a href="#">
+      </a></li><li class="subfolders "><a href="/zh-tw/cloud-manager-backup-restore/gcp/reference-cross-account.html">
+        <div class="na-navbar-padding"> 跨帳戶和跨區域組態</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/reference-backup-multi-account-aws.html">
+        在AWS中設定多帳戶存取的備份
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/reference-backup-multi-account-azure.html">
+        設定備份以在Azure中存取多個帳戶
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 知識與支援</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/cloud-manager-backup-restore/gcp/task-support-registration.html">
@@ -862,7 +874,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-06-15 13:19:19 +0000">06/15/2022</time>
+    <time datetime="2022-07-13 13:08:30 +0000">07/13/2022</time>
     
   
 
@@ -889,7 +901,7 @@
 <h2 id="還原儀表板">還原儀表板</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>您可以使用還原儀表板來執行磁碟區和檔案還原作業。若要存取還原儀表板、請按一下Cloud Manager頂端的*備份與還原*、然後按一下*還原*索引標籤。您也可以按一下 <span class="image"><img src="./media/screenshot_gallery_options.gif" alt="更多按鈕"></span> &gt;*從「服務」面板中的「備份與還原」服務中檢視「還原儀表板」*。</p>
+<p>您可以使用還原儀表板來執行磁碟區和檔案還原作業。若要存取還原儀表板、請按一下Cloud Manager左側導覽功能表中的*備份與還原*、然後按一下*還原*索引標籤。您也可以按一下 <span class="image"><img src="./media/screenshot_gallery_options.gif" alt="更多按鈕"></span> &gt;*從「服務」面板中的「備份與還原」服務中檢視「還原儀表板」*。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -954,11 +966,11 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">無需額外的雲端供應商資源</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">每個帳戶所需的額外資源庫和AWS或Google資源</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">每個帳戶所需的額外資源庫和公有雲供應商資源</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">無需額外的雲端供應商成本</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">掃描備份和磁碟區以取得搜尋結果時、與AWS或Google資源相關的成本</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">掃描備份和磁碟區以取得搜尋結果時、與公有雲供應商資源相關的成本</p></td>
 </tr>
 </tbody>
 </table>
@@ -1028,7 +1040,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Google Cloud Storage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">在Google內部部署的內部部署系統中使用Cloud Volumes ONTAP ONTAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">在Google內部部署中的系統資訊：Cloud Volumes ONTAP ONTAP GCP[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">在Google中顯示（<sup>1</sup>）內部部署的不二系統（<sup>1</sup>）Cloud Volumes ONTAP ONTAP endif::GCP[]</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NetApp StorageGRID</p></td>
@@ -1037,6 +1049,9 @@
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>（<sup>1</sup>）<em>Connector必須部署在Google Cloud Platform VPC上、才能獲得此支援。</em></p>
+</div>
 <div class="paragraph">
 <p>請注意、「內部部署ONTAP 的功能系統」的參考資料包括FAS 了功能性的功能、包括了功能性的功能、包括了功能性的功能、AFF 功能性的功能、以及ONTAP Select 功能</p>
 </div>
@@ -1388,7 +1403,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Azure Blob</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">目前不支援</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">endif::azure[] ifdef：：GCP[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">endif::azure[] ifdef::azure[] endif::azure[] ifdef::GCP[]</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Google Cloud Storage</p></td>
@@ -1402,6 +1417,18 @@
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/cloud-manager-backup-restore/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+您必須在雲端供應商平台上部署Connector、才能獲得此支援。當連接器安裝在內部部署環境中時、不支援搜尋與還原。
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>請注意、「內部部署ONTAP 的功能系統」的參考資料包括FAS 了功能性的功能、包括了功能性的功能、包括了功能性的功能、AFF 功能性的功能、以及ONTAP Select 功能</p>
 </div>
