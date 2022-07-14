@@ -48,7 +48,6 @@
   <block id="de2909ab4fc1a949075aa38ec0c0de83" category="inline-link">設定叢集時間</block>
   <block id="b0c55968b582bc6db44e7b9191792893" category="paragraph">瞭解如何操作<block ref="9f61e0b7caa7b15265f460d001a365b9" category="inline-link-rx"></block>。</block>
   <block id="5e4594155e3b93fdaf535482e0177054" category="list-text">叢集網路連線需求</block>
-  <block id="ca626f3b73b93a62c135713894e906eb" category="list-text">透過使用者指定的連接埠、從叢集間的LIF啟動HTTPS連線到用來進行備份與還原作業的Sfor。ONTAP StorageGRID此連接埠可在備份設定期間進行設定。</block>
   <block id="92cc6f012ccda72f0aac6364e38469e9" category="paragraph">可在物件儲存設備中讀取及寫入資料。 ONTAP物件儲存設備從未啟動、只是回應而已。</block>
   <block id="56b804288a96913690a4b3ca49ceea54" category="list-text">需要連接器與叢集管理LIF之間的傳入連線。ONTAP連接器必須位於內部部署中。</block>
   <block id="15791d531460b4c275e03017399fcd1a" category="inline-link">深入瞭解 IPspaces</block>
@@ -80,7 +79,6 @@
   <block id="7b16b8b258668ab05a1e5d83e084b477" category="paragraph">確認連接器具備所需的網路連線。</block>
   <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">步驟</block>
   <block id="aadbd6cd1f8b4e9deafea8f1d6c8333c" category="list-text">確保安裝 Connector 的網路啟用下列連線：</block>
-  <block id="a3049b761ff526799f3b1881932b1c8c" category="list-text">透過連接埠 443 連線至 StorageGRID 支援的 HTTPS 連線</block>
   <block id="699a71169310a3553bddb7e36ecb8a5c" category="list-text">透過連接埠443連線至ONTAP 您的SURF叢 集管理LIF的HTTPS連線</block>
   <block id="7527dcedb498a9e111f7eb26b4f075a6" category="section-title">授權需求</block>
   <block id="36f90f57c6d6c8005dc1e458201e8083" category="paragraph">若要為叢集啟動Cloud Backup、您必須先向NetApp購買並啟動Cloud Backup BYOL授權。此授權僅供帳戶使用、可在多個系統之間使用。</block>
@@ -91,7 +89,6 @@
   <block id="0903ab68c41a6bc55309dd47297a38bb" category="paragraph">可隨時直接從內部部署工作環境啟用雲端備份。</block>
   <block id="286fb390ea5475a1fa125d5aade554a0" category="list-text">從「畫版」中選取內部部署工作環境、然後按一下右窗格中「備份與還原」服務旁的*「啟用」&gt;「備份磁碟區」*。</block>
   <block id="293e3556f1041c0ecd0f2d1427b2521d" category="list-text">選擇* StorageGRID 《*》*「供應商」、按一下「*下一步*」、然後輸入供應商詳細資料：</block>
-  <block id="f7589765b5ce02397beee9c13ffa0380" category="list-text">支援以HTTPS通訊的支援對象是支援支援支援使用支援支援的伺服StorageGRID 器的FQDN和連接埠ONTAP 、例如：「3.eng.company.com:8082`」StorageGRID</block>
   <block id="483b51851b68c242f5f73afff135794f" category="list-text">存取金鑰和秘密金鑰、用於存取儲存備份的儲存庫。</block>
   <block id="62fdc5376a050379803b51f794be9618" category="list-text">您要備份的磁碟區所在的叢集中的 IPspace ONTAP 。此IPspace的叢集間生命體必須具有傳出網際網路存取。</block>
   <block id="f2c59c3f0d86e6b8ae01d62708bc7aec" category="paragraph">選擇正確的IPspace、可確保Cloud Backup能夠從ONTAP 功能區設定連接StorageGRID 到您的物件儲存區。</block>
@@ -1922,7 +1919,6 @@
   <block id="902e370d1248b02546dce02dd966d3df" category="list-text">輸入將用於預設原則的備份原則詳細資料、然後按一下「*下一步*」。您可以選取現有的原則、也可以在每個區段中輸入您的選擇來建立新原則：</block>
   <block id="9f0a90a5aa72e2d8a79c1f4913cfc4eb" category="list-text">輸入預設原則的名稱。您不需要變更名稱。</block>
   <block id="9668405dd0733ac53e813de88302e2ba" category="list-text">命名備份原則、以便輕鬆查看每個原則的用途。</block>
-  <block id="5d58a047f6026134484a0fe815027c58" category="paragraph">Cloud Backup可在沒有網際網路連線的站台（也稱為「離線」或「暗」站台）中使用、將大量資料從本機內部部署ONTAP 的還原系統備份到本機NetApp StorageGRID 的還原系統。此組態也支援Volume與檔案還原。在這種情況下、您需要在黑暗站台中部署Cloud Manager Connector（最低版本3.9.19）。請參閱 <block ref="14e7f2dcf692810422b10a89547f7ac5" category="inline-link-macro-rx"></block> 以取得詳細資料。</block>
   <block id="3b4d703b29a9da1e70d08b65d53fe521" category="paragraph">Cloud Backup可搭配下列使用模式使用：</block>
   <block id="38692e39e588de5b1294ee4cca656080" category="list-text">* BYOL*：向NetApp購買的授權、可與任何雲端供應商搭配使用。</block>
   <block id="bd49b5209f967def5a92bc3d2db5e8dd" category="list-text">* PAYGO*：每小時向雲端供應商的市場訂購一次。</block>
@@ -2121,4 +2117,8 @@
   <block id="5cec8c57838d0c83b81a77b4cc1cff11" category="paragraph">例如：「AWS」：「arn：AWS：iam：：464262061435：role / CVO執行個體設定檔版本10-d8e-IamInstanceROE-IKJPJ1HC2E7R」</block>
   <block id="15ab165885255fcc1d504e3757e4f995" category="sidebar">在AWS中設定多帳戶存取的備份</block>
   <block id="37c606e486cf867317024daab096d5c7" category="sidebar">設定備份以在Azure中存取多個帳戶</block>
+  <block id="3d4496d9d3224917e9bc6712e9746eb2" category="paragraph">Cloud Backup可在沒有網際網路連線的站台（也稱為「離線」或「暗」站台）中使用、將大量資料從本機內部部署ONTAP 的還原系統備份到本機NetApp StorageGRID 的還原系統。此組態也支援Volume與檔案還原。在這種情況下、您需要在黑暗站台中部署Cloud Manager Connector（最低版本3.9.20）。請參閱 <block ref="14e7f2dcf692810422b10a89547f7ac5" category="inline-link-macro-rx"></block> 以取得詳細資料。</block>
+  <block id="9aa87cabc3c16ccfd72ed13e9e2a189c" category="list-text">透過使用者指定的連接埠、從叢集間LIF啟動HTTPS連線至支援備份與還原作業的支援閘道節點。ONTAP StorageGRID此連接埠可在備份設定期間進行設定。</block>
+  <block id="92a508a0037c85cca367ecb3e92a0fde" category="list-text">透過連接埠443連線至StorageGRID 「支援不支援的閘道節點」的HTTPS連線</block>
+  <block id="dd1011987bc4e3d65b5eae7e319c05b8" category="list-text">支援使用支援功能的HTTPS通訊所需的FQDN和連接埠、例如：「3.eng.company.com:8082`」StorageGRID ONTAP StorageGRID</block>
 </blocks>

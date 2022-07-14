@@ -93,7 +93,7 @@ Cloud Backup可讓您從ONTAP 下列工作環境備份支援下列公有雲和�
 
 === 支援無網際網路連線的站台
 
-Cloud Backup可在沒有網際網路連線的站台（也稱為「離線」或「暗」站台）中使用、將大量資料從本機內部部署ONTAP 的還原系統備份到本機NetApp StorageGRID 的還原系統。此組態也支援Volume與檔案還原。在這種情況下、您需要在黑暗站台中部署Cloud Manager Connector（最低版本3.9.19）。請參閱 link:task-backup-onprem-private-cloud.html["將內部部署ONTAP 的不全資料備份StorageGRID 至不全"] 以取得詳細資料。
+Cloud Backup可在沒有網際網路連線的站台（也稱為「離線」或「暗」站台）中使用、將大量資料從本機內部部署ONTAP 的還原系統備份到本機NetApp StorageGRID 的還原系統。此組態也支援Volume與檔案還原。在這種情況下、您需要在黑暗站台中部署Cloud Manager Connector（最低版本3.9.20）。請參閱 link:task-backup-onprem-private-cloud.html["將內部部署ONTAP 的不全資料備份StorageGRID 至不全"] 以取得詳細資料。
 
 
 

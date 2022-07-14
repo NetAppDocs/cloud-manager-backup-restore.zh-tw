@@ -107,7 +107,7 @@ https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.
 叢集網路連線需求::
 +
 --
-* 透過使用者指定的連接埠、從叢集間的LIF啟動HTTPS連線到用來進行備份與還原作業的Sfor。ONTAP StorageGRID此連接埠可在備份設定期間進行設定。
+* 透過使用者指定的連接埠、從叢集間LIF啟動HTTPS連線至支援備份與還原作業的支援閘道節點。ONTAP StorageGRID此連接埠可在備份設定期間進行設定。
 +
 可在物件儲存設備中讀取及寫入資料。 ONTAP物件儲存設備從未啟動、只是回應而已。
 
@@ -174,7 +174,7 @@ NOTE: Cloud Manager Connector內建Cloud Backup功能。安裝在沒有網際網
 .步驟
 . 確保安裝 Connector 的網路啟用下列連線：
 +
-** 透過連接埠 443 連線至 StorageGRID 支援的 HTTPS 連線
+** 透過連接埠443連線至StorageGRID 「支援不支援的閘道節點」的HTTPS連線
 ** 透過連接埠443連線至ONTAP 您的SURF叢 集管理LIF的HTTPS連線
 ** 透過連接埠443連至Cloud Backup的傳出網際網路連線（當連接器安裝在「暗」站台時、不需要）
 
@@ -205,7 +205,7 @@ image:screenshot_backup_onprem_enable.png["螢幕擷取畫面會顯示「備份�
 
 . 選擇* StorageGRID 《*》*「供應商」、按一下「*下一步*」、然後輸入供應商詳細資料：
 +
-.. 支援以HTTPS通訊的支援對象是支援支援支援使用支援支援的伺服StorageGRID 器的FQDN和連接埠ONTAP 、例如：「3.eng.company.com:8082`」StorageGRID
+.. 支援使用支援功能的HTTPS通訊所需的FQDN和連接埠、例如：「3.eng.company.com:8082`」StorageGRID ONTAP StorageGRID
 .. 存取金鑰和秘密金鑰、用於存取儲存備份的儲存庫。
 .. 您要備份的磁碟區所在的叢集中的 IPspace ONTAP 。此IPspace的叢集間生命體必須具有傳出網際網路存取（當連接器安裝在「暗」站台時、則不需要）。
 +
