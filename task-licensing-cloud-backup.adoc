@@ -48,7 +48,12 @@ link:concept-ontap-backup-to-cloud.html#cost["深入瞭解使用雲端備份的�
 有幾項PAYGO雲端備份計畫：
 
 * 「Cloud Backup Cloud Volumes ONTAP 」套件可讓您備份內部部署ONTAP 的各種資料。
-* 「CVO專業人員」套件可讓您搭售Cloud Volumes ONTAP 各種解決方案、包括這包括Cloud Volumes ONTAP 不受限制地備份此授權所收取的所有數量（備份容量不計入授權）。此選項無法讓您備份內部部署ONTAP 的支援資料。ifdef：：azure[]
+* 「CVO專業人員」套件可讓您搭售Cloud Volumes ONTAP 各種解決方案、包括這包括Cloud Volumes ONTAP 不受限制地備份此授權所收取的所有數量（備份容量不計入授權）。此選項無法讓您備份內部部署ONTAP 的支援資料。
+
+
+ifdef::azure[]
+
+* 「CVO Edge Cache」套件的功能與「CVO Professional」套件相同、但也支援 https://docs.netapp.com/us-en/cloud-manager-file-cache/concept-gfc.html["全域檔案快取"]。您有權在Cloud Volumes ONTAP 整個作業系統上、為3個已配置容量的TiB部署一個Global File Cache Edge系統。此選項僅可透過Azure Marketplace取得、無法備份內部部署ONTAP 的整套功能。
 
 
 endif::azure[]
@@ -105,17 +110,13 @@ endif::aws[]
 
 ifdef::azure[]
 
-使用Azure時、請聯絡您的NetApp銷售代表以購買年度合約。該合約可在Azure Marketplace以私人優惠形式提供。
-
-在NetApp與您分享私人優惠之後、您可以在雲端備份啟動期間、從Azure Marketplace訂閱年度方案。
+使用Azure時、請聯絡您的NetApp銷售代表以購買年度合約。該合約可在Azure Marketplace以私人優惠形式提供。在NetApp與您分享私人優惠之後、您可以在雲端備份啟動期間、從Azure Marketplace訂閱年度方案。
 
 endif::azure[]
 
 ifdef::gcp[]
 
-使用GCP時、請聯絡您的NetApp銷售代表以購買年度合約。合約可在Google Cloud Marketplace以私人優惠形式提供。
-
-在NetApp與您分享私有方案之後、您可以在雲端備份啟動期間、從Google Cloud Marketplace訂閱年度方案。
+使用GCP時、請聯絡您的NetApp銷售代表以購買年度合約。合約可在Google Cloud Marketplace以私人優惠形式提供。在NetApp與您分享私有方案之後、您可以在雲端備份啟動期間、從Google Cloud Marketplace訂閱年度方案。
 
 endif::gcp[]
 
